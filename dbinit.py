@@ -6,7 +6,7 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
                         """
-                        CREATE TABLE Teams
+                        CREATE TABLE IF NOT EXISTS  Teams
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL
@@ -14,17 +14,16 @@ INIT_STATEMENTS = [
                         """,
                         
                         """
-                        CREATE TABLE Stadium
+                        CREATE TABLE IF NOT EXISTS  Stadium
                         (
                                 ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL,
-                                Stadiumname VARCHAR(30) NOT NULL,
-                                FOREIGN KEY TeamID REFERENCES Teams (ID)
+                                Team_ID INTEGER NOT NULL REFERENCES Teams (ID),
+                                Stadiumname VARCHAR(30) NOT NULL
                         )
                         """,
 
                         """
-                        CREATE TABLE Refree
+                        CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,
                                 name VARCHAR(30),
@@ -34,10 +33,10 @@ INIT_STATEMENTS = [
                         )
                         """,
                         """
-                        CREATE TABLE Standings
+                        CREATE TABLE IF NOT EXISTS  Standings
                         (
                                 ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL,
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID),
                                 Played INTEGER NOT NULL,
                                 Won INTEGER NOT NULL,
                                 Drawn INTEGER NOT NULL,
@@ -45,27 +44,23 @@ INIT_STATEMENTS = [
                                 Goals_for INTEGER NOT NULL,
                                 Goals_against INTEGER NOT NULL,
                                 Goals_difference INTEGER NOT NULL,
-                                Point INTEGER NOT NULL,
-                                FOREIGN KEY TeamID REFERENCES Teams (ID)
+                                Points INTEGER NOT NULL
                         )
                         """,
 
                          """
-                        CREATE TABLE Fixtures
+                        CREATE TABLE IF NOT EXISTS  Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Hometeam INTEGER NOT NULL,
-                                Awayteam INTEGER NOT NULL,
+                                Hometeam INTEGER NOT NULL REFERENCES Teams (ID),
+                                Awayteam INTEGER NOT NULL REFERENCES Teams (ID),
                                 Week INTEGER NOT NULL,
-                                StadiumID INTEGER,
-                                RefreeID INTEGER,
-                                FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID),
-                                FOREIGN KEY StadiumID REFERENCES Stadium (ID),
-                                FOREIGN KEY RefreeID REFERENCES Refree (ID)
+                                StadiumID INTEGER REFERENCES Stadium (ID),
+                                RefereeID INTEGER  REFERENCES Referee (ID)
                         )
                         """,
                         """
-                        CREATE TABLE Player
+                        CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Playername VARCHAR(30)
@@ -73,29 +68,25 @@ INIT_STATEMENTS = [
                         """,
 
 			""" 
-			CREATE TABLE Matches
+			CREATE TABLE IF NOT EXISTS  Matches
 			(
 				ID serial,
-				HomeTeam integer NOT NULL,
-				AwayTeam integer NOT NULL,
-				PRIMARY KEY (ID),
-				FOREIGN KEY HomeTeam REFERENCES Teams (ID),
-				FOREIGN KEY AwayTeam REFERENCES Teams (ID)
+				HomeTeam integer NOT NULL REFERENCES Teams (ID),
+				AwayTeam integer NOT NULL REFERENCES Teams (ID),
+				PRIMARY KEY (ID)
 			)
 			""",
 			
-			"""CREATE TABLE Assist
+			"""CREATE TABLE IF NOT EXISTS  Assist
 			(
 				ID serial NOT NULL,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
+				PlayerID integer REFERENCES Player (ID),
+				MatchID integer  REFERENCES Matches (ID),
+				PRIMARY KEY (ID)
 			)""",
 			
 			""" 
-			CREATE TABLE public."ADMINS"
+			CREATE TABLE IF NOT EXISTS  public."ADMINS"
 			(
 				UserName VARCHAR(10) NOT NULL,
 				ID serial ,
@@ -105,23 +96,21 @@ INIT_STATEMENTS = [
 			""",
 			
 			""" 
-			CREATE TABLE Goal
+			CREATE TABLE IF NOT EXISTS  Goal
 			(
 				ID serial,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
+				PlayerID integer REFERENCES Player (ID),
+				MatchID integer REFERENCES Matches (ID),
+				PRIMARY KEY (ID)
 			) 
 			""",
 			
 			
 			"""
-			CREATE TABLE Statistic
+			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
-				MatchID integer NOT NULL,
+				MatchID integer NOT NULL  REFERENCES Matches (ID),
 				HScore integer DEFAULT 0,
 				HPossesion integer DEFAULT 0,
 				HCorner integer DEFAULT 0,
@@ -142,9 +131,8 @@ INIT_STATEMENTS = [
 				AShotOnTarget integer DEFAULT 0,
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
-				Referee UserName VARCHAR(30),
+				Referee_UserName VARCHAR(30),
 				PRIMARY KEY (ID)
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
 			)
 			"""
                         
