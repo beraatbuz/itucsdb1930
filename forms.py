@@ -1,7 +1,7 @@
 import psycopg2 as dbapi
 import os
 
-url = ""
+url = "postgres://ydsnhphm:afmHtP2dhNoOfJQA7f_aX7YaaF9GMKWP@salt.db.elephantsql.com:5432/ydsnhphm"
 
 class FootballStats:
 	
