@@ -23,7 +23,7 @@ INIT_STATEMENTS = [
                         """,
 
                         """
-                        CREATE TABLE IF NOT EXISTS  Refree
+                        CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,
                                 name VARCHAR(30),
@@ -56,7 +56,7 @@ INIT_STATEMENTS = [
                                 Awayteam INTEGER NOT NULL REFERENCES Teams (ID),
                                 Week INTEGER NOT NULL,
                                 StadiumID INTEGER REFERENCES Stadium (ID),
-                                RefreeID INTEGER  REFERENCES Refree (ID)
+                                RefereeID INTEGER  REFERENCES Referee (ID)
                         )
                         """,
                         """
@@ -131,7 +131,7 @@ INIT_STATEMENTS = [
 				AShotOnTarget integer DEFAULT 0,
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
-				Referee UserName VARCHAR(30),
+				Referee_UserName VARCHAR(30),
 				PRIMARY KEY (ID)
 			)
 			"""
