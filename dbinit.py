@@ -44,7 +44,7 @@ INIT_STATEMENTS = [
                                 Goals_for INTEGER NOT NULL,
                                 Goals_against INTEGER NOT NULL,
                                 Goals_difference INTEGER NOT NULL,
-                                Points INTEGER NOT NULL,
+                                Points INTEGER NOT NULL
                         )
                         """,
 
@@ -73,7 +73,7 @@ INIT_STATEMENTS = [
 				ID serial,
 				HomeTeam integer NOT NULL REFERENCES Teams (ID),
 				AwayTeam integer NOT NULL REFERENCES Teams (ID),
-				PRIMARY KEY (ID),
+				PRIMARY KEY (ID)
 			)
 			""",
 			
@@ -99,11 +99,9 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
 				ID serial,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
+				PlayerID integer REFERENCES Player (ID),
+				MatchID integer REFERENCES Matches (ID),
+				PRIMARY KEY (ID)
 			) 
 			""",
 			
@@ -112,7 +110,7 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
-				MatchID integer NOT NULL,
+				MatchID integer NOT NULL  REFERENCES Matches (ID),
 				HScore integer DEFAULT 0,
 				HPossesion integer DEFAULT 0,
 				HCorner integer DEFAULT 0,
@@ -135,7 +133,6 @@ INIT_STATEMENTS = [
 				APassAccuracy integer DEFAULT 0,
 				Referee UserName VARCHAR(30),
 				PRIMARY KEY (ID)
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
 			)
 			"""
                         
