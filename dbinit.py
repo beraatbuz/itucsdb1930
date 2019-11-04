@@ -12,7 +12,8 @@ INIT_STATEMENTS = [
 				ID serial,
 				HomeTeam integer NOT NULL,
 				AwayTeam integer NOT NULL,
-				PRIMARY KEY (ID)
+				PRIMARY KEY (ID),
+				FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID)
 			)
 			""",
 			
@@ -78,7 +79,69 @@ INIT_STATEMENTS = [
 				PRIMARY KEY (ID)
 				FOREIGN KEY MatchID REFERENCES Matches (ID)
 			)
-			"""
+			""",
+                        
+                        """
+                        CREATE TABLE Teams
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                Teamname VARCHAR(30) NOT NULL
+                        )
+                        """,
+                        
+                        """
+                        CREATE TABLE Stadium
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                TeamID INTEGER NOT NULL,
+                                Stadiumname VARCHAR(30) NOT NULL,
+                                FOREIGN KEY TeamID REFERENCES Teams (ID)
+                        )
+                        """,
+
+                        """
+                        CREATE TABLE Refree
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                name VARCHAR(30),
+                                matches INTEGER,
+                                Redcard INTEGER,
+                                Yellowcard INTEGER
+                        )
+                        """,
+                        """
+                        CREATE TABLE Standings
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                TeamID INTEGER NOT NULL,
+                                Played INTEGER NOT NULL,
+                                Won INTEGER NOT NULL,
+                                Drawn INTEGER NOT NULL,
+                                Lost INTEGER NOT NULL,
+                                Goals_for INTEGER NOT NULL,
+                                Goals_against INTEGER NOT NULL,
+                                Goals_difference INTEGER NOT NULL,
+                                Point INTEGER NOT NULL,
+                                FOREIGN KEY TeamID REFERENCES Teams (ID)
+                        )
+                        """,
+
+                         """
+                        CREATE TABLE Fixtures
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                Hometeam INTEGER NOT NULL,
+                                Awayteam INTEGER NOT NULL,
+                                Week INTEGER NOT NULL,
+                                StadiumID INTEGER,
+                                RefreeID INTEGER,
+                                FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID),
+                                FOREIGN KEY StadiumID REFERENCES Stadium (ID),
+                                FOREIGN KEY RefreeID REFERENCES Refree (ID)
+                        )
+                        """
+                        
+                        
 			
 			
 ]
