@@ -5,149 +5,100 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-                        """
-                        CREATE TABLE IF NOT EXIST Teams
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                Teamname VARCHAR(30) NOT NULL
-                        )
-                        """,
-                        
-                        """
-                        CREATE TABLE IF NOT EXIST Stadium
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL,
-                                Stadiumname VARCHAR(30) NOT NULL,
-                                FOREIGN KEY TeamID REFERENCES Teams (ID)
-                        )
-                        """,
+                       """CREATE TABLE IF NOT EXISTS Provider (
+        ProviderID serial PRIMARY KEY,
+        Company varchar(50) NOT NULL,
+        Address text NOT NULL,
+        Phone varchar(12) NOT NULL,
+        TaxID varchar(10) NOT NULL,
+        Authority text NOT NULL
+        )""",
+    """CREATE TABLE IF NOT EXISTS Employee(
+        EmployeeID serial PRIMARY KEY,
+        Name varchar(40) NOT NULL,
+        Surname varchar(20) NOT NULL,
+        Phonenumber varchar(12) NOT NULL,
+        Email varchar(25) NOT NULL,
+        WorkingHours varchar(255) NOT NULL,
+        WorkingDays varchar(255) NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS CargoCompany(
+        CompanyID serial PRIMARY KEY,
+        Name varchar(255) NOT NULL,
+        Address varchar(255) NOT NULL,
+        PricePerKilo integer NOT NULL,
+        TaxID varchar(10) NOT NULL,
+        Authority text NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Marketplace(
+        MarketID serial PRIMARY KEY,
+        Name varchar(255) NOT NULL,
+        Address varchar(255) NOT NULL,
+        Authority text NOT NULL,
+        Phonenumber varchar(12) NOT NULL,
+        TaxID varchar(10) NOT NULL,
+        Commissionfee integer NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Products(
+        ProductID serial PRIMARY KEY,
+        Name varchar(255) NOT NULL,
+        Brand varchar(255) NOT NULL,
+        Purchase integer NOT NULL,
+        Sale integer NOT NULL,
+        ProviderID integer REFERENCES provider(providerid),
+        Weight integer NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Stock(
+        ID serial PRIMARY KEY,
+        Location_x integer NOT NULL,
+        Location_y integer NOT NULL,
+        Location_z integer NOT NULL,
+        Productid integer REFERENCES products(productid),
+        Quantity integer NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Temporary_order(
+        OrderID serial PRIMARY KEY,
+        Marketplaceid integer REFERENCES marketplace(marketid),
+        Shipaddress varchar(255) NOT NULL,
+        Order_time varchar(255) NOT NULL,
+        Customer_name varchar(255) NOT NULL,
+        Cargo_company integer REFERENCES cargocompany(companyid),
+        Product integer REFERENCES products(productid),
+        Quantity integer NOT NULL,
+        Employee integer REFERENCES employee(employeeid),
+        IsDispatched bool NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Orders(
+        OrderID serial PRIMARY KEY,
+        Marketplaceid integer REFERENCES marketplace(marketid),
+        Shipaddress varchar(255) NOT NULL,
+        Order_time varchar(255) NOT NULL,
+        Customer_name varchar(255) NOT NULL,
+        Cargo_company integer REFERENCES cargocompany(companyid),
+        Product integer REFERENCES products(productid),
+        Quantity integer NOT NULL
+    )""",
+    """CREATE TABLE IF NOT EXISTS Supply_order(
+        OrderID serial PRIMARY KEY,
+        ProviderID integer REFERENCES provider(ProviderID),
+        Price integer NOT NULL,
+        Quantity integer NOT NULL,
+        Time varchar(255) NOT NULL,
+        Product_name varchar(255) NOT NULL,
+        Brand_name varchar(255) NOT NULL,
+        Weight integer NOT NULL
 
-                        """
-                        CREATE TABLE IF NOT EXIST Refree
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                name VARCHAR(30),
-                                matches INTEGER,
-                                Redcard INTEGER,
-                                Yellowcard INTEGER
-                        )
-                        """,
-                        """
-                        CREATE TABLE IF NOT EXIST Standings
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL,
-                                Played INTEGER NOT NULL,
-                                Won INTEGER NOT NULL,
-                                Drawn INTEGER NOT NULL,
-                                Lost INTEGER NOT NULL,
-                                Goals_for INTEGER NOT NULL,
-                                Goals_against INTEGER NOT NULL,
-                                Goals_difference INTEGER NOT NULL,
-                                Point INTEGER NOT NULL,
-                                FOREIGN KEY TeamID REFERENCES Teams (ID)
-                        )
-                        """,
+    )""",
+    """CREATE TABLE IF NOT EXISTS Financial(
+        TransactionID serial PRIMARY KEY,
+        OrderID integer REFERENCES orders(orderid),
+        Supply_orderID integer REFERENCES supply_order(orderid),
+        Transaction integer NOT NULL,
+        Cargo_price integer NOT NULL,
+        Total integer NOT NULL
 
-                         """
-                        CREATE TABLE IF NOT EXIST Fixtures
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                Hometeam INTEGER NOT NULL,
-                                Awayteam INTEGER NOT NULL,
-                                Week INTEGER NOT NULL,
-                                StadiumID INTEGER,
-                                RefreeID INTEGER,
-                                FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID),
-                                FOREIGN KEY StadiumID REFERENCES Stadium (ID),
-                                FOREIGN KEY RefreeID REFERENCES Refree (ID)
-                        )
-                        """,
-                        """
-                        CREATE TABLE IF NOT EXIST Player
-                        (
-                                ID SERIAL PRIMARY KEY,
-                                Playername VARCHAR(30)
-                        )
-                        """,
 
-			""" 
-			CREATE TABLE IF NOT EXIST Matches
-			(
-				ID serial,
-				HomeTeam integer NOT NULL,
-				AwayTeam integer NOT NULL,
-				PRIMARY KEY (ID),
-				FOREIGN KEY HomeTeam REFERENCES Teams (ID),
-				FOREIGN KEY AwayTeam REFERENCES Teams (ID)
-			)
-			""",
-			
-			"""CREATE TABLE IF NOT EXIST Assist
-			(
-				ID serial NOT NULL,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
-			)""",
-			
-			""" 
-			CREATE TABLE IF NOT EXIST public."ADMINS"
-			(
-				UserName VARCHAR(10) NOT NULL,
-				ID serial ,
-				"UserPassword" VARCHAR(16) NOT NULL,
-				PRIMARY KEY (ID)
-			)
-			""",
-			
-			""" 
-			CREATE TABLE IF NOT EXIST Goal
-			(
-				ID serial,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
-			) 
-			""",
-			
-			
-			"""
-			CREATE TABLE IF NOT EXIST Statistic
-			(
-				ID serial,
-				MatchID integer NOT NULL,
-				HScore integer DEFAULT 0,
-				HPossesion integer DEFAULT 0,
-				HCorner integer DEFAULT 0,
-				HInjure integer DEFAULT 0,
-				HFoul integer DEFAULT 0,
-				HOffside integer DEFAULT 0,
-				HShot integer DEFAULT 0,
-				HShotOnTarget integer DEFAULT 0,
-				HShotAccuracy integer DEFAULT 0,
-				HPassAccuracy integer DEFAULT 0,
-				AScore integer DEFAULT 0,
-				APossesion integer DEFAULT 0,
-				ACorner integer DEFAULT 0,
-				AInjure integer DEFAULT 0,
-				AFoul integer DEFAULT 0,
-				AOffside integer DEFAULT 0,
-				AShot integer DEFAULT 0,
-				AShotOnTarget integer DEFAULT 0,
-				AShotAccuracy integer DEFAULT 0,
-				APassAccuracy integer DEFAULT 0,
-				Referee UserName VARCHAR(30),
-				PRIMARY KEY (ID)
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
-			)
-			"""
-                        
+    )"""
                 
                         
                         
