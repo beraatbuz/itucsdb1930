@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <form method='POST'>
+        Username:<br>
+        <input type="text" name="Username" value="{{username}}"><br>
+        Password:<br>
+        <input type="password" name="Password" value="{{password}}"><br>
+        <input type="submit" value="Submit"> 
+    </form>
+{% endblock %}
