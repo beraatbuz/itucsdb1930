@@ -13,7 +13,7 @@ INIT_STATEMENTS = [
 				HomeTeam integer NOT NULL,
 				AwayTeam integer NOT NULL,
 				PRIMARY KEY (ID),
-				FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID)
+				FOREIGN KEY HomeTeam,AwayTeam REFERENCES Teams (ID)
 			)
 			""",
 			
