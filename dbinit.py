@@ -17,9 +17,8 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Stadium
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Team_ID INTEGER NOT NULL,
-                                Stadiumname VARCHAR(30) NOT NULL,
-                                FOREIGN KEY Team_ID REFERENCES Teams (ID)
+                                Team_ID INTEGER NOT NULL REFERENCES Teams (ID),
+                                Stadiumname VARCHAR(30) NOT NULL
                         )
                         """,
 
