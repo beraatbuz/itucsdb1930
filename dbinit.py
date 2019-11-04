@@ -6,7 +6,7 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
                         """
-                        CREATE TABLE Teams
+                        CREATE TABLE IF NOT EXIST Teams
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL
@@ -14,7 +14,7 @@ INIT_STATEMENTS = [
                         """,
                         
                         """
-                        CREATE TABLE Stadium
+                        CREATE TABLE IF NOT EXIST Stadium
                         (
                                 ID SERIAL PRIMARY KEY,
                                 TeamID INTEGER NOT NULL,
@@ -24,7 +24,7 @@ INIT_STATEMENTS = [
                         """,
 
                         """
-                        CREATE TABLE Refree
+                        CREATE TABLE IF NOT EXIST Refree
                         (
                                 ID SERIAL PRIMARY KEY,
                                 name VARCHAR(30),
@@ -34,7 +34,7 @@ INIT_STATEMENTS = [
                         )
                         """,
                         """
-                        CREATE TABLE Standings
+                        CREATE TABLE IF NOT EXIST Standings
                         (
                                 ID SERIAL PRIMARY KEY,
                                 TeamID INTEGER NOT NULL,
@@ -51,7 +51,7 @@ INIT_STATEMENTS = [
                         """,
 
                          """
-                        CREATE TABLE Fixtures
+                        CREATE TABLE IF NOT EXIST Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Hometeam INTEGER NOT NULL,
@@ -65,7 +65,7 @@ INIT_STATEMENTS = [
                         )
                         """,
                         """
-                        CREATE TABLE Player
+                        CREATE TABLE IF NOT EXIST Player
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Playername VARCHAR(30)
@@ -73,7 +73,7 @@ INIT_STATEMENTS = [
                         """,
 
 			""" 
-			CREATE TABLE Matches
+			CREATE TABLE IF NOT EXIST Matches
 			(
 				ID serial,
 				HomeTeam integer NOT NULL,
@@ -84,7 +84,7 @@ INIT_STATEMENTS = [
 			)
 			""",
 			
-			"""CREATE TABLE Assist
+			"""CREATE TABLE IF NOT EXIST Assist
 			(
 				ID serial NOT NULL,
 				PlayerID integer,
@@ -95,7 +95,7 @@ INIT_STATEMENTS = [
 			)""",
 			
 			""" 
-			CREATE TABLE public."ADMINS"
+			CREATE TABLE IF NOT EXIST public."ADMINS"
 			(
 				UserName VARCHAR(10) NOT NULL,
 				ID serial ,
@@ -105,7 +105,7 @@ INIT_STATEMENTS = [
 			""",
 			
 			""" 
-			CREATE TABLE Goal
+			CREATE TABLE IF NOT EXIST Goal
 			(
 				ID serial,
 				PlayerID integer,
@@ -118,7 +118,7 @@ INIT_STATEMENTS = [
 			
 			
 			"""
-			CREATE TABLE Statistic
+			CREATE TABLE IF NOT EXIST Statistic
 			(
 				ID serial,
 				MatchID integer NOT NULL,
