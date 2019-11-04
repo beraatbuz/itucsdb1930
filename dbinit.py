@@ -36,7 +36,7 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Standings
                         (
                                 ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL,
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID),
                                 Played INTEGER NOT NULL,
                                 Won INTEGER NOT NULL,
                                 Drawn INTEGER NOT NULL,
@@ -45,7 +45,6 @@ INIT_STATEMENTS = [
                                 Goals_against INTEGER NOT NULL,
                                 Goals_difference INTEGER NOT NULL,
                                 Points INTEGER NOT NULL,
-                                FOREIGN KEY TeamID REFERENCES Teams (ID)
                         )
                         """,
 
@@ -53,14 +52,11 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Hometeam INTEGER NOT NULL,
-                                Awayteam INTEGER NOT NULL,
+                                Hometeam INTEGER NOT NULL REFERENCES Teams (ID),
+                                Awayteam INTEGER NOT NULL REFERENCES Teams (ID),
                                 Week INTEGER NOT NULL,
-                                StadiumID INTEGER,
-                                RefreeID INTEGER,
-                                FOREIGN KEY Hometeam,Awayteam REFERENCES Teams (ID),
-                                FOREIGN KEY StadiumID REFERENCES Stadium (ID),
-                                FOREIGN KEY RefreeID REFERENCES Refree (ID)
+                                StadiumID INTEGER REFERENCES Stadium (ID),
+                                RefreeID INTEGER  REFERENCES Refree (ID)
                         )
                         """,
                         """
@@ -75,22 +71,18 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Matches
 			(
 				ID serial,
-				HomeTeam integer NOT NULL,
-				AwayTeam integer NOT NULL,
+				HomeTeam integer NOT NULL REFERENCES Teams (ID),
+				AwayTeam integer NOT NULL REFERENCES Teams (ID),
 				PRIMARY KEY (ID),
-				FOREIGN KEY HomeTeam REFERENCES Teams (ID),
-				FOREIGN KEY AwayTeam REFERENCES Teams (ID)
 			)
 			""",
 			
 			"""CREATE TABLE IF NOT EXISTS  Assist
 			(
 				ID serial NOT NULL,
-				PlayerID integer,
-				MatchID integer,
-				PRIMARY KEY (ID),
-				FOREIGN KEY PlayerID REFERENCES Player (ID),
-				FOREIGN KEY MatchID REFERENCES Matches (ID)
+				PlayerID integer REFERENCES Player (ID),
+				MatchID integer  REFERENCES Matches (ID),
+				PRIMARY KEY (ID)
 			)""",
 			
 			""" 
