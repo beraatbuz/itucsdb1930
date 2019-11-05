@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% if current_user.is_admin %}
+{% block title %}dashboard{% endblock %}
+{% block content %}
+
+<a class="button is-link" href="/">1 add</a>
+<br><br><br>          
+<a class="button is-link" href="/">2 add</a>
+<br><br><br>
+<a class="button is-link" href="/">3 add</a>
+<br><br><br>
+<a class="button is-link" href="/">4 add</a>
+{% endblock %}
+{% endif %}

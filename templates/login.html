@@ -2,10 +2,14 @@
 {% block title %}Login{% endblock %}
 {% block content %}
     <form method='POST'>
+    	{{ form.csrf_token }}
         Username:<br>
-        <input type="text" name="Username" value="{{username}}"><br>
+        {{ form.username(required=True, autofocus=True,
+                                     class='input is-large',
+                                     placeholder='your username') }}
         Password:<br>
-        <input type="password" name="Password" value="{{password}}"><br>
+        {{ form.password(required=True, class='input is-large',
+                                     placeholder='your password') }}
         <input type="submit" value="Submit"> 
     </form>
 {% endblock %}
