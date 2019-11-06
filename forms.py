@@ -83,5 +83,15 @@ class FootballStats:
 					#print('%(tt)s: %(nm)s' % {'tt': id, 'nm': Teamname})
 				return cursor_list
 
-
+	def Player(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Teams ORDER BY PlayerName"""
+				cursor.execute(statement)
+				cursor_tuple=()
+				cursor_list=list(cursor_tuple)
+				for id,PlayerName in cursor:
+					cursor_list.append(PlayerName)
+					#print('%(tt)s: %(nm)s' % {'tt': id, 'nm': PlayerName})
+				return cursor_list
  
