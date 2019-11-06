@@ -17,13 +17,6 @@ class FootballStats:
 				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
 				cursor.execute(statement,([TeamId, StadiumName]))
 	
-	def Matches_add(self, HomeTeam, AwayTeam, Week):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Matches(HomeTeam,AwayTeam,Week) VALUES(%s,%s,%s);"""
-				cursor.execute(statement,([HomeTeam, AwayTeam, Week]))
-				
-	
 	def Assist_add(self, PlayerId, MatchId):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:

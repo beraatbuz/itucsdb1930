@@ -70,17 +70,6 @@ INIT_STATEMENTS = [
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,
-
-			""" 
-			CREATE TABLE IF NOT EXISTS  Matches
-			(
-				ID serial,
-				HomeTeam integer NOT NULL REFERENCES Teams (ID),
-				AwayTeam integer NOT NULL REFERENCES Teams (ID),
-                Week INTEGER NOT NULL,
-				PRIMARY KEY (ID)
-			)
-			""",
 			
 			"""CREATE TABLE IF NOT EXISTS  Assist
 			(
