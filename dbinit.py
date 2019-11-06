@@ -10,7 +10,7 @@ INIT_STATEMENTS = [
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL
-                                ManagerID INTEGER NOT NULL REFERENCES Manager (ID)
+                                
                         )
                         """,
                         
