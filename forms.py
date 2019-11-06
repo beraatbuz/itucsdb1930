@@ -50,10 +50,10 @@ class FootballStats:
 	
 	def Referee_add(self, RefereeName, TMatch, TRedCard, TYellowCard):		
         with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
+            with connection.cursor() as cursor:
                 statement = """INSERT INTO Referee(RefereeName, TMatch, TRedCard, TYellowCard) VALUES(%s,%s,%s,%s);"""
                 cursor.execute(statement,([RefereeName, TMatch, TRedCard, TYellowCard]))
-                
+     
 	def Team(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
