@@ -86,11 +86,11 @@ INIT_STATEMENTS = [
 			)""",
 			
 			""" 
-			CREATE TABLE IF NOT EXISTS  public."ADMINS"
+			CREATE TABLE IF NOT EXISTS ADMINS
 			(
 				UserName VARCHAR(10) NOT NULL,
 				ID serial ,
-				"UserPassword" VARCHAR(16) NOT NULL,
+				UserPassword VARCHAR(16) NOT NULL,
 				PRIMARY KEY (ID)
 			)
 			""",
