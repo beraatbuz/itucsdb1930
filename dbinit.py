@@ -63,7 +63,10 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Playername VARCHAR(30)
+                                Playername VARCHAR(30) NOT NULL,
+                                PlayerAge INTEGER NOT NULL,
+                                PlayerNationalty VARCHAR(30) NOT NULL,
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,
 
