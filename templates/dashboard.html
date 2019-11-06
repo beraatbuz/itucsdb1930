@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% if current_user.is_admin %}
+{% block title %}dashboard{% endblock %}
+{% block content %}
+
+<a class="button is-link" href="{{ url_for('team_adding_page') }}">Team Add</a>
+<br><br><br>          
+<a class="button is-link" href="/">*** add</a>
+<br><br><br>
+<a class="button is-link" href="/">*** add</a>
+<br><br><br>
+<a class="button is-link" href="/">*** add</a>
+{% endblock %}
+{% endif %}

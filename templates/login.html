@@ -1,11 +1,41 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
+ <section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <h3 class="title has-text-black">Login</h3>
+        	<hr class="login-hr">
     <form method='POST'>
-        Username:<br>
-        <input type="text" name="Username" value="{{username}}"><br>
-        Password:<br>
-        <input type="password" name="Password" value="{{password}}"><br>
-        <input type="submit" value="Submit"> 
+    	<div class="field">
+            <div class="control">
+    	{{ form.csrf_token }}
+    	<label for="" class="label">Username</label>
+        {{ form.username(required=True, autofocus=True,
+                                     class='input is-large',
+                                     placeholder='your username') }}
+                                     </div></div>
+        <div class="field">
+            <div class="control">
+        <label for="" class="label">Password</label>
+        {{ form.password(required=True, class='input is-large',
+                                     placeholder='your password') }}
+                                     </div></div>
+        <div class="field">
+            <div class="control">
+              <button class="button is-block is-info is-large is-fullwidth">
+                Login
+              </button>
+           
+            </div></div>
+       
     </form>
+     </div>
+        </div>
+        </div>
+        
+        </section>
+       
+
 {% endblock %}
