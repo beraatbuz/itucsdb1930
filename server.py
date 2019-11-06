@@ -78,7 +78,7 @@ def teams_page():
     return render_template("teams.html",cursor=cursor)
 
 @app.route("/player")
-def teams_page():
+def player_page():
     obje = forms.FootballStats()
     cursor=obje.Player()
     print(cursor)
@@ -102,6 +102,7 @@ def player_adding_page():
         obje.Player_add(str(PlayerName))
         obje.Player_add(str(PlayerAge))
         obje.Player_add(str(PlayerNationalty))
+        obje.Player_add(str(PlayerHeight))
         obje.Player_add(str(TeamID))
         flash("You have added.")
         return render_template("add_player.html")
