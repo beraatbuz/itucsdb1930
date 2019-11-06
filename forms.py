@@ -15,38 +15,38 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
-				cursor.execute(statement,(TeamId, StadiumName))
+				cursor.execute(statement,([TeamId, StadiumName]))
 	
 	def Matches_add(self, HomeTeam, AwayTeam):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Matches(HomeTeam,AwayTeam) VALUES(%s,%s);"""
-				cursor.execute(statement,(HomeTeam, AwayTeam))
+				cursor.execute(statement,([HomeTeam, AwayTeam]))
 				
 	
 	def Assist_add(self, PlayerId, MatchId):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Assist(PlayerId,MatchId) VALUES(%s,%s);"""
-				cursor.execute(statement,(PlayerId, MatchId))
+				cursor.execute(statement,([PlayerId, MatchId]))
 	
 	def Admins_add(self, UserName, UserPassword):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO ADMINS(UserName,UserPassword) VALUES(%s,%s);"""
-				cursor.execute(statement,(UserName, UserPassword))
+				cursor.execute(statement,([UserName, UserPassword]))
 	
 	def Goal_add(self, PlayerId, MatchId):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Goal(UserName,UserPassword) VALUES(%s,%s);"""
-				cursor.execute(statement,(PlayerId, MatchId))
+				cursor.execute(statement,([PlayerId, MatchId]))
 	
 	def Statistic_add(self, MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Statistic(MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,(MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName))
+				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName]))
 	
 	
 	def Team(self):
