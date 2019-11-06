@@ -63,8 +63,14 @@ class FootballStats:
 	def Fixtures_add(self, HomeTeam, AwayTeam, Week, StadiumID, RefereeID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Fixtures(HomeTeam, AwayTeam, Week, StadiumID, RefereeID) VALUES(%s,%s,%s,%s,%s); """
+				statement = """INSERT INTO Fixtures(HomeTeam, AwayTeam, Week, StadiumID, RefereeID) VALUES(%s,%s,%s,%s,%s);"""
 				cursor.execute(statement, ([HomeTeam, AwayTeam, Week, StadiumID, RefereeID]))
+
+	def Standings_add(self, TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """INSERT INTO Standings(TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points) ;"""
+				cursor.execute(statement, ([TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points]))
 
 	def Team(self):
 		with dbapi.connect(url) as connection:
