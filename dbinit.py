@@ -77,6 +77,7 @@ INIT_STATEMENTS = [
 				ID serial,
 				HomeTeam integer NOT NULL REFERENCES Teams (ID),
 				AwayTeam integer NOT NULL REFERENCES Teams (ID),
+                Week INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			)
 			""",
