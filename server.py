@@ -5,6 +5,7 @@ from wtforms import Form, BooleanField, StringField, validators,PasswordField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from passlib.hash import pbkdf2_sha256 as hasher
+import forms
 lm = LoginManager()
 
 @lm.user_loader
@@ -39,7 +40,7 @@ def login_page():
             password = form.data["password"]
             if hasher.verify(password, user.password):
                 login_user(user)
-                flash("You have logged in.")
+                flash("You have logged in.")#
                 next_page = request.args.get("next", url_for("dashboard_page"))
                 return redirect(next_page)
         flash("Invalid credentials.")
@@ -54,5 +55,26 @@ def logout_page():
 lm.init_app(app)
 lm.login_view = "login_page"
 
+@app.route("/add_team", methods=['GET','POST'])
+@login_required
+def team_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_team.html')
+
+    elif request.method == 'POST':
+        team_name = request.form["team_name"]
+        obje = forms.FootballStats()
+        obje.Team_add(str(team_name))
+        flash("You have added.")
+        return render_template("add_team.html")
+
+@app.route("/team")
+def teams_page():
+    obje = forms.FootballStats()
+    cursor=obje.Team()
+    print(cursor)
+    return render_template("teams.html",cursor=cursor)
 if __name__ == "__main__":
     app.run(debug=False)
