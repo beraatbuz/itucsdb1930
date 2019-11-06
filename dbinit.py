@@ -10,6 +10,7 @@ INIT_STATEMENTS = [
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL
+                                ManagerID INTEGER NOT NULL REFERENCES Manager (ID)
                         )
                         """,
                         
@@ -128,8 +129,18 @@ INIT_STATEMENTS = [
 				Referee_UserName VARCHAR(30),
 				PRIMARY KEY (ID)
 			)
-			"""
-                        
+			""",
+
+                        """
+                        CREATE TABLE IF NOT EXISTS  Manager
+                        (
+                                ID SERIAL PRIMARY KEY,
+                                Name VARCHAR(30) NOT NULL,
+                                Age INTEGER NOT NULL,
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID)
+                                      
+                        )
+                        """
                 
                         
                         
