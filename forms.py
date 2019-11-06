@@ -48,7 +48,12 @@ class FootballStats:
 				statement = """ INSERT INTO Statistic(MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName]))
 	
-	
+	def Referee_add(self, RefereeName, TMatch, TRedCard, TYellowCard):		
+        with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+                statement = """INSERT INTO Referee(RefereeName, TMatch, TRedCard, TYellowCard) VALUES();"""
+                cursor.execute(statement,([RefereeName, TMatch, TRedCard, TYellowCard]))
+                
 	def Team(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
