@@ -26,10 +26,10 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,
-                                name VARCHAR(30),
-                                matches INTEGER,
-                                Redcard INTEGER,
-                                Yellowcard INTEGER
+                                RefereeName VARCHAR(30),
+                                TotalMatch INTEGER,
+                                TotalRedCard INTEGER,
+                                TotalYellowCard INTEGER
                         )
                         """,
                         """
