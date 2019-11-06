@@ -10,6 +10,12 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO  Teams(Teamname) VALUES(%s);"""
 				cursor.execute(statement,([TeamName]))
+				
+	def Stadium_add(self, TeamId, StadiumName):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO  Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
+				cursor.execute(statement,(TeamId, StadiumName))
 
 	def Team(self):
 		with dbapi.connect(url) as connection:
