@@ -48,11 +48,11 @@ class FootballStats:
 				statement = """ INSERT INTO Statistic(MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName]))
 
-	def Referee_add(self, RefereeName, TMatch, TRedCard, TYellowCard):
+	def Referee_add(self, RefereeName, TotalMatch, TotalRedCard, TotalYellowCard):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Referee(RefereeName, TMatch, TRedCard, TYellowCard) VALUES(%s,%s,%s,%s);"""
-				cursor.execute(statement, ([RefereeName, TMatch, TRedCard, TYellowCard]))
+				statement = """INSERT INTO Referee(RefereeName, TotalMatch, TotalRedCard, TotalYellowCard) VALUES(%s,%s,%s,%s);"""
+				cursor.execute(statement, ([RefereeName, TotalMatch, TotalRedCard, TotalYellowCard]))
 
 	def Player_add(self, PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID):
 		with dbapi.connect(url) as connection:
@@ -60,7 +60,11 @@ class FootballStats:
 				statement = """INSERT INTO Player(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID) VALUES(%s,%s,%s,%s,%s);"""
 				cursor.execute(statement, ([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID]))
 
-
+	def Fixtures_add(self, HomeTeam, AwayTeam, Week, StadiumID, RefereeID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """INSERT INTO Fixtures(HomeTeam, AwayTeam, Week, StadiumID, RefereeID) VALUES(%s,%s,%s,%s,%s); """
+				cursor.execute(statement, ([HomeTeam, AwayTeam, Week, StadiumID, RefereeID]))
 
 	def Team(self):
 		with dbapi.connect(url) as connection:

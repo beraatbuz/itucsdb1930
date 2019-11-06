@@ -52,8 +52,8 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Hometeam INTEGER NOT NULL REFERENCES Teams (ID),
-                                Awayteam INTEGER NOT NULL REFERENCES Teams (ID),
+                                HomeTeam INTEGER NOT NULL REFERENCES Teams (ID),
+                                AwayTeam INTEGER NOT NULL REFERENCES Teams (ID),
                                 Week INTEGER NOT NULL,
                                 StadiumID INTEGER REFERENCES Stadium (ID),
                                 RefereeID INTEGER  REFERENCES Referee (ID)
@@ -63,7 +63,7 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Playername VARCHAR(30) NOT NULL,
+                                PlayerName VARCHAR(30) NOT NULL,
                                 PlayerAge INTEGER NOT NULL,
                                 PlayerNationalty VARCHAR(30) NOT NULL,
                                 PlayerHeight INTEGER NOT NULL, 
