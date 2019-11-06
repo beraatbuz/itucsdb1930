@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Teams{% endblock %}
+{% block content %}
+<ul>
+{% for team in cursor %}
+        <li>{{ team }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

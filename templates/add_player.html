@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}add player{% endblock %}
+{% block content %}
+
+<h1 class="title">ADD PLAYER</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">Player Name</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Umut Bulut"  value="{{PlayerName}}" name="PlayerName">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Player Age</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 66"  value="{{PlayerAge}}" name="PlayerAge">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerNationalty" class="label">Player Nationalty</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Turkey"  value="{{PlayerNationalty}}" name="PlayerNationalty">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerHeight" class="label">Player Height</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 192cm"  value="{{PlayerHeight}}" name="PlayerHeight">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">TeamID</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. TeamID"  value="{{TeamID}}" name="TeamID">
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+</form>
+{% endblock %}
