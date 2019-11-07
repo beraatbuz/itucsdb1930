@@ -43,6 +43,7 @@ INIT_STATEMENTS = [
                         (
                                 ID SERIAL PRIMARY KEY,
                                 RefereeName VARCHAR(30),
+                                Age INTEGER,
                                 TotalMatch INTEGER,
                                 TotalRedCard INTEGER,
                                 TotalYellowCard INTEGER

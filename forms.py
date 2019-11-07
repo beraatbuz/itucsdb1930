@@ -76,11 +76,11 @@ class FootballStats:
 				statement="""Update Statistic Set MatchID=%s, HScore=%s, HPossesion=%s, HCorner=%s, HInjure=%s, HFoul=%s, HOffside=%s, HShot=%s, HShotOnTarget=%s, HShotAccuracy=%s, HPassAccuracy=%s, AScore=%s, APossesion=%s, ACorner=%s, AInjure=%s, AFoul=%s, AOffside=%s, AShot=%s, AShotOnTarget=%s, AShotAccuracy=%s, APassAccuracy=%s, Referee_UserName=%s Where ID=%s;"""
 				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName,StatisticId]))
 
-	def Referee_add(self, RefereeName, TotalMatch, TotalRedCard, TotalYellowCard):
+	def Referee_add(self, RefereeName, Age, TotalMatch, TotalRedCard, TotalYellowCard):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Referee(RefereeName, TotalMatch, TotalRedCard, TotalYellowCard) VALUES(%s,%s,%s,%s);"""
-				cursor.execute(statement,([RefereeName, TotalMatch, TotalRedCard, TotalYellowCard]))
+				statement = """INSERT INTO Referee(RefereeName, Age, TotalMatch, TotalRedCard, TotalYellowCard) VALUES(%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([RefereeName, Age, TotalMatch, TotalRedCard, TotalYellowCard]))
 
 	def Player_add(self, PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID):
 		with dbapi.connect(url) as connection:
