@@ -100,7 +100,6 @@ def player_adding_page():
 def player_page():
     obje = forms.FootballStats()
     cursor=obje.Player()
-    print(cursor)
     return render_template("players.html",cursor=cursor)
     
 if __name__ == "__main__":

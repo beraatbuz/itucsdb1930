@@ -61,6 +61,11 @@ INIT_STATEMENTS = [
                         )
                         """,
                         """
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerAge INTEGER;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30) NOT NULL;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER NOT NULL;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
+                                
                         CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,

@@ -50,7 +50,8 @@ class FootballStats:
 	def Player_add(self, PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Player(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID) VALUES(%s,%s,%s,%s,%s);"""
+				statement = """
+                                INSERT INTO Player(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID) VALUES(%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID]))
 
 	def Manager_add(self, Name, Age, TeamID):
@@ -88,10 +89,6 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """Select * FROM Player ORDER BY PlayerName"""
 				cursor.execute(statement)
-				cursor_tuple=()
-				cursor_list=list(cursor_tuple)
-				for id,PlayerName in cursor:
-					cursor_list.append(PlayerName)
-					#print('%(tt)s: %(nm)s' % {'tt': id, 'nm': PlayerName})
+				cursor_list=cursor.fetchall()
 				return cursor_list
  
