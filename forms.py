@@ -33,6 +33,18 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Assist(PlayerId,MatchId,Minute) VALUES(%s,%s,%s);"""
 				cursor.execute(statement,([PlayerId, MatchId,Minute]))
+
+	def Assist_delete(self, AssistId):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Delete From Assist Where ID = %s; """
+				cursor.execute(statement,([AssistId]))
+
+	def Assist_update(self, AssistId, PlayerId, MatchId, Minute):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s Where ID=%s;"""
+				cursor.execute(statement,([PlayerId, MatchId, Minute, AssistId]))
 	
 	def Admins_add(self, UserName, UserPassword):
 		with dbapi.connect(url) as connection:
