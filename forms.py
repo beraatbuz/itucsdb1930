@@ -168,14 +168,26 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 
-	def Player_delete(self, Name):
+	def Player_delete(self, PlayerID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ DELETE FROM PLAYER WHERE PlayerName = Name """
-				cursor.execute(statement)
+				statement = """ DELETE FROM Player WHERE ID = %s;"""
+				cursor.execute(statement,[PlayerID])
 
-	def Team_delete(self, TName):
+	def Team_delete(self, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ DELETE FROM PLAYER WHERE Teamname = TName """
-				cursor.execute(statement)	
+				statement = """ DELETE FROM Teams WHERE ID = %s;"""
+				cursor.execute(statement[TeamID])	
+
+	def Player_update(self, PlayerID, PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Player Set PlayerName=%s, PlayerAge=%s, PlayerNationalty=%s, PlayerHeight=%s, TeamID=%s Where ID=%s;"""
+				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID, PlayerID]))
+	
+	def Team_update(self, TeamID, TeamName):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Teams Set Teamname=%s Where ID=%s;"""
+				cursor.execute(statement,([TeamName, TeamID]))
