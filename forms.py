@@ -45,31 +45,31 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """INSERT INTO Referee(RefereeName, TotalMatch, TotalRedCard, TotalYellowCard) VALUES(%s,%s,%s,%s);"""
-				cursor.execute(statement, ([RefereeName, TotalMatch, TotalRedCard, TotalYellowCard]))
+				cursor.execute(statement,([RefereeName, TotalMatch, TotalRedCard, TotalYellowCard]))
 
 	def Player_add(self, PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """INSERT INTO Player(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID) VALUES(%s,%s,%s,%s,%s);"""
-				cursor.execute(statement, ([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID]))
+				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID]))
 
 	def Manager_add(self, Name, Age, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Player(Name, Age, TeamID) VALUES(%s,%s,%s);"""
-				cursor.execute(statement, ([Name, Age, TeamID]))			
+				statement = """INSERT INTO Manager(Name, Age, TeamID) VALUES(%s,%s,%s);"""
+				cursor.execute(statement,([Name, Age, TeamID]))			
 
 	def Fixtures_add(self, HomeTeam, AwayTeam, Week, StadiumID, RefereeID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """INSERT INTO Fixtures(HomeTeam, AwayTeam, Week, StadiumID, RefereeID) VALUES(%s,%s,%s,%s,%s);"""
-				cursor.execute(statement, ([HomeTeam, AwayTeam, Week, StadiumID, RefereeID]))
+				cursor.execute(statement,([HomeTeam, AwayTeam, Week, StadiumID, RefereeID]))
 
 	def Standings_add(self, TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """INSERT INTO Standings(TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement, ([TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points]))
+				cursor.execute(statement,([TeamID, Played, Won, Drawn, Lost, Goals_for, Goals_against, Goals_difference, Points]))
 
 	def Team(self):
 		with dbapi.connect(url) as connection:
@@ -86,7 +86,7 @@ class FootballStats:
 	def Player(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Teams ORDER BY PlayerName"""
+				statement = """Select * FROM Player ORDER BY PlayerName"""
 				cursor.execute(statement)
 				cursor_tuple=()
 				cursor_list=list(cursor_tuple)

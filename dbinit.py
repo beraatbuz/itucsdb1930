@@ -67,7 +67,7 @@ INIT_STATEMENTS = [
                                 PlayerName VARCHAR(30) NOT NULL,
                                 PlayerAge INTEGER NOT NULL,
                                 PlayerNationalty VARCHAR(30) NOT NULL,
-                                PlayerHeight INTEGER NOT NULL, 
+                                PlayerHeight INTEGER NOT NULL,
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,

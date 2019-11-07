@@ -77,13 +77,6 @@ def teams_page():
     print(cursor)
     return render_template("teams.html",cursor=cursor)
 
-@app.route("/player")
-def player_page():
-    obje = forms.FootballStats()
-    cursor=obje.Player()
-    print(cursor)
-    return render_template("players.html",cursor=cursor)
-
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
 def player_adding_page():
@@ -93,15 +86,22 @@ def player_adding_page():
         return render_template('add_player.html')
 
     elif request.method == 'POST':
-        PlayerName = request.form["PlayerName"]
-        PlayerAge = request.form["PlayerAge"]
-        PlayerNationalty = request.form["PlayerNationalty"]
-        PlayerHeight = request.form["PlayerHeight"]
-        TeamID = request.form["TeamID"]
+        PlayerName = str(request.form["PlayerName"])
+        PlayerAge = str(request.form["PlayerAge"])
+        PlayerNationalty = str(request.form["PlayerNationalty"])
+        PlayerHeight = str(request.form["PlayerHeight"])
+        TeamID = str(request.form["TeamID"])
         obje = forms.FootballStats()
-        obje.Player_add(str(PlayerName),str(PlayerAge),str(PlayerNationalty),str(PlayerHeight),str(TeamID))
+        obje.Player_add(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID)
         flash("You have added.")
         return render_template("add_player.html")
 
+@app.route("/player")
+def player_page():
+    obje = forms.FootballStats()
+    cursor=obje.Player()
+    print(cursor)
+    return render_template("players.html",cursor=cursor)
+    
 if __name__ == "__main__":
     app.run(debug=False)
