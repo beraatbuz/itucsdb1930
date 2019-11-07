@@ -11,6 +11,12 @@ class FootballStats:
 				statement = """ INSERT INTO Teams(Teamname) VALUES(%s);"""
 				cursor.execute(statement,([TeamName]))
 				
+	def Stadium_add(self, TeamId, StadiumName):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
+				cursor.execute(statement,([TeamId, StadiumName]))
+	
 	def Assist_add(self, PlayerId, MatchId, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
@@ -102,13 +108,7 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
-    
-    def Stadium_add(self, TeamId, StadiumName):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
-				cursor.execute(statement,([TeamId, StadiumName]))
-                
+	
 	def Assist(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
