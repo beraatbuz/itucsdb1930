@@ -148,4 +148,4 @@ def goal_page():
     cursor=obje.Goal()
     return render_template("goals.html",cursor=cursor)  
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

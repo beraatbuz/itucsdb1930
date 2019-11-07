@@ -156,3 +156,9 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Player_delete(self, Name):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ DELETE FROM PLAYER WHERE PlayerName = Name """
+				cursor.execute(statement)	
