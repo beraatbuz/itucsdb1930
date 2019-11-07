@@ -5,11 +5,11 @@ url = "postgres://ydsnhphm:afmHtP2dhNoOfJQA7f_aX7YaaF9GMKWP@salt.db.elephantsql.
 
 class FootballStats:
 
-	def Team_add(self, TeamName):
+	def Team_add(self, TeamName, NickName, ShortName, FoundationDate, ManagerID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Teams(Teamname) VALUES(%s);"""
-				cursor.execute(statement,([TeamName]))
+				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate, ManagerID) VALUES(%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID]))
 				
 	def Stadium_add(self, TeamId, StadiumName):
 		with dbapi.connect(url) as connection:
@@ -198,11 +198,11 @@ class FootballStats:
 				statement="""Update Player Set PlayerName=%s, PlayerAge=%s, PlayerNationalty=%s, PlayerHeight=%s, TeamID=%s Where ID=%s;"""
 				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID, PlayerID]))
 	
-	def Team_update(self, TeamID, TeamName):
+	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, ManagerID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Teams Set Teamname=%s Where ID=%s;"""
-				cursor.execute(statement,([TeamName, TeamID]))
+				statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, ManagerID=%s  Where ID=%s;"""
+				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID, TeamID]))
 
 	def Manager_update(self, ManagerID, Name, Age, TeamID):
 		with dbapi.connect(url) as connection:
