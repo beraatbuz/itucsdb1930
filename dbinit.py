@@ -9,10 +9,11 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Teams
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Teamname VARCHAR(30) NOT NULL
-                                NickName VARCHAR(30) NOT NULL
-                                ShortName VARCHAR(30) NOT NULL
-                                FoundationDate VARCHAR(30)
+                                Teamname VARCHAR(30) NOT NULL,
+                                NickName VARCHAR(30),
+                                ShortName VARCHAR(30) NOT NULL,
+                                FoundationDate VARCHAR(30),
+                                Capacity INTEGER NOT NULL,	
                                 ManagerID INTEGER REFERENCES Manager (ID)
                         )
                         """,
@@ -83,6 +84,7 @@ INIT_STATEMENTS = [
                                 PlayerAge INTEGER NOT NULL,
                                 PlayerNationalty VARCHAR(30) NOT NULL,
                                 PlayerHeight INTEGER NOT NULL,
+                                PlaceOfBirth VARCHAR(30) NOT NULL,
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,
@@ -161,6 +163,7 @@ INIT_STATEMENTS = [
                                 Age INTEGER NOT NULL,
                                 Nationalty VARCHAR(30) NOT NULL,
                                 Height INTEGER NOT NULL,
+                                PlaceOfBirth VARCHAR(30) NOT NULL,
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                                       
                         )
