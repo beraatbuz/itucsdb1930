@@ -2,17 +2,30 @@
 {% block title %}Teams{% endblock %}
 {% block content %}
 <h1 class="title">Teams</h1>
-<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
- <tr>
-    <th>ID</th>
-    <th>TeamName</th>
-  </tr>
-{% for row in cursor %}
-<tr>
-    <td>{{row[0]}}</td>
-    <td>{{row[1]}}</td>
-  </tr>
-
+<form action="" method="post" name="player_list"></form>
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+  <tr>
+      <th></th>
+      <th>ID</th>
+      <th>TeamName</th>
+      <th></th>
+    </tr>
+  {% for row in cursor %}
+  <tr> 
+      <td>
+          <label class="checkbox">
+            <input type="checkbox" name="Team_ID" value="{{ Team_ID }}"/>
+          </label>
+          <a href="{{ url_for('teams_page', Team_ID=ID) }}">
+              
+            </a></td>
+      <td>{{row[0]}}</td>
+      <td>{{row[1]}}</td>
+      <td><div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div></td>
+    </tr>
+  </form>
 {% endfor %}
 </table>
 

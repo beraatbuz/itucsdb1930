@@ -70,12 +70,20 @@ def team_adding_page():
         flash("You have added.")
         return render_template("add_team.html")
 
-@app.route("/team")
+@app.route("/team", methods=['GET','POST'])
 def teams_page():
-    obje = forms.FootballStats()
-    cursor=obje.Team()
-    print(cursor)
-    return render_template("teams.html",cursor=cursor)
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Team()
+        print(cursor)
+        return render_template("teams.html",cursor=cursor)
+    else:
+        obje = forms.FootballStats()
+        form_player_keys = request.form.getlist("ID")
+        #for form_player_key in form_player_keys:
+        obje.Player_delete(int(form_player_keys))
+        flash("You have deleted.")
+        return redirect(url_for("player_page"))
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required

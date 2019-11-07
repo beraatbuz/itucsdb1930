@@ -161,4 +161,10 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ DELETE FROM PLAYER WHERE PlayerName = Name """
+				cursor.execute(statement)
+
+	def Team_delete(self, TName):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ DELETE FROM PLAYER WHERE Teamname = TName """
 				cursor.execute(statement)	
