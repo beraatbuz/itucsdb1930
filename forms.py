@@ -203,3 +203,27 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Teams Set Teamname=%s Where ID=%s;"""
 				cursor.execute(statement,([TeamName, TeamID]))
+
+	def Manager_update(self, ManagerID, Name, Age, TeamID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Manager Set Name=%s, Age=%s, TeamID=%s Where ID=%s;"""
+				cursor.execute(statement,([Name, Age, TeamID, ManagerID]))
+	
+	def Manager_delete(self, ManagerID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ DELETE FROM Manager WHERE ID = %s;"""
+				cursor.execute(statement[ManagerID])	
+	
+	def Goal_update(self, GoalID, PlayerId, MatchId, Minute):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Goal Set PlayerId=%s, MatchId=%s, Minute=%s Where ID=%s;"""
+				cursor.execute(statement,([PlayerId, MatchId, Minute, GoalID]))
+	
+	def Goal_delete(self, GoalID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ DELETE FROM Goal WHERE ID = %s;"""
+				cursor.execute(statement[GoalID])	

@@ -79,11 +79,11 @@ def teams_page():
         return render_template("teams.html",cursor=cursor)
     else:
         obje = forms.FootballStats()
-        form_player_keys = request.form.getlist("ID")
-        #for form_player_key in form_player_keys:
-        obje.Player_delete(str(form_player_keys))
+        form_team_keys = request.form.getlist("ID")
+        #for form_team_key in form_team_keys:
+        obje.Team_delete(form_team_keys)
         flash("You have deleted.")
-        return redirect(url_for("player_page"))
+        return redirect(url_for("team_page"))
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
@@ -114,7 +114,7 @@ def player_page():
         obje = forms.FootballStats()
         form_player_keys = request.form.getlist("ID")
         #for form_player_key in form_player_keys:
-        obje.Player_delete(str(form_player_keys))
+        obje.Player_delete(form_player_keys)
         flash("You have deleted.")
         return redirect(url_for("player_page"))
 
