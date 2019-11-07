@@ -64,9 +64,14 @@ def team_adding_page():
         return render_template('add_team.html')
 
     elif request.method == 'POST':
-        team_name = request.form["team_name"]
+        team_name = str(request.form["team_name"])
+        NickName = str(request.form["team_name"])
+        ShortName = str(request.form["team_name"])
+        FoundationDate = str(request.form["team_name"])
+        Capacity =  str(request.form["team_name"])
+        ManagerID =  str(request.form["team_name"])
         obje = forms.FootballStats()
-        obje.Team_add(str(team_name))
+        obje.Team_add(team_name,NickName,ShortName,FoundationDate,Capacity,ManagerID)
         flash("You have added.")
         return render_template("add_team.html")
 
@@ -80,10 +85,10 @@ def teams_page():
     else:
         obje = forms.FootballStats()
         form_team_keys = request.form.getlist("ID")
-        #for form_team_key in form_team_keys:
-        obje.Team_delete(form_team_keys)
+        for form_team_key in range(len(form_team_keys)):
+            obje.Team_delete(int(form_team_key))
         flash("You have deleted.")
-        return redirect(url_for("team_page"))
+        return redirect(url_for("teams_page"))
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
@@ -98,9 +103,10 @@ def player_adding_page():
         PlayerAge = str(request.form["PlayerAge"])
         PlayerNationalty = str(request.form["PlayerNationalty"])
         PlayerHeight = str(request.form["PlayerHeight"])
+        PlaceOfBirth = str(request.form["PlaceOfBirth"])
         TeamID = str(request.form["TeamID"])
         obje = forms.FootballStats()
-        obje.Player_add(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID)
+        obje.Player_add(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID)
         flash("You have added.")
         return render_template("add_player.html")
 
@@ -129,9 +135,12 @@ def manager_adding_page():
     elif request.method == 'POST':
         Name = str(request.form["Name"])
         Age = str(request.form["Age"])
+        Nationalty = str(request.form["Nationalty"])
+        Height = str(request.form["Height"])
+        PlaceOfBirth = str(request.form["PlaceOfBirth"])
         TeamID = str(request.form["TeamID"])
         obje = forms.FootballStats()
-        obje.Manager_add(Name, Age, TeamID)
+        obje.Manager_add(Name, Age, Nationalty, Height, PlaceOfBirth, TeamID)
         flash("You have added.")
         return render_template("add_manager.html")
 
