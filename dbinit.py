@@ -124,7 +124,7 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
-				MatchID integer NOT NULL  REFERENCES Matches (ID),
+				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
 				HScore integer DEFAULT 0,
 				HPossesion integer DEFAULT 0,
 				HCorner integer DEFAULT 0,
