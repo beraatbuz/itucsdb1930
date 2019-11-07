@@ -91,7 +91,7 @@ INIT_STATEMENTS = [
 			(
 				ID serial NOT NULL,
 				PlayerID integer REFERENCES Player (ID),
-				MatchID integer  REFERENCES Matches (ID),
+				MatchID integer  REFERENCES Fixtures (ID),
                                 Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			)""",
@@ -113,7 +113,7 @@ INIT_STATEMENTS = [
 			(
 				ID serial,
 				PlayerID integer REFERENCES Player (ID),
-				MatchID integer REFERENCES Matches (ID),
+				MatchID integer REFERENCES Fixture (ID),
                                 Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			) 

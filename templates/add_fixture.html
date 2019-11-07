@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}add Goal {% endblock %}
+{% block content %}
+
+<h1 class="title">ADD GOAL</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">HomeTeam</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{HomeTeam}}" name="HomeTeam">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">AwayTeam</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{AwayTeam}}" name="AwayTeam">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Week</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{Week}}" name="Week">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">StadiumID</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{StadiumID}}" name="StadiumID">
+    </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">RefereeID</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{RefereeID}}" name="RefereeID">
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+</form>
+{% endblock %}

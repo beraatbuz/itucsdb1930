@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block title %}add Goal {% endblock %}
+{% block content %}
+
+<h1 class="title">ADD GOAL</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">MatchID</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{MatchID}}" name="MatchID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">HScore</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HScore}}" name="HScore">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">HPossesion</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{HPossesion}}" name="HPossesion">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerName" class="label">HCorner</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{HCorner}}" name="HCorner">
+  </div>
+</div>
+  
+<div class="field">
+<label for="PlayerAge" class="label">HInjure</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HInjure}}" name="HInjure">
+</div>
+</div>
+
+<div class="field">
+<label for="TeamID" class="label">HFoul</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{HFoul}}" name="HFoul">
+</div>
+</div>
+<div class="field">
+  <label for="PlayerName" class="label">HOffside</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{HOffside}}" name="HOffside">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">HShot</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HShot}}" name="HShot">
+  </div>
+</div>
+    
+<div class="field">
+<label for="TeamID" class="label">HShotOnTarget</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{HShotOnTarget}}" name="HShotOnTarget">
+</div>
+</div>
+<div class="field">
+  <label for="PlayerName" class="label">HShotAccuracy</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{HShotAccuracy}}" name="HShotAccuracy">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">HPassAccuracy</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HPassAccuracy}}" name="HPassAccuracy">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">AScore</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{AScore}}" name="AScore">
+  </div>
+</div>
+ 
+<div class="field">
+    <label for="PlayerName" class="label">APossesion</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{APossesion}}" name="APossesion">
+    </div>
+  </div>
+  
+<div class="field">
+  <label for="PlayerAge" class="label">ACorner</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{ACorner}}" name="ACorner">
+  </div>
+</div>
+    
+<div class="field">
+<label for="TeamID" class="label">AInjure</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{AInjure}}" name="AInjure">
+</div>
+</div>
+<div class="field">
+  <label for="PlayerName" class="label">AFoul</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{AFoul}}" name="AFoul">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">AOffside</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{AOffside}}" name="AOffside">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">AShot</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{AShot}}" name="AShot">
+  </div>
+</div>
+
+<div class="field">
+    <label for="PlayerName" class="label">AShotOnTarget</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{AShotOnTarget}}" name="AShotOnTarget">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="PlayerAge" class="label">AShotAccuracy</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{AShotAccuracy}}" name="AShotAccuracy">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="TeamID" class="label">APassAccuracy</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{APassAccuracy}}" name="APassAccuracy">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="PlayerName" class="label">Referee_UserName</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{Referee_UserName}}" name="Referee_UserName">
+    </div>
+  </div>
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+</form>
+{% endblock %}

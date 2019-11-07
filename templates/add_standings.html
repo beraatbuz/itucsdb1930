@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}add standings {% endblock %}
+{% block content %}
+
+<h1 class="title">ADD STANDINGS</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">TeamID</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{TeamID}}" name="TeamID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Played</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 3"  value="{{Played}}" name="Played">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Won</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Won}}" name="Won">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">Drawn</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 2"  value="{{Drawn}}" name="Drawn">
+    </div>
+  </div>
+
+<div class="field">
+  <label for="TeamID" class="label">Lost</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Lost}}" name="Lost">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">Goals_for</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_for}}" name="Goals_for">
+    </div>
+  </div>
+
+<div class="field">
+    <label for="TeamID" class="label">Goals_against</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_against}}" name="Goals_against">
+    </div>
+  </div>
+
+<div class="field">
+    <label for="TeamID" class="label">Goals_difference</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_difference}}" name="Goals_difference">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">Points</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Points}}" name="Points">
+    </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+</form>
+{% endblock %}

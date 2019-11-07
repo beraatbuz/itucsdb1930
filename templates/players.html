@@ -2,7 +2,7 @@
 {% block title %}Teams{% endblock %}
 {% block content %}
 <h1 class="title">Players</h1>
-<form action="" method="post" name="movie_list"></form>
+<form action="" method="post" name="player_list"></form>
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
   <tr>
       <th></th>
@@ -20,7 +20,7 @@
           <label class="checkbox">
             <input type="checkbox" name="Player_ID" value="{{ Player_ID }}"/>
           </label>
-          <a href="{{ url_for('player_page', Player_ID=row[0]) }}">
+          <a href="{{ url_for('player_page', Player_ID=ID) }}">
               
             </a></td>
       <td>{{row[0]}}</td>
