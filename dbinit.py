@@ -23,7 +23,11 @@ INIT_STATEMENTS = [
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Team_ID INTEGER NOT NULL REFERENCES Teams (ID),
-                                Stadiumname VARCHAR(30) NOT NULL
+                                Stadiumname VARCHAR(30) NOT NULL,
+                                Capacity INTEGER NOT NULL,
+                                Built INTEGER NOT NULL,
+                                PitchSize VARCHAR(10) NOT NULL,
+                                Surface VARCHAR(10) NOT NULL
                         )
                         """,
 
@@ -98,6 +102,10 @@ INIT_STATEMENTS = [
 				PlayerID integer REFERENCES Player (ID),
 				MatchID integer  REFERENCES Fixtures (ID),
                                 Minute INTEGER NOT NULL,
+                                LastTouch VARCHAR(10) NOT NULL,
+                                Format VARCHAR(15) NOT NULL,
+                                GoldenAssist VARCHAR(3) NOT NULL,
+                                StadiumHA VARCHAR(5) NOT NULL,
 				PRIMARY KEY (ID)
 			)""",
 			

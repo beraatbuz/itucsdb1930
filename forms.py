@@ -64,6 +64,18 @@ class FootballStats:
 				statement = """ INSERT INTO Statistic(MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName]))
 
+	def Statistic_delete(self, StatisticId):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Delete From Statistic Where ID = %s; """
+				cursor.execute(statement,([StatisticId]))
+
+	def Statistic_Update(self, StatisticId, MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Statistic Set MatchID=%s, HScore=%s, HPossesion=%s, HCorner=%s, HInjure=%s, HFoul=%s, HOffside=%s, HShot=%s, HShotOnTarget=%s, HShotAccuracy=%s, HPassAccuracy=%s, AScore=%s, APossesion=%s, ACorner=%s, AInjure=%s, AFoul=%s, AOffside=%s, AShot=%s, AShotOnTarget=%s, AShotAccuracy=%s, APassAccuracy=%s, Referee_UserName=%s Where ID=%s;"""
+				cursor.execute(statement,([MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName,StatisticId]))
+
 	def Referee_add(self, RefereeName, TotalMatch, TotalRedCard, TotalYellowCard):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
