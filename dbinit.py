@@ -71,7 +71,11 @@ INIT_STATEMENTS = [
                                 ID SERIAL PRIMARY KEY,
                                 HomeTeam INTEGER NOT NULL REFERENCES Teams (ID),
                                 AwayTeam INTEGER NOT NULL REFERENCES Teams (ID),
+                                HomeTScore INTEGER NOT NULL,
+                                AwayTScore INTEGER NOT NULL,
                                 Week INTEGER NOT NULL,
+                                MatchDate VARCHAR(30),
+                                Time VARCHAR(30),
                                 StadiumID INTEGER REFERENCES Stadium (ID),
                                 RefereeID INTEGER  REFERENCES Referee (ID)
                         )
