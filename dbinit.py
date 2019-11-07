@@ -100,7 +100,7 @@ INIT_STATEMENTS = [
                                 LastTouch VARCHAR(10) NOT NULL,
                                 Format VARCHAR(15) NOT NULL,
                                 GoldenAssist VARCHAR(3) NOT NULL,
-                                StadiumHA VARCHAR(5) NOT NULL
+                                StadiumHA VARCHAR(5) NOT NULL,
 				PRIMARY KEY (ID)
 			)""",
 			
