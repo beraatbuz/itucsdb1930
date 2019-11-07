@@ -1,10 +1,25 @@
 {% extends "layout.html" %}
 {% block title %}Teams{% endblock %}
 {% block content %}
-<ul>
-{% for player in cursor %}
-        <li>{{ player }}</li>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+ <tr>
+    <th>ID</th>
+    <th>Player Name</th>
+    <th>Player Age</th>
+    <th>Player Nationalty</th>
+    <th>Team ID</th>
+  </tr>
+{% for row in cursor %}
+<tr>
+    <td>{{row[0]}}</td>
+    <td>{{row[1]}}</td>
+    <td>{{row[2]}}</td>
+    <td>{{row[3]}}</td>
+    <td>{{row[4]}}</td>
+  </tr>
+
 {% endfor %}
-</ul>
+</table>
 
 {% endblock %}
+
