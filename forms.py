@@ -208,7 +208,7 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement="""Update Player Set PlayerName=%s, PlayerAge=%s, PlayerNationalty=%s, PlayerHeight=%s, PlaceOfBirth=%s, TeamID=%s Where ID=%s;"""
-				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, TeamID, PlaceOfBirth, PlayerID]))
+				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID, PlayerID]))
 	
 	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID):
 		with dbapi.connect(url) as connection:
@@ -219,7 +219,7 @@ class FootballStats:
 	def Manager_update(self, ManagerID, Name, Age, Nationalty, Height, PlaceOfBirth, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Manager Set Name=%s, Age=%s, TeamID=%s, Nationalty=%s, Height=%s, PlaceOfBirth=%s Where ID=%s;"""
+				statement="""Update Manager Set Name=%s, Age=%s, Nationalty=%s, Height=%s, PlaceOfBirth=%s, TeamID=%s Where ID=%s;"""
 				cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth, TeamID, ManagerID]))
 	
 	def Manager_delete(self, ManagerID):
