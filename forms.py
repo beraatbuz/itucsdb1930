@@ -77,10 +77,11 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """Select * FROM Teams ORDER BY Teamname"""
 				cursor.execute(statement)
-				cursor_tuple=()
-				cursor_list=list(cursor_tuple)
-				for id,Teamname in cursor:
-					cursor_list.append(Teamname)
+				cursor_list=cursor.fetchall()
+				#cursor_tuple=()
+				#cursor_list=list(cursor_tuple)
+				#for id,Teamname in cursor:
+					#cursor_list.append(Teamname)
 					#print('%(tt)s: %(nm)s' % {'tt': id, 'nm': Teamname})
 				return cursor_list
 
@@ -91,4 +92,11 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
- 
+	
+	def Manager(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Manager ORDER BY Name"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list

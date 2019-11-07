@@ -23,7 +23,14 @@ INIT_STATEMENTS = [
                         )
                         """,
 
+                        
+
                         """
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS RefereeName VARCHAR(30),;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;
+                                
                         CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,

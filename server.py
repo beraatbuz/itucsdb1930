@@ -101,6 +101,28 @@ def player_page():
     obje = forms.FootballStats()
     cursor=obje.Player()
     return render_template("players.html",cursor=cursor)
-    
+
+@app.route("/add_manager", methods=['GET','POST'])
+@login_required
+def manager_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_manager.html')
+
+    elif request.method == 'POST':
+        Name = str(request.form["Name"])
+        Age = str(request.form["Age"])
+        TeamID = str(request.form["TeamID"])
+        obje = forms.FootballStats()
+        obje.Manager_add(Name, Age, TeamID)
+        flash("You have added.")
+        return render_template("add_manager.html")
+
+@app.route("/manager")
+def manager_page():
+    obje = forms.FootballStats()
+    cursor=obje.Manager()
+    return render_template("managers.html",cursor=cursor)   
 if __name__ == "__main__":
     app.run(debug=False)
