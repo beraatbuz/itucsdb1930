@@ -26,10 +26,10 @@ INIT_STATEMENTS = [
                         
 
                         """
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS RefereeName VARCHAR(30),;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS RefereeName VARCHAR(30);
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;
                                 
                         CREATE TABLE IF NOT EXISTS  Referee
                         (
@@ -84,11 +84,15 @@ INIT_STATEMENTS = [
                         )
                         """,
 			
-			"""CREATE TABLE IF NOT EXISTS  Assist
+			"""
+                        ALTER TABLE Assist ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
+
+                        CREATE TABLE IF NOT EXISTS  Assist
 			(
 				ID serial NOT NULL,
 				PlayerID integer REFERENCES Player (ID),
 				MatchID integer  REFERENCES Matches (ID),
+                                Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			)""",
 			
@@ -103,11 +107,14 @@ INIT_STATEMENTS = [
 			""",
 			
 			""" 
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
+
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
 				ID serial,
 				PlayerID integer REFERENCES Player (ID),
 				MatchID integer REFERENCES Matches (ID),
+                                Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			) 
 			""",

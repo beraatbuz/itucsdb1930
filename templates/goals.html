@@ -4,11 +4,9 @@
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
  <tr>
     <th>ID</th>
-    <th>Player Name</th>
-    <th>Player Age</th>
-    <th>Player Nationalty</th>
-    <th>Player Height</th>
-    <th>Team ID</th>
+    <th>PlayerID</th>
+    <th>MatchID</th>
+    <th>Minute</th>
   </tr>
 {% for row in cursor %}
 <tr>
@@ -16,12 +14,9 @@
     <td>{{row[1]}}</td>
     <td>{{row[2]}}</td>
     <td>{{row[3]}}</td>
-    <td>{{row[4]}}</td>
-    <td>{{row[5]}}</td>
   </tr>
 
 {% endfor %}
 </table>
 
 {% endblock %}
-

@@ -17,11 +17,11 @@ class FootballStats:
 				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
 				cursor.execute(statement,([TeamId, StadiumName]))
 	
-	def Assist_add(self, PlayerId, MatchId):
+	def Assist_add(self, PlayerId, MatchId, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Assist(PlayerId,MatchId) VALUES(%s,%s);"""
-				cursor.execute(statement,([PlayerId, MatchId]))
+				statement = """ INSERT INTO Assist(PlayerId,MatchId,Minute) VALUES(%s,%s,%s);"""
+				cursor.execute(statement,([PlayerId, MatchId,Minute]))
 	
 	def Admins_add(self, UserName, UserPassword):
 		with dbapi.connect(url) as connection:
@@ -29,11 +29,11 @@ class FootballStats:
 				statement = """ INSERT INTO ADMINS(UserName,UserPassword) VALUES(%s,%s);"""
 				cursor.execute(statement,([UserName, UserPassword]))
 	
-	def Goal_add(self, PlayerId, MatchId):
+	def Goal_add(self, PlayerId, MatchId, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Goal(UserName,UserPassword) VALUES(%s,%s);"""
-				cursor.execute(statement,([PlayerId, MatchId]))
+				statement = """ INSERT INTO Goal(PlayerId, MatchId, Minute) VALUES(%s,%s,%s);"""
+				cursor.execute(statement,([PlayerId, MatchId,Minute]))
 	
 	def Statistic_add(self, MatchID, HScore, HPossesion, HCorner, HInjure, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, AScore, APossesion, ACorner, AInjure, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee_UserName):
 		with dbapi.connect(url) as connection:
@@ -93,6 +93,62 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 	
+	def Goal(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Goal ORDER BY PlayerID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Stadium(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Stadium ORDER BY Stadiumname"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Assist(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Assist ORDER BY PlayerID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Statistic(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Statistic ORDER BY MatchID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Standings(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Standings ORDER BY TeamID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Fixtures(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Fixtures ORDER BY Week"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Referee(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Referee ORDER BY RefereeName"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
 	def Manager(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
