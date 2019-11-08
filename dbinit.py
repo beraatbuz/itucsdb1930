@@ -19,7 +19,7 @@ INIT_STATEMENTS = [
                         """,
                         
                         """
-                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS INTEGER NOT NULL;
+                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
                         ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Built INTEGER NOT NULL;
                         ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS PitchSize VARCHAR(10) NOT NULL;
                         ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Surface VARCHAR(10) NOT NULL;
