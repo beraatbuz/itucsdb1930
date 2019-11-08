@@ -11,28 +11,29 @@ class FootballStats:
 				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID) VALUES(%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID]))
 				
-	def Stadium_add(self, TeamId, StadiumName):
+	def Stadium_add(self, TeamId, StadiumName, Capacity, Built, PitchSize, Surface):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname) VALUES(%s,%s);"""
-				cursor.execute(statement,([TeamId, StadiumName]))
+				statement = """ INSERT INTO Stadium(Team_ID,Stadiumname,Capacity,Built,PitchSize,Surface) VALUES(%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface]))
 	
 	def Stadium_delete(self,StadiumId):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement="""Delete From Stadium Where ID = %s;"""
 				cursor.execute(statement,([StadiumId]))
-	def Stadium_update(self, StadiumId, TeamId, StadiumName):
+
+	def Stadium_update(self, StadiumId, TeamId, StadiumName, Capacity, Built, PitchSize, Surface):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s Where ID=%s;"""
-				cursor.execute(statement,([TeamId, StadiumName, StadiumId]))
+				statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s, Capacity=%s, Built=%s, PitchSize=%s, Surface=%s Where ID=%s;"""
+				cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface, StadiumId]))
 			
-	def Assist_add(self, PlayerId, MatchId, Minute):
+	def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Assist(PlayerId,MatchId,Minute) VALUES(%s,%s,%s);"""
-				cursor.execute(statement,([PlayerId, MatchId,Minute]))
+				statement = """ INSERT INTO Assist(PlayerId,MatchId,Minute,LastTouch,Format,GoldenAssist,StadiumHA) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([PlayerId, MatchId,Minute,LastTouch,Format,GoldenAssist,StadiumHA]))
 
 	def Assist_delete(self, AssistId):
 		with dbapi.connect(url) as connection:
@@ -40,11 +41,11 @@ class FootballStats:
 				statement="""Delete From Assist Where ID = %s; """
 				cursor.execute(statement,([AssistId]))
 
-	def Assist_update(self, AssistId, PlayerId, MatchId, Minute):
+	def Assist_update(self, AssistId, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s Where ID=%s;"""
-				cursor.execute(statement,([PlayerId, MatchId, Minute, AssistId]))
+				statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s, LastTouch=%s, Format=%s,GoldenAssist=%s,StadiumHA=%s Where ID=%s;"""
+				cursor.execute(statement,([PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA, AssistId]))
 	
 	def Admins_add(self, UserName, UserPassword):
 		with dbapi.connect(url) as connection:
