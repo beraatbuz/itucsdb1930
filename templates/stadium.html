@@ -5,6 +5,7 @@
 <form action="" method="post" name="stadium_list">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Team Id</th>
                     <th>Stadium Name</th>
@@ -12,9 +13,16 @@
                     <th>Built</th>
                     <th>PitchSize</th>
                     <th>Surface</th>
+                    <th></th>
                   </tr>
                   {% for row in cursor %}
-                  <tr> 
+                  <tr>
+                      <td>
+                          <label class="checkbox">
+                              <input type="checkbox" name="stadium_keys" value="{{ ID }}"/>
+                            </label>
+                            <a href="{{ url_for('stadium_page', ID=ID) }}"></a>
+                        </td>
                       <td>{{row[0]}}</td>
                       <td>{{row[1]}}</td>
                       <td>{{row[2]}}</td>
@@ -22,8 +30,18 @@
                       <td>{{row[4]}}</td>
                       <td>{{row[5]}}</td>
                       <td>{{row[6]}}</td>
+                      <td>
+                          <div class="control">
+                            <button class="button is-primary is-small">Update</button>
+                          </div>
+                      </td>
                 </tr>
                 {% endfor %}
         </table>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-danger is-small">Delete</button>
+            </div>
+        </div>
 </form>
 {% endblock %}

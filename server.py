@@ -92,11 +92,17 @@ def teams_page():
 
 @app.route("/stadium", methods=['GET','POST'])
 def stadium_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Stadium()
         print(cursor)
         return render_template("stadium.html",cursor=cursor)
+    else:
+        form_movie_keys = request.form.getlist("stadium_keys")
+        for form_movie_key in form_movie_keys:
+            obje.Stadium_delete(form_movie_key)
+        return redirect(url_for("stadium_page"))
+
 
 @app.route("/assist", methods=['GET','POST'])
 def assist_page():

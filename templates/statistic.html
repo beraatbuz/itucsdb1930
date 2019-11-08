@@ -5,6 +5,7 @@
 <form action="" method="post" name="Statistic_list">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Match ID</th>
                     <th>Home Score</th>
@@ -28,6 +29,7 @@
                     <th>Away ShotAccuracy</th>
                     <th>Away PassAccuracy</th>
                     <th>Referee Name</th>
+                    <th></th>
                   </tr>
                   {% for row in cursor %}
                   <tr> 
@@ -54,6 +56,11 @@
                       <td>{{row[20]}}</td>
                       <td>{{row[21]}}</td>
                       <td>{{row[22]}}</td>
+                      <td>
+                            <div class="control">
+                              <button class="button is-primary is-small">Update</button>
+                            </div>
+                        </td>
                 </tr>
                 {% endfor %}
         </table>
