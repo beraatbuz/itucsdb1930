@@ -85,8 +85,8 @@ def teams_page():
     else:
         obje = forms.FootballStats()
         form_team_keys = request.form.getlist("ID")
-        for form_team_key in range(len(form_team_keys)):
-            obje.Team_delete(int(form_team_key))
+        for id in form_team_keys:
+            obje.Team_delete(id)
         flash("You have deleted.")
         return redirect(url_for("teams_page"))
 
