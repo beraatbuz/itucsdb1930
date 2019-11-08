@@ -97,6 +97,22 @@ def stadium_page():
         cursor=obje.Stadium()
         print(cursor)
         return render_template("stadium.html",cursor=cursor)
+
+@app.route("/assist", methods=['GET','POST'])
+def assist_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Assist()
+        print(cursor)
+        return render_template("assist.html",cursor=cursor)
+
+@app.route("/statistic", methods=['GET','POST'])
+def statistic_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Statistic()
+        print(cursor)
+        return render_template("statistic.html",cursor=cursor)
     
 
 @app.route("/add_player", methods=['GET','POST'])
