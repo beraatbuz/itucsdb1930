@@ -90,6 +90,15 @@ def teams_page():
         flash("You have deleted.")
         return redirect(url_for("teams_page"))
 
+@app.route("/stadium", methods=['GET','POST'])
+def stadium_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Stadium()
+        print(cursor)
+        return render_template("stadium.html",cursor=cursor)
+    
+
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
 def player_adding_page():
