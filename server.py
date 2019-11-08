@@ -98,7 +98,7 @@ def stadium_page():
         print(cursor)
         return render_template("stadium.html",cursor=cursor)
     else:
-        form_stadium_keys = request.form.getlist("stadium_keys")
+        form_stadium_keys = request.form.getlist('stadium_keys')
         for form_stadium_key in form_stadium_keys:
             obje.Stadium_delete(int(form_stadium_key))
         return redirect(url_for("stadium_page"))
