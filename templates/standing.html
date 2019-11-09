@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}standing{% endblock %}
+{% block content %}
+<h1 class="title">STANDING TABLE</h1>
+<form action="" method="post" name="assist_list">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Team ID</th>
+                    <th>Played</th>
+                    <th>Won</th>
+                    <th>Drawn</th>
+                    <th>Lost</th>
+                    <th>Goals for</th>
+                    <th>Goals against</th>
+                    <th>Goals difference</th>
+                    <th>Points</th>
+                    <th></th>
+                  </tr>
+                  {% for row in cursor %}
+                  <tr> 
+                      <td>{{row[0]}}</td>
+                      <td>{{row[1]}}</td>
+                      <td>{{row[2]}}</td>
+                      <td>{{row[3]}}</td>
+                      <td>{{row[4]}}</td>
+                      <td>{{row[5]}}</td>
+                      <td>{{row[6]}}</td>
+                      <td>{{row[7]}}</td>
+                      <td>{{row[8]}}</td>
+                      <td>{{row[9]}}</td>
+                      <td>
+                            <div class="control">
+                              <button class="button is-primary is-small">Update</button>
+                            </div>
+                        </td>
+                </tr>
+                {% endfor %}
+        </table>
+</form>
+{% endblock %}
