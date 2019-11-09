@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}add stadium {% endblock %}
+{% block title %}Add stadium {% endblock %}
 {% block content %}
 
 <h1 class="title">ADD STADIUM</h1>
@@ -15,9 +15,37 @@
 </div>
 
 <div class="field">
-  <label for="PlayerAge" class="label">Stadiumname</label>
+  <label for="PlayerAge" class="label">Stadium Name</label>
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. Ali Samiyen"  value="{{Stadiumname}}" name="Stadiumname">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Capacity</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="52.00"  value="{{Capacity}}" name="Capacity">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Built</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="1995"  value="{{Built}}" name="Built">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Pitch Size</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="120x150m"  value="{{PitchSize}}" name="PitchSize">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Surface</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="Grass/Hybrid"  value="{{Surface}}" name="Surface">
   </div>
 </div>
 

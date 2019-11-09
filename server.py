@@ -124,6 +124,22 @@ def stadium_page():
             obje.Stadium_delete(int(form_stadium_key))
         return redirect(url_for("stadium_page"))
 
+@app.route("/add_stadium", methods=['GET','POST'])
+def stadium_add_page():
+    if request.method == 'GET':
+        return render_template('add_stadium.html')
+    elif request.method == 'POST':
+        Team_ID = str(request.form["Team_ID"])
+        Stadiumname = str(request.form["Stadiumname"])
+        Capacity = str(request.form["Capacity"])
+        Built = str(request.form["Built"])
+        PitchSize = str(request.form["PitchSize"])
+        Surface = str(request.form["Surface"])
+        obje = forms.FootballStats()
+        obje.Stadium_add(Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
+        flash("Stadium added")
+        return render_template("add_stadium.html")
+
 
 @app.route("/assist", methods=['GET','POST'])
 def assist_page():
@@ -140,7 +156,6 @@ def statistic_page():
         cursor=obje.Statistic()
         print(cursor)
         return render_template("statistic.html",cursor=cursor)
-    
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
