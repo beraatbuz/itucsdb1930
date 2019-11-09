@@ -40,6 +40,21 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s, Capacity=%s, Built=%s, PitchSize=%s, Surface=%s Where ID=%s;"""
 				cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface, StadiumId]))
+	def Stadium_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Stadium where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Stadium(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Stadium ORDER BY Stadiumname"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
 			
 	def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
 		with dbapi.connect(url) as connection:
@@ -163,14 +178,6 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select * FROM Goal ORDER BY PlayerID"""
-				cursor.execute(statement)
-				cursor_list=cursor.fetchall()
-				return cursor_list
-	
-	def Stadium(self):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """Select * FROM Stadium ORDER BY Stadiumname"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

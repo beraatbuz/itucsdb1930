@@ -119,10 +119,17 @@ def stadium_page():
         print(cursor)
         return render_template("stadium.html",cursor=cursor)
     else:
-        form_stadium_keys = request.form.getlist('stadium_keys')
-        for form_stadium_key in form_stadium_keys:
-            obje.Stadium_delete(int(form_stadium_key))
-        return redirect(url_for("stadium_page"))
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_stadium_keys = request.form.getlist('stadium_keys')
+            for form_stadium_key in form_stadium_keys:
+                obje.Stadium_delete(int(form_stadium_key))
+            return redirect(url_for("stadium_page"))
+        else:
+            return stadium_update_page(process)
+
 
 @app.route("/add_stadium", methods=['GET','POST'])
 def stadium_add_page():
@@ -139,6 +146,27 @@ def stadium_add_page():
         obje.Stadium_add(Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
         flash("Stadium added")
         return render_template("add_stadium.html")
+
+@app.route("/update_stadium", methods=['GET','POST'])
+def stadium_update_page(process):
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("stadium.html")
+    elif request.method == 'POST':
+        if update is not None:
+            Team_ID = str(request.form["Team_ID"])
+            Stadiumname = str(request.form["Stadiumname"])
+            Capacity = str(request.form["Capacity"])
+            Built = str(request.form["Built"])
+            PitchSize = str(request.form["PitchSize"])
+            Surface = str(request.form["Surface"])
+            obje = forms.FootballStats()
+            obje.Stadium_update(update,Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
+            return redirect(url_for("stadium_page"))
+        cursor=obje.Stadium_update_info(process)
+        print(cursor)
+        return render_template("update_stadium.html",cursor=cursor)
 
 
 @app.route("/assist", methods=['GET','POST'])
