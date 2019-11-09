@@ -203,7 +203,7 @@ INIT_STATEMENTS = [
                                 Age INTEGER,
                                 Nationalty VARCHAR(30),
                                 Height INTEGER,
-                                PlaceOfBirth VARCHAR(30),
+                                PlaceOfBirth VARCHAR(30)
                                       
                         )
                         """
