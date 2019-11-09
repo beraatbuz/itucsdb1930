@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}update Manager{% endblock %}
+{% block content %}
+
+<h1 class="title">Update Manager</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">Manager Name</label>
+  <div class="control">
+      {% for row in cursor %}
+    <input required="required" class="input" type="text" placeholder="e.g. Umut Bulut"  value="{{row[1]}}" name="Name">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Manager Age</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 66"  value="{{row[2]}}" name="Age">
+  </div>
+</div>
+<div class="field">
+  <label for="PlayerAge" class="label">Manager Nationalty</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Turkey"  value="{{row[3]}}" name="Nationalty">
+  </div>
+</div>
+<div class="field">
+  <label for="PlayerAge" class="label">Manager Height</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 166"  value="{{row[4]}}" name="Height">
+  </div>
+</div>
+<div class="field">
+  <label for="PlayerAge" class="label">Manager PlaceOfBirth</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Sivas"  value="{{row[5]}}" name="PlaceOfBirth">
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+{% endfor %}
+</form>
+{% endblock %}

@@ -284,3 +284,34 @@ class FootballStats:
 				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s Where ID=%s;"""
 				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,FixtureID]))
 	
+	def Goal_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Goal where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Manager_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Manager where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Team_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Teams where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Player_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Player where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
