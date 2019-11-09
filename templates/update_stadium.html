@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}Update stadium {% endblock %}
+{% block content %}
+
+<h1 class="title">Update STADIUM</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">Team_ID</label>
+  <div class="control">
+      {% for row in cursor %}
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="Team_ID">
+    
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Stadium Name</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Ali Samiyen"  value="{{row[2]}}" name="Stadiumname">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Capacity</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="52.00"  value="{{row[3]}}" name="Capacity">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Built</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="1995"  value="{{row[4]}}" name="Built">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Pitch Size</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="120x150m"  value="{{row[5]}}" name="PitchSize">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Surface</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="Grass/Hybrid"  value="{{row[6]}}" name="Surface">
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+  </div>
+</div>
+{% endfor %}
+</form>
+{% endblock %}
