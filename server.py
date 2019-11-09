@@ -168,12 +168,13 @@ def player_adding_page():
     elif request.method == 'POST':
         PlayerName = str(request.form["PlayerName"])
         PlayerAge = str(request.form["PlayerAge"])
+        Position = str(request.form["Position"])
         PlayerNationalty = str(request.form["PlayerNationalty"])
         PlayerHeight = str(request.form["PlayerHeight"])
         PlaceOfBirth = str(request.form["PlaceOfBirth"])
         TeamID = str(request.form["TeamID"])
         obje = forms.FootballStats()
-        obje.Player_add(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID)
+        obje.Player_add(PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID)
         flash("You have added.")
         return render_template("add_player.html")
 

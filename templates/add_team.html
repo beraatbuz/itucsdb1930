@@ -2,6 +2,9 @@
 
 {% block title %}add team{% endblock %}
 {% block content %}
+
+<h1 class="title">ADD TEAM</h1>
+
 <form method='POST'>
 <div class="field">
   <label class="label">Add Team Name</label>
@@ -26,7 +29,7 @@
 <div class="field">
   <label class="label">Add FoundationDate</label>
   <div class="control">
-    <input class="input" type="number" placeholder="e.g. 1923"  value="{{FoundationDate}}" name="FoundationDate">
+    <input class="input" type="text" placeholder="e.g. 1923"  value="{{FoundationDate}}" name="FoundationDate">
   </div>
 </div>
 
