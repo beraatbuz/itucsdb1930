@@ -148,12 +148,14 @@ INIT_STATEMENTS = [
 			
 			""" 
                         ALTER TABLE Goal ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS MatchID integer NOT NULL REFERENCES Fixtures (ID);
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS PlayerID integer NOT NULL REFERENCES Player (ID);
 
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
 				ID serial,
-				PlayerID integer REFERENCES Player (ID),
-				MatchID integer REFERENCES Fixture (ID),
+				PlayerID integer NOT NULL REFERENCES Player (ID),
+				MatchID integer NOT NULL REFERENCES Fixtures (ID),
                                 Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			) 
