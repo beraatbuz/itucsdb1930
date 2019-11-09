@@ -146,14 +146,14 @@ def team_adding_page():
         return render_template('add_team.html')
 
     elif request.method == 'POST':
-        team_name = str(request.form["team_name"])
+        Teamname = str(request.form["Teamname"])
         NickName = str(request.form["NickName"])
         ShortName = str(request.form["ShortName"])
         FoundationDate = str(request.form["FoundationDate"])
         Capacity =  str(request.form["Capacity"])
         ManagerID =  str(request.form["ManagerID"])
         obje = forms.FootballStats()
-        obje.Team_add(team_name,NickName,ShortName,FoundationDate,Capacity,ManagerID)
+        obje.Team_add(Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
         flash("You have added.")
         return render_template("add_team.html")
 

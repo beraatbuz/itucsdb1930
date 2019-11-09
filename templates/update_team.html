@@ -10,49 +10,49 @@
   <label class="label">Add Team Name</label>
   <div class="control">
       {% for row in cursor %}
-    <input class="input" type="text" placeholder="e.g. Manchester City"  value="{{row[1]}}" name="team_name">
+    <input required="required" class="input" type="text" placeholder="e.g. Manchester City"  value="{{row[1]}}" name="Teamname">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Add NickName</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. City Girls"  value="{{row[2]}}" name="NickName">
+    <input required="required" class="input" type="text" placeholder="e.g. City Girls"  value="{{row[2]}}" name="NickName">
   </div>
 </div>
 <div class="field">
   <label class="label">Add ShortName</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. MC"  value="{{row[3]}}" name="ShortName">
+    <input required="required" class="input" type="text" placeholder="e.g. MC"  value="{{row[3]}}" name="ShortName">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Add FoundationDate</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. 1923"  value="{{row[4]}}" name="FoundationDate">
+    <input required="required" class="input" type="text" placeholder="e.g. 1923"  value="{{row[4]}}" name="FoundationDate">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Add Capacity</label>
   <div class="control">
-    <input class="input" type="number" placeholder="e.g. 19232"  value="{{row[5]}}" name="Capacity">
+    <input required="required" class="input" type="number" placeholder="e.g. 19232"  value="{{row[5]}}" name="Capacity">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Select ManagerID</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. ManagerID"  value="{{row[6]}}" name="ManagerID">
+    <input required="required" class="input" type="text" placeholder="e.g. ManagerID"  value="{{row[6]}}" name="ManagerID">
   </div>
 </div>
 
 <div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">Submit</button>
+    <div class="control">
+      <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+    </div>
   </div>
-</div>
 {% endfor %}
 </form>
 {% endblock %}
