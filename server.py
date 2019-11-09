@@ -62,6 +62,67 @@ def fixture_page():
         cursor=obje.Fixtures()
         return render_template("fixture.html",cursor=cursor)
     
+@app.route("/add_fixture", methods=['GET','POST'])
+@login_required
+def fixture_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_fixture.html')
+
+    elif request.method == 'POST':
+        HomeTeam = request.form["HomeTeam"]
+        AwayTeam = request.form["AwayTeam"]
+        HomeScore = request.form["HomeScore"]
+        AwayScore =  request.form["AwayScore"]
+        Week =  request.form["Week"]
+        MatchDate =  request.form["MatchDate"]
+        Time =  request.form["Time"]
+        obje = forms.FootballStats()
+        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time)
+        flash("You have added.")
+        return render_template("add_fixture.html")
+
+@app.route("/add_standing", methods=['GET','POST'])
+@login_required
+def standing_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_standings.html')
+
+    elif request.method == 'POST':
+        TeamID = request.form["TeamID"]
+        Played = request.form["Played"]
+        Won = request.form["Won"]
+        Drawn =  request.form["Drawn"]
+        Lost =  request.form["Lost"]
+        Goals_for =  request.form["Goals_for"]
+        Goals_against =  request.form["Goals_against"]
+        obje = forms.FootballStats()
+        obje.Standing_add(TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against)
+        flash("You have added.")
+        return render_template("add_standings.html")
+
+@app.route("/add_referee", methods=['GET','POST'])
+@login_required
+def referee_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_referee.html')
+
+    elif request.method == 'POST':
+        RefereeName = request.form["RefereeName"]
+        Age = request.form["Age"]
+        TotalMatch = request.form["TotalMatch"]
+        TotalRedCard =  request.form["TotalRedCard"]
+        TotalYellowCard =  request.form["TotalYellowCard"]
+        obje = forms.FootballStats()
+        obje.Referee_add(RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard)
+        flash("You have added.")
+        return render_template("add_referee.html")
+
 @app.route("/standing", methods=['GET','POST'])
 def standing_page():
     if request.method == "GET":

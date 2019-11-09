@@ -262,7 +262,7 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Standings(TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(Goals_for-Goals_against),(3*Won+Drawn)]))
+				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(int(Goals_for)-int(Goals_against)),(3*int(Won)+int(Drawn))]))
 	
 	def Standing_delete(self,StandingId):
 		with dbapi.connect(url) as connection:
@@ -274,7 +274,7 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement="""Update Standings Set TeamID=%s, Played=%s, Won=%s, Drawn=%s, Lost=%s,Goals_for=%s,Goals_against=%s,Goals_difference=%s,Points=%s Where ID=%s;"""
-				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(Goals_for-Goals_against),(3*Won+Drawn),StandingId]))
+				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(int(Goals_for)-int(Goals_against)),(3*int(Won)+int(Drawn)),StandingId]))
 				
 	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
 		with dbapi.connect(url) as connection:

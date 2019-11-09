@@ -3,7 +3,7 @@
 {% block title %}add Goal {% endblock %}
 {% block content %}
 
-<h1 class="title">ADD GOAL</h1>
+<h1 class="title">ADD Fixture</h1>
 
 
 <form method='POST'>
@@ -22,6 +22,20 @@
 </div>
 
 <div class="field">
+  <label for="TeamID" class="label">HomeScore</label>
+  <div class="control">
+    <input  class="input" type="text" placeholder="e.g. 3"  value="{{HomeScore}}" name="HomeScore">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">AwayScore</label>
+  <div class="control">
+    <input  class="input" type="text" placeholder="e.g. 0"  value="{{AwayScore}}" name="AwayScore">
+  </div>
+</div>
+
+<div class="field">
   <label for="TeamID" class="label">Week</label>
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{Week}}" name="Week">
@@ -29,16 +43,16 @@
 </div>
 
 <div class="field">
-    <label for="TeamID" class="label">StadiumID</label>
+    <label for="TeamID" class="label">MatchDate</label>
     <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{StadiumID}}" name="StadiumID">
+      <input required="required" class="input" type="text" placeholder="e.g. 01.01.2020"  value="{{MatchDate}}" name="MatchDate">
     </div>
 </div>
 
 <div class="field">
-  <label for="TeamID" class="label">RefereeID</label>
+  <label for="TeamID" class="label">Time</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 1"  value="{{RefereeID}}" name="RefereeID">
+    <input required="required" class="input" type="text" placeholder="e.g. 20:00"  value="{{Time}}" name="Time">
   </div>
 </div>
 
