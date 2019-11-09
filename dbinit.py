@@ -123,7 +123,7 @@ INIT_STATEMENTS = [
 			"""
                         ALTER TABLE Assist ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
 
-                        CREATE TABLE IF NOT EXISTS  Assist
+                        CREATE TABLE Assist
 			(
 				ID serial NOT NULL,
 				PlayerID integer REFERENCES Player (ID),
@@ -151,7 +151,7 @@ INIT_STATEMENTS = [
                         ALTER TABLE Goal ADD COLUMN IF NOT EXISTS MatchID integer NOT NULL REFERENCES Fixtures (ID);
                         ALTER TABLE Goal ADD COLUMN IF NOT EXISTS PlayerID integer NOT NULL REFERENCES Player (ID);
 
-			CREATE TABLE IF NOT EXISTS  Goal
+			CREATE TABLE  Goal
 			(
 				ID serial,
 				PlayerID integer NOT NULL REFERENCES Player (ID),
