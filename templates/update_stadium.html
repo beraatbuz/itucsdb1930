@@ -8,7 +8,7 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">Team_ID</label>
+  <label for="PlayerName" class="label">Team ID</label>
   <div class="control">
       {% for row in cursor %}
     <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="Team_ID">

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Assist {% endblock %}
+{% block content %}
+
+<h1 class="title">Update ASSIST</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">Player ID</label>
+  <div class="control">
+        {% for row in cursor %}
+    <input required="required" class="input" type="text"  value="{{row[1]}}" name="PlayerID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Match ID</label>
+  <div class="control">
+    <input required="required" class="input" type="text"  value="{{row[2]}}" name="MatchID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Minute</label>
+  <div class="control">
+    <input required="required" class="input" type="text"  value="{{row[3]}}" name="Minute">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Last Touch</label>
+  <div class="control">
+    <input required="required" class="input" type="text"  value="{{row[4]}}" name="LastTouch">
+  </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Format</label>
+    <div class="control">
+      <input required="required" class="input" type="text" value="{{row[5]}}" name="Format">
+    </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Golden Assist</label>
+    <div class="control">
+      <input required="required" class="input" type="text" value="{{row[6]}}" name="GoldenAssist">
+    </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Stadium (Home/Away)</label>
+    <div class="control">
+      <input required="required" class="input" type="text"  value="{{row[7]}}" name="StadiumHA">
+    </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+        <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+  </div>
+</div>
+{% endfor %}
+</form>
+{% endblock %}

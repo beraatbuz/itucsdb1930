@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}add Assist {% endblock %}
+{% block title %}Add Assist {% endblock %}
 {% block content %}
 
 <h1 class="title">ADD ASSIST</h1>
@@ -8,14 +8,14 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">PlayerID</label>
+  <label for="PlayerName" class="label">Player ID</label>
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{PlayerID}}" name="PlayerID">
   </div>
 </div>
 
 <div class="field">
-  <label for="PlayerAge" class="label">MatchID</label>
+  <label for="PlayerAge" class="label">Match ID</label>
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{MatchID}}" name="MatchID">
   </div>
@@ -26,6 +26,31 @@
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{Minute}}" name="Minute">
   </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Last Touch</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. Head, Shoulder"  value="{{LastTouch}}" name="LastTouch">
+  </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Format</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. intermediate pass,cross the ball"  value="{{Format}}" name="Format">
+    </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Golden Assist</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. Yes/No"  value="{{GoldenAssist}}" name="GoldenAssist">
+    </div>
+</div>
+<div class="field">
+    <label for="TeamID" class="label">Stadium (Home/Away)</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. Home/Away"  value="{{StadiumHA}}" name="StadiumHA">
+    </div>
 </div>
 
 <div class="field is-grouped">
