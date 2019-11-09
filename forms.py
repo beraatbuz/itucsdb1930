@@ -254,6 +254,14 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Referee Set RefereeName=%s, Age=%s, TotalMatch=%s, TotalRedCard=%s, TotalYellowCard=%s Where ID=%s;"""
 				cursor.execute(statement,([RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard,RefereeID]))
+	def Referee_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Referee where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
 	
 	def Standing_add(self, TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against):
 		with dbapi.connect(url) as connection:
@@ -272,6 +280,13 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Standings Set TeamID=%s, Played=%s, Won=%s, Drawn=%s, Lost=%s,Goals_for=%s,Goals_against=%s,Goals_difference=%s,Points=%s Where ID=%s;"""
 				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(int(Goals_for)-int(Goals_against)),(3*int(Won)+int(Drawn)),StandingId]))
+	def Standing_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Standings where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
 				
 	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
 		with dbapi.connect(url) as connection:
@@ -290,6 +305,13 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s Where ID=%s;"""
 				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,FixtureID]))
+	def Fixture_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Fixtures where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
 	
 	def Goal_update_info(self, ID):
 		with dbapi.connect(url) as connection:

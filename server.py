@@ -57,10 +57,42 @@ lm.login_view = "login_page"
 
 @app.route("/fixture", methods=['GET','POST'])
 def fixture_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Fixtures()
         return render_template("fixture.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        if(process == "Delete"):
+            form_fixture_keys = request.form.getlist('fixture')
+            for form_fixture_key in form_fixture_keys:
+                obje.Fixture_delete(int(form_fixture_key))
+            return redirect(url_for("fixture_page"))
+        else:
+            return fixture_update_page(process)
+@app.route("/update_fixture", methods=['GET','POST'])
+def fixture_update_page(process):
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("fixture.html")
+    elif request.method == 'POST':
+        if update is not None:
+            HomeTeam = request.form["HomeTeam"]
+            AwayTeam = request.form["AwayTeam"]
+            HomeScore = request.form["HomeScore"]
+            AwayScore =  request.form["AwayScore"]
+            Week =  request.form["Week"]
+            MatchDate =  request.form["MatchDate"]
+            Time =  request.form["Time"]
+            obje = forms.FootballStats()
+            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time)
+            return redirect(url_for("fixture_page"))
+        cursor=obje.Fixture_update_info(process)
+        return render_template("update_fixture.html",cursor=cursor)
+
+    
     
 @app.route("/add_fixture", methods=['GET','POST'])
 @login_required
@@ -125,17 +157,76 @@ def referee_adding_page():
 
 @app.route("/standing", methods=['GET','POST'])
 def standing_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Standings()
         return render_template("standing.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        if(process == "Delete"):
+            form_standing_keys = request.form.getlist('standing')
+            for form_standing_key in form_standing_keys:
+                obje.Standing_delete(int(form_standing_key))
+            return redirect(url_for("standing_page"))
+        else:
+            return standing_update_page(process)
+@app.route("/update_standing", methods=['GET','POST'])
+def standing_update_page(process):
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("standing.html")
+    elif request.method == 'POST':
+        if update is not None:
+            TeamID = request.form["TeamID"]
+            Played = request.form["Played"]
+            Won = request.form["Won"]
+            Drawn =  request.form["Drawn"]
+            Lost =  request.form["Lost"]
+            Goals_for =  request.form["Goals_for"]
+            Goals_against =  request.form["Goals_against"]
+            obje = forms.FootballStats()
+            obje.Standing_update(update,TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against)
+            return redirect(url_for("standing_page"))
+        cursor=obje.Standing_update_info(process)
+        return render_template("update_standing.html",cursor=cursor)
 
 @app.route("/referee", methods=['GET','POST'])
 def referee_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Referee()
         return render_template("referee.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        if(process == "Delete"):
+            form_referee_keys = request.form.getlist('referee')
+            for form_referee_key in form_referee_keys:
+                print(form_referee_key)
+                obje.Referee_delete(int(form_referee_key))
+            return redirect(url_for("referee_page"))
+        else:
+            return referee_update_page(process)
+@app.route("/update_referee", methods=['GET','POST'])
+def referee_update_page(process):
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("referee.html")
+    elif request.method == 'POST':
+        if update is not None:
+            RefereeName = request.form["RefereeName"]
+            Age = request.form["Age"]
+            TotalMatch = request.form["TotalMatch"]
+            TotalRedCard =  request.form["TotalRedCard"]
+            TotalYellowCard =  request.form["TotalYellowCard"]
+            obje = forms.FootballStats()
+            obje.Referee_update(update,RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard)
+            return redirect(url_for("referee_page"))
+        cursor=obje.Referee_update_info(process)
+        return render_template("update_referee.html",cursor=cursor)
     
 @app.route("/add_team", methods=['GET','POST'])
 @login_required

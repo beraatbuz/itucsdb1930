@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}add standings {% endblock %}
+{% block content %}
+
+<h1 class="title">UPDATE STANDINGS</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">TeamID</label>
+  <div class="control">
+    {% for row in cursor %}
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="TeamID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">Played</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 3"  value="{{row[2]}}" name="Played">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">Won</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{row[3]}}" name="Won">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">Drawn</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 2"  value="{{row[4]}}" name="Drawn">
+    </div>
+  </div>
+
+<div class="field">
+  <label for="TeamID" class="label">Lost</label>
+  <div class="control">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{row[5]}}" name="Lost">
+  </div>
+</div>
+
+<div class="field">
+    <label for="TeamID" class="label">Goals_for</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{row[6]}}" name="Goals_for">
+    </div>
+  </div>
+
+<div class="field">
+    <label for="TeamID" class="label">Goals_against</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{row[7]}}" name="Goals_against">
+    </div>
+  </div>
+
+
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+  </div>
+</div>
+{% endfor %}
+</form>
+{% endblock %}

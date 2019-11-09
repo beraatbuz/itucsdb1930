@@ -16,7 +16,9 @@
                   </tr>
                   {% for row in cursor %}
                   <tr> 
-                     <td></td>
+                     <td><label class="checkbox">
+                              <input type="checkbox" name="referee" value="{{row[0]}}"/>
+                            </label></td>
                       <td>{{row[0]}}</td>
                       <td>{{row[1]}}</td>
                       <td>{{row[5]}}</td>
@@ -25,11 +27,15 @@
                       <td>{{row[4]}}</td>
                       <td>
                             <div class="control">
-                              <button class="button is-primary is-small">Update</button>
+                              <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
                             </div>
                         </td>
                 </tr>
                 {% endfor %}
         </table>
+        <div class="field is-grouped">
+            <div class="control">
+                <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete">Delete</button>
+            </div>
 </form>
 {% endblock %}
