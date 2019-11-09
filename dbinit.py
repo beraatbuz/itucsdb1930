@@ -189,7 +189,6 @@ INIT_STATEMENTS = [
 			""",
 
                         """
-                        DROP TABLE Manager
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER;
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30);
