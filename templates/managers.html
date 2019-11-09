@@ -1,23 +1,45 @@
 {% extends "layout.html" %}
 {% block title %}Managers{% endblock %}
 {% block content %}
+<h1 class="title">Managers</h1>
+<form action="" method="post" name="manager_list">
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
  <tr>
+    <th></th>
     <th>ID</th>
     <th>Manager Name</th>
     <th>Manager Age</th>
+    <th>Manager Nationalty</th>
+    <th>Manager Height</th>
+    <th>Manager PlaceOfBirth</th>
     <th>Team ID</th>
+    <th></th>
   </tr>
 {% for row in cursor %}
-<tr>
+<tr>  <td>
+    <label class="checkbox">
+    <input type="checkbox" name="ID" value="{{ row[0] }}"/>
+    </td>
     <td>{{row[0]}}</td>
     <td>{{row[1]}}</td>
     <td>{{row[2]}}</td>
     <td>{{row[3]}}</td>
+    <td>{{row[4]}}</td>
+    <td>{{row[5]}}</td>
+    <td>{{row[6]}}</td>
+    <td>
+        <div class="control">
+          <button class="button is-primary is-small">Update</button>
+        </div>
+    </td>
   </tr>
-
-{% endfor %}
+  {% endfor %}
 </table>
+<div class="control">
+    <button class="button is-danger is-small">Delete</button>
+  </div>
 
+
+</form>
 {% endblock %}
 

@@ -16,27 +16,31 @@
     </tr>
   {% for row in cursor %}
   <tr>
-          <td>
+      <td>
           <label class="checkbox">
-            <input type="checkbox" name="Player_ID" value="{{ Player_ID }}"/>
-          </label>
-          <a href="{{ url_for('player_page', Player_ID=ID) }}">
-              
-            </a></td>
+          <input type="checkbox" name="ID" value="{{ row[0] }}"/>
+          </td>
       <td>{{row[0]}}</td>
       <td>{{row[1]}}</td>
       <td>{{row[2]}}</td>
       <td>{{row[3]}}</td>
       <td>{{row[4]}}</td>
       <td>{{row[5]}}</td>
-      <td><div class="control">
-          <button class="button is-danger is-small">Delete</button>
-        </div></td>
+      <td>
+          <div class="control">
+            <button class="button is-primary is-small">Update</button>
+          </div>
+      </td>
     </tr>
+    {% endfor %}  
+  </table>
+    <td><div class="control">
+        <button class="button is-danger is-small">Delete</button>
+      </div></td>
   
-    </form>
-{% endfor %}
-</table>
+</form>
+
+
 
 {% endblock %}
 

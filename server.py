@@ -143,16 +143,14 @@ def player_adding_page():
 
 @app.route("/player", methods=['GET','POST'])
 def player_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Player()
         return render_template("players.html",cursor=cursor)
     else:
-        obje = forms.FootballStats()
         form_player_keys = request.form.getlist("ID")
-        #for form_player_key in form_player_keys:
-        obje.Player_delete(form_player_keys)
-        flash("You have deleted.")
+        for form_player_key in form_player_keys:
+            obje.Player_delete(int(form_player_keys))
         return redirect(url_for("player_page"))
 
 @app.route("/add_manager", methods=['GET','POST'])

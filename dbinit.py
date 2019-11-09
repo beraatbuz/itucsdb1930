@@ -6,6 +6,13 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
                         """
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL,;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS NickName VARCHAR(30);
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30) NOT NULL;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
+
                         CREATE TABLE IF NOT EXISTS  Teams
                         (
                                 ID SERIAL PRIMARY KEY,
@@ -97,6 +104,7 @@ INIT_STATEMENTS = [
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30) NOT NULL;
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER NOT NULL;
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
                                 
                         CREATE TABLE IF NOT EXISTS  Player
                         (
@@ -181,6 +189,13 @@ INIT_STATEMENTS = [
 			""",
 
                         """
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
+                        
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
                                 ID SERIAL PRIMARY KEY,
