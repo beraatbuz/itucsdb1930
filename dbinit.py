@@ -18,9 +18,9 @@ INIT_STATEMENTS = [
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL,
                                 NickName VARCHAR(30),
-                                ShortName VARCHAR(30) NOT NULL,
+                                ShortName VARCHAR(30),
                                 FoundationDate VARCHAR(30),
-                                Capacity INTEGER NOT NULL,	
+                                Capacity INTEGER,	
                                 ManagerID INTEGER REFERENCES Manager (ID)
                         )
                         """,
@@ -101,19 +101,19 @@ INIT_STATEMENTS = [
                         """,
                         """
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerAge INTEGER;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30) NOT NULL;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER NOT NULL;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30);
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30);
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
                                 
                         CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,
                                 PlayerName VARCHAR(30) NOT NULL,
-                                PlayerAge INTEGER NOT NULL,
-                                PlayerNationalty VARCHAR(30) NOT NULL,
-                                PlayerHeight INTEGER NOT NULL,
-                                PlaceOfBirth VARCHAR(30) NOT NULL,
+                                PlayerAge INTEGER,
+                                PlayerNationalty VARCHAR(30),
+                                PlayerHeight INTEGER,
+                                PlaceOfBirth VARCHAR(30),
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,
@@ -190,20 +190,20 @@ INIT_STATEMENTS = [
 
                         """
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30);
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30);
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
                         
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Name VARCHAR(30) NOT NULL,
-                                Age INTEGER NOT NULL,
-                                Nationalty VARCHAR(30) NOT NULL,
-                                Height INTEGER NOT NULL,
-                                PlaceOfBirth VARCHAR(30) NOT NULL,
+                                Age INTEGER,
+                                Nationalty VARCHAR(30),
+                                Height INTEGER,
+                                PlaceOfBirth VARCHAR(30),
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                                       
                         )
