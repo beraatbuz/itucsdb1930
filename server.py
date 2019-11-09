@@ -86,11 +86,11 @@ def team_adding_page():
 
     elif request.method == 'POST':
         team_name = str(request.form["team_name"])
-        NickName = str(request.form["team_name"])
-        ShortName = str(request.form["team_name"])
-        FoundationDate = str(request.form["team_name"])
-        Capacity =  str(request.form["team_name"])
-        ManagerID =  str(request.form["team_name"])
+        NickName = str(request.form["NickName"])
+        ShortName = str(request.form["ShortName"])
+        FoundationDate = str(request.form["FoundationDate"])
+        Capacity =  str(request.form["Capacity"])
+        ManagerID =  str(request.form["ManagerID"])
         obje = forms.FootballStats()
         obje.Team_add(team_name,NickName,ShortName,FoundationDate,Capacity,ManagerID)
         flash("You have added.")
@@ -105,9 +105,9 @@ def teams_page():
         return render_template("teams.html",cursor=cursor)
     else:
         obje = forms.FootballStats()
-        form_team_keys = request.form.getlist("ID")
-        for id in form_team_keys:
-            obje.Team_delete(id)
+        form_team_keys = request.form.getlist("team_keys")
+        for team_key in form_team_keys:
+            obje.Team_delete(team_key)
         flash("You have deleted.")
         return redirect(url_for("teams_page"))
 
@@ -167,11 +167,12 @@ def player_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Player()
+        print(cursor)
         return render_template("players.html",cursor=cursor)
     else:
         form_player_keys = request.form.getlist("player_keys")
         for form_player_key in form_player_keys:
-            obje.Player_delete(int(form_player_keys))
+            obje.Player_delete(int(form_player_key))
         return redirect(url_for("player_page"))
 
 @app.route("/add_manager", methods=['GET','POST'])
@@ -194,12 +195,19 @@ def manager_adding_page():
         flash("You have added.")
         return render_template("add_manager.html")
 
-@app.route("/manager")
+@app.route("/manager", methods=['GET','POST'])
 def manager_page():
     obje = forms.FootballStats()
-    cursor=obje.Manager()
-    return render_template("managers.html",cursor=cursor)   
-    
+    if request.method == "GET":
+        cursor=obje.Manager()
+        return render_template("managers.html",cursor=cursor)   
+    else:
+        form_manager_keys = request.form.getlist("manager_keys")
+        for form_manager_key in form_manager_keys:
+            obje.Manager_delete(int(form_manager_key))
+        return redirect(url_for("manager_page"))
+
+
 @app.route("/add_goal", methods=['GET','POST'])
 @login_required
 def goal_adding_page():
@@ -217,10 +225,18 @@ def goal_adding_page():
         flash("You have added.")
         return render_template("add_goal.html")
 
-@app.route("/goal")
+@app.route("/goal", methods=['GET','POST'])
 def goal_page():
     obje = forms.FootballStats()
-    cursor=obje.Goal()
-    return render_template("goals.html",cursor=cursor)  
+    if request.method == "GET":
+        cursor=obje.Goal()
+        print(cursor)
+        return render_template("goals.html",cursor=cursor)
+    else:
+        form_goal_keys = request.form.getlist("goal_keys")
+        for form_goal_key in form_goal_keys:
+            obje.Goal_delete(int(form_goal_key))
+        return redirect(url_for("goal_page"))
+
 if __name__ == "__main__":
     app.run(debug=True)
