@@ -71,18 +71,25 @@ INIT_STATEMENTS = [
                         """,
 
                          """
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS MatchDate VARCHAR(30);
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Time VARCHAR(30);
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR DEFAULT '-';
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR DEFAULT '-';
+                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS StadiumID;
+                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS RefereeID;
+                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS HomeTScore;
+                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS AwayTScore;
+                        
                         CREATE TABLE IF NOT EXISTS  Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
                                 HomeTeam INTEGER NOT NULL REFERENCES Teams (ID),
                                 AwayTeam INTEGER NOT NULL REFERENCES Teams (ID),
-                                HomeTScore INTEGER NOT NULL,
-                                AwayTScore INTEGER NOT NULL,
+                                HomeScore VARCHAR(2) DEFAULT '-',
+                                AwayScore VARCHAR(2) DEFAULT '-',
                                 Week INTEGER NOT NULL,
                                 MatchDate VARCHAR(30),
-                                Time VARCHAR(30),
-                                StadiumID INTEGER REFERENCES Stadium (ID),
-                                RefereeID INTEGER  REFERENCES Referee (ID)
+                                Time VARCHAR(30)
                         )
                         """,
                         """

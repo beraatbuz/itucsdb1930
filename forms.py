@@ -239,4 +239,58 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ DELETE FROM Goal WHERE ID = %s;"""
-				cursor.execute(statement,[GoalID])	
+				cursor.execute(statement,[GoalID])
+	def Referee_add(self, RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO Referee(RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard) VALUES(%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard]))
+	
+	def Referee_delete(self,RefereeId):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Delete From Referee Where ID = %s;"""
+				cursor.execute(statement,([RefereeId]))
+
+	def Referee_update(self, RefereeID,RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Referee Set RefereeName=%s, Age=%s, TotalMatch=%s, TotalRedCard=%s, TotalYellowCard=%s Where ID=%s;"""
+				cursor.execute(statement,([RefereeName,Age,TotalMatch,TotalRedCard,TotalYellowCard,RefereeID]))
+	
+	def Standing_add(self, TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO Standings(TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(Goals_for-Goals_against),(3*Won+Drawn)]))
+	
+	def Standing_delete(self,StandingId):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Delete From Standings Where ID = %s;"""
+				cursor.execute(statement,([StandingId]))
+
+	def Standing_update(self, StandingId,TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Standings Set TeamID=%s, Played=%s, Won=%s, Drawn=%s, Lost=%s,Goals_for=%s,Goals_against=%s,Goals_difference=%s,Points=%s Where ID=%s;"""
+				cursor.execute(statement,([TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against,(Goals_for-Goals_against),(3*Won+Drawn),StandingId]))
+				
+	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO Fixtures(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time]))
+	
+	def Fixture_delete(self,FixtureId):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Delete From Fixtures Where ID = %s;"""
+				cursor.execute(statement,([FixtureId]))
+
+	def Fixture_update(self, FixtureID,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s Where ID=%s;"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,FixtureID]))
+	
