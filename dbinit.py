@@ -203,7 +203,6 @@ INIT_STATEMENTS = [
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30) NOT NULL;
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER NOT NULL;
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
                         
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
