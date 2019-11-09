@@ -55,6 +55,27 @@ def logout_page():
 lm.init_app(app)
 lm.login_view = "login_page"
 
+@app.route("/fixture", methods=['GET','POST'])
+def fixture_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Fixtures()
+        return render_template("fixture.html",cursor=cursor)
+    
+@app.route("/standing", methods=['GET','POST'])
+def standing_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Standings()
+        return render_template("standing.html",cursor=cursor)
+
+@app.route("/referee", methods=['GET','POST'])
+def referee_page():
+    if request.method == "GET":
+        obje = forms.FootballStats()
+        cursor=obje.Referee()
+        return render_template("referee.html",cursor=cursor)
+    
 @app.route("/add_team", methods=['GET','POST'])
 @login_required
 def team_adding_page():

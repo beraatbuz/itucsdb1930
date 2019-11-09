@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}standin{% endblock %}
+{% block content %}
+<h1 class="title">FIXTURE</h1>
+<form action="" method="post" name="assist_list">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Home Score</th>
+                    <th>Away Score</th>
+                    <th>Week</th>
+                    <th>MatchDate</th>
+                    <th>Time </th>
+                    <th></th>
+                  </tr>
+                  {% for row in cursor %}
+                  <tr> 
+                      <td>{{row[0]}}</td>
+                      <td>{{row[1]}}</td>
+                      <td>{{row[2]}}</td>
+                      <td>{{row[3]}}</td>
+                      <td>{{row[4]}}</td>
+                      <td>{{row[5]}}</td>
+                      <td>{{row[6]}}</td>
+                      <td>{{row[7]}}</td>
+                      <td>
+                            <div class="control">
+                              <button class="button is-primary is-small">Update</button>
+                            </div>
+                        </td>
+                </tr>
+                {% endfor %}
+        </table>
+</form>
+{% endblock %}
