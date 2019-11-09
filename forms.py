@@ -93,8 +93,8 @@ class FootballStats:
 	def Manager_add(self, Name, Age, Nationalty, Height, PlaceOfBirth, TeamID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """INSERT INTO Manager(Name, Age, Nationalty, Height, PlaceOfBirth, TeamID) VALUES(%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth, TeamID]))			
+				statement = """INSERT INTO Manager(Name, Age, Nationalty, Height, PlaceOfBirth) VALUES(%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth]))			
 
 	def Fixtures_add(self, HomeTeam, AwayTeam, HomeTScore, AwayTScore, Week, MatchDate, Time, StadiumID, RefereeID):
 		with dbapi.connect(url) as connection:
@@ -217,11 +217,11 @@ class FootballStats:
 				statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, Capacity=%s, ManagerID=%s  Where ID=%s;"""
 				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID, TeamID]))
 
-	def Manager_update(self, ManagerID, Name, Age, Nationalty, Height, PlaceOfBirth, TeamID):
+	def Manager_update(self, ManagerID, Name, Age, Nationalty, Height, PlaceOfBirth):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Manager Set Name=%s, Age=%s, Nationalty=%s, Height=%s, PlaceOfBirth=%s, TeamID=%s Where ID=%s;"""
-				cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth, TeamID, ManagerID]))
+				statement="""Update Manager Set Name=%s, Age=%s, Nationalty=%s, Height=%s, PlaceOfBirth=%s Where ID=%s;"""
+				cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth, ManagerID]))
 	
 	def Manager_delete(self, ManagerID):
 		with dbapi.connect(url) as connection:

@@ -189,9 +189,8 @@ def manager_adding_page():
         Nationalty = str(request.form["Nationalty"])
         Height = str(request.form["Height"])
         PlaceOfBirth = str(request.form["PlaceOfBirth"])
-        TeamID = str(request.form["TeamID"])
         obje = forms.FootballStats()
-        obje.Manager_add(Name, Age, Nationalty, Height, PlaceOfBirth, TeamID)
+        obje.Manager_add(Name, Age, Nationalty, Height, PlaceOfBirth)
         flash("You have added.")
         return render_template("add_manager.html")
 
