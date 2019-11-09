@@ -8,9 +8,9 @@ INIT_STATEMENTS = [
                         """
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS NickName VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30);
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30) NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
 
                         CREATE TABLE IF NOT EXISTS  Teams
@@ -18,9 +18,9 @@ INIT_STATEMENTS = [
                                 ID SERIAL PRIMARY KEY,
                                 Teamname VARCHAR(30) NOT NULL,
                                 NickName VARCHAR(30),
-                                ShortName VARCHAR(30),
+                                ShortName VARCHAR(30) NOT NULL,
                                 FoundationDate VARCHAR(30),
-                                Capacity INTEGER,	
+                                Capacity INTEGER NOT NULL,	
                                 ManagerID INTEGER REFERENCES Manager (ID)
                         )
                         """,
@@ -46,12 +46,12 @@ INIT_STATEMENTS = [
                         
 
                         """
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS Age INTEGER;
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS RefereeName VARCHAR(30);
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;
-                                
-                        CREATE TABLE IF NOT EXISTS  Referee
+                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;                                
+                        CREATE TABLE IF NOT EXISTS  Referees
                         (
                                 ID SERIAL PRIMARY KEY,
                                 RefereeName VARCHAR(30),
@@ -80,8 +80,8 @@ INIT_STATEMENTS = [
                          """
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS MatchDate VARCHAR(30);
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Time VARCHAR(30);
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR DEFAULT '-';
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR DEFAULT '-';
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR(2) DEFAULT '-';
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR(2) DEFAULT '-';
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS StadiumID;
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS RefereeID;
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS HomeTScore;
@@ -101,16 +101,23 @@ INIT_STATEMENTS = [
                         """,
                         """
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerAge INTEGER;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30) NOT NULL;
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER NOT NULL;
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS Position VARCHAR(30);
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30);
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER;
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30);
                         ALTER TABLE Player ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
+                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
                                 
                         CREATE TABLE IF NOT EXISTS  Player
                         (
                                 ID SERIAL PRIMARY KEY,
                                 PlayerName VARCHAR(30) NOT NULL,
+                                PlayerAge INTEGER NOT NULL,
+                                PlayerNationalty VARCHAR(30) NOT NULL,
+                                PlayerHeight INTEGER NOT NULL,
+                                PlaceOfBirth VARCHAR(30) NOT NULL,
                                 PlayerAge INTEGER,
                                 Position VARCHAR(30),
                                 PlayerNationalty VARCHAR(30),
@@ -192,20 +199,21 @@ INIT_STATEMENTS = [
 
                         """
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30);
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30);
-                        
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
+                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
                         
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
                                 ID SERIAL PRIMARY KEY,
                                 Name VARCHAR(30) NOT NULL,
-                                Age INTEGER,
-                                Nationalty VARCHAR(30),
-                                Height INTEGER,
-                                PlaceOfBirth VARCHAR(30)
+                                Age INTEGER NOT NULL,
+                                Nationalty VARCHAR(30) NOT NULL,
+                                Height INTEGER NOT NULL,
+                                PlaceOfBirth VARCHAR(30) NOT NULL,
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                                       
                         )
                         """
