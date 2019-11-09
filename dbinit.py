@@ -115,14 +115,10 @@ INIT_STATEMENTS = [
                                 ID SERIAL PRIMARY KEY,
                                 PlayerName VARCHAR(30) NOT NULL,
                                 PlayerAge INTEGER NOT NULL,
+                                Position VARCHAR(30),
                                 PlayerNationalty VARCHAR(30) NOT NULL,
                                 PlayerHeight INTEGER NOT NULL,
                                 PlaceOfBirth VARCHAR(30) NOT NULL,
-                                PlayerAge INTEGER,
-                                Position VARCHAR(30),
-                                PlayerNationalty VARCHAR(30),
-                                PlayerHeight INTEGER,
-                                PlaceOfBirth VARCHAR(30),
                                 TeamID INTEGER NOT NULL REFERENCES Teams (ID)
                         )
                         """,
@@ -211,9 +207,8 @@ INIT_STATEMENTS = [
                                 Age INTEGER NOT NULL,
                                 Nationalty VARCHAR(30) NOT NULL,
                                 Height INTEGER NOT NULL,
-                                PlaceOfBirth VARCHAR(30) NOT NULL,
-                                TeamID INTEGER NOT NULL REFERENCES Teams (ID)
-                                      
+                                PlaceOfBirth VARCHAR(30) NOT NULL
+                        
                         )
                         """
                 

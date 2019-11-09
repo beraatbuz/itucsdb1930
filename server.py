@@ -159,18 +159,23 @@ def team_adding_page():
 
 @app.route("/team", methods=['GET','POST'])
 def teams_page():
+    obje = forms.FootballStats()
     if request.method == "GET":
-        obje = forms.FootballStats()
         cursor=obje.Team()
         print(cursor)
         return render_template("teams.html",cursor=cursor)
     else:
-        obje = forms.FootballStats()
-        form_team_keys = request.form.getlist("team_keys")
-        for team_key in form_team_keys:
-            obje.Team_delete(team_key)
-        flash("You have deleted.")
-        return redirect(url_for("teams_page"))
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_team_keys = request.form.getlist("team_keys")
+            for team_key in form_team_keys:
+                obje.Team_delete(team_key)
+            flash("You have deleted.")
+            return redirect(url_for("teams_page"))
+        else:
+            return team_update_page(process)
 
 @app.route("/stadium", methods=['GET','POST'])
 def stadium_page():
@@ -275,10 +280,16 @@ def player_page():
         print(cursor)
         return render_template("players.html",cursor=cursor)
     else:
-        form_player_keys = request.form.getlist("player_keys")
-        for form_player_key in form_player_keys:
-            obje.Player_delete(int(form_player_key))
-        return redirect(url_for("player_page"))
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_player_keys = request.form.getlist("player_keys")
+            for form_player_key in form_player_keys:
+                obje.Player_delete(int(form_player_key))
+            return redirect(url_for("player_page"))
+        else:
+            return player_update_page(process)
 
 @app.route("/add_manager", methods=['GET','POST'])
 @login_required
@@ -306,11 +317,16 @@ def manager_page():
         cursor=obje.Manager()
         return render_template("managers.html",cursor=cursor)   
     else:
-        form_manager_keys = request.form.getlist("manager_keys")
-        for form_manager_key in form_manager_keys:
-            obje.Manager_delete(int(form_manager_key))
-        return redirect(url_for("manager_page"))
-
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_manager_keys = request.form.getlist("manager_keys")
+            for form_manager_key in form_manager_keys:
+                obje.Manager_delete(int(form_manager_key))
+            return redirect(url_for("manager_page"))
+        else:
+            return manager_update_page(process)
 
 @app.route("/add_goal", methods=['GET','POST'])
 @login_required
@@ -337,10 +353,16 @@ def goal_page():
         print(cursor)
         return render_template("goals.html",cursor=cursor)
     else:
-        form_goal_keys = request.form.getlist("goal_keys")
-        for form_goal_key in form_goal_keys:
-            obje.Goal_delete(int(form_goal_key))
-        return redirect(url_for("goal_page"))
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_goal_keys = request.form.getlist("goal_keys")
+            for form_goal_key in form_goal_keys:
+                obje.Goal_delete(int(form_goal_key))
+            return redirect(url_for("goal_page"))
+        else:
+            return goal_update_page(process)
 
 @app.route("/update_goal", methods=['GET','POST'])
 def goal_update_page(process):
@@ -354,7 +376,7 @@ def goal_update_page(process):
             MatchID = str(request.form["MatchID"])
             Minute = str(request.form["Minute"])
             obje = forms.FootballStats()
-            obje.Goal_update(update,PlayerID,MatchID,int(Minute))
+            obje.Goal_update(update,PlayerID,MatchID,Minute)
             return redirect(url_for("goal_page"))
         cursor=obje.Goal_update_info(process)
         print(cursor)
@@ -365,63 +387,63 @@ def manager_update_page(process):
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
-        return render_template("stadium.html")
+        return render_template("managers.html")
     elif request.method == 'POST':
         if update is not None:
-            Team_ID = str(request.form["Team_ID"])
-            Stadiumname = str(request.form["Stadiumname"])
-            Capacity = str(request.form["Capacity"])
-            Built = str(request.form["Built"])
-            PitchSize = str(request.form["PitchSize"])
-            Surface = str(request.form["Surface"])
+            Name = str(request.form["Name"])
+            Age = str(request.form["Age"])
+            Nationalty = str(request.form["Nationalty"])
+            Height = str(request.form["Height"])
+            PlaceOfBirth = str(request.form["PlaceOfBirth"])
             obje = forms.FootballStats()
-            obje.Stadium_update(update,Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
-            return redirect(url_for("stadium_page"))
-        cursor=obje.Stadium_update_info(process)
+            obje.Manager_update(update,Name,Age,Nationalty,Height,PlaceOfBirth)
+            return redirect(url_for("manager_page"))
+        cursor=obje.Manager_update_info(process)
         print(cursor)
-        return render_template("update_stadium.html",cursor=cursor)
+        return render_template("update_manager.html",cursor=cursor)
 
 @app.route("/update_player", methods=['GET','POST'])
 def player_update_page(process):
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
-        return render_template("stadium.html")
+        return render_template("players.html")
     elif request.method == 'POST':
         if update is not None:
-            Team_ID = str(request.form["Team_ID"])
-            Stadiumname = str(request.form["Stadiumname"])
-            Capacity = str(request.form["Capacity"])
-            Built = str(request.form["Built"])
-            PitchSize = str(request.form["PitchSize"])
-            Surface = str(request.form["Surface"])
+            PlayerName = str(request.form["PlayerName"])
+            PlayerAge = str(request.form["PlayerAge"])
+            Position = str(request.form["Position"])
+            PlayerNationalty = str(request.form["PlayerNationalty"])
+            PlayerHeight = str(request.form["PlayerHeight"])
+            PlaceOfBirth = str(request.form["PlaceOfBirth"])
+            TeamID = str(request.form["TeamID"])
             obje = forms.FootballStats()
-            obje.Stadium_update(update,Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
-            return redirect(url_for("stadium_page"))
-        cursor=obje.Stadium_update_info(process)
+            obje.Player_update(update,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,TeamID)
+            return redirect(url_for("player_page"))
+        cursor=obje.Player_update_info(process)
         print(cursor)
-        return render_template("update_stadium.html",cursor=cursor)
+        return render_template("update_player.html",cursor=cursor)
 
 @app.route("/update_team", methods=['GET','POST'])
 def team_update_page(process):
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
-        return render_template("stadium.html")
+        return render_template("teams.html")
     elif request.method == 'POST':
         if update is not None:
-            Team_ID = str(request.form["Team_ID"])
-            Stadiumname = str(request.form["Stadiumname"])
+            Teamname = str(request.form["Teamname"])
+            NickName = str(request.form["NickName"])
+            ShortName = str(request.form["ShortName"])
+            FoundationDate = str(request.form["FoundationDate"])
             Capacity = str(request.form["Capacity"])
-            Built = str(request.form["Built"])
-            PitchSize = str(request.form["PitchSize"])
-            Surface = str(request.form["Surface"])
+            ManagerID = str(request.form["ManagerID"])
             obje = forms.FootballStats()
-            obje.Stadium_update(update,Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
-            return redirect(url_for("stadium_page"))
-        cursor=obje.Stadium_update_info(process)
+            obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
+            return redirect(url_for("teams_page"))
+        cursor=obje.Team_update_info(process)
         print(cursor)
-        return render_template("update_stadium.html",cursor=cursor)
+        return render_template("update_team.html",cursor=cursor)
 
 
 if __name__ == "__main__":
