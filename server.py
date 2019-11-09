@@ -242,6 +242,55 @@ def assist_page():
         cursor=obje.Assist()
         print(cursor)
         return render_template("assist.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if(process == "Delete"):
+            form_assist_keys = request.form.getlist('assist_keys')
+            for form_assist_key in form_assist_keys:
+                obje.Assist_delete(int(form_assist_key))
+            return redirect(url_for("assist_page"))
+        else:
+            return assist_update_page(process)
+
+@app.route("/add_assist", methods=['GET','POST'])
+def assist_add_page():
+    if request.method == 'GET':
+        return render_template('add_assist.html')
+    elif request.method == 'POST':
+        PlayerID = str(request.form["PlayerID"])
+        MatchID = str(request.form["MatchID"])
+        Minute = str(request.form["Minute"])
+        LastTouch = str(request.form["LastTouch"])
+        Format = str(request.form["Format"])
+        GoldenAssist = str(request.form["GoldenAssist"])
+        StadiumHA = str(request.form["StadiumHA"])
+        obje = forms.FootballStats()
+        obje.Assist_add(PlayerID,MatchID,Minute,LastTouch,Format,GoldenAssist,StadiumHA)
+        return render_template("add_assist.html")
+
+@app.route("/update_assist", methods=['GET','POST'])
+def assist_update_page(process):
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("assist.html")
+    elif request.method == 'POST':
+        if update is not None:
+            PlayerID = str(request.form["PlayerID"])
+            MatchID = str(request.form["MatchID"])
+            Minute = str(request.form["Minute"])
+            LastTouch = str(request.form["LastTouch"])
+            Format = str(request.form["Format"])
+            GoldenAssist = str(request.form["GoldenAssist"])
+            StadiumHA = str(request.form["StadiumHA"])
+            obje = forms.FootballStats()
+            obje.Assist_update(update,PlayerID,MatchID,Minute,LastTouch,Format,GoldenAssist,StadiumHA)
+            return redirect(url_for("assist_page"))
+        cursor=obje.Assist_update_info(process)
+        print(cursor)
+        return render_template("update_assist.html",cursor=cursor)
 
 @app.route("/statistic", methods=['GET','POST'])
 def statistic_page():
