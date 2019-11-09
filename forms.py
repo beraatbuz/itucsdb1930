@@ -90,7 +90,7 @@ class FootballStats:
                                 INSERT INTO Player(PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID) VALUES(%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([PlayerName, PlayerAge, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID]))
 
-	def Manager_add(self, Name, Age, Nationalty, Height, PlaceOfBirth, TeamID):
+	def Manager_add(self, Name, Age, Nationalty, Height, PlaceOfBirth):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """INSERT INTO Manager(Name, Age, Nationalty, Height, PlaceOfBirth) VALUES(%s,%s,%s,%s,%s);"""
