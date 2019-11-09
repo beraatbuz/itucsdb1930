@@ -6,7 +6,7 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
                         """
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL,;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS NickName VARCHAR(30);
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30) NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
