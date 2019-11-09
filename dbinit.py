@@ -147,7 +147,9 @@ INIT_STATEMENTS = [
 			""",
 			
 			""" 
-
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS MatchID integer NOT NULL REFERENCES Fixtures (ID);
+                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS PlayerID integer NOT NULL REFERENCES Player (ID);
 
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
