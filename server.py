@@ -169,7 +169,7 @@ def player_page():
         cursor=obje.Player()
         return render_template("players.html",cursor=cursor)
     else:
-        form_player_keys = request.form.getlist("ID")
+        form_player_keys = request.form.getlist("player_keys")
         for form_player_key in form_player_keys:
             obje.Player_delete(int(form_player_keys))
         return redirect(url_for("player_page"))

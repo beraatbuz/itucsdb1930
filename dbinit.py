@@ -8,9 +8,9 @@ INIT_STATEMENTS = [
                         """
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL,;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS NickName VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30) NOT NULL;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30);
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
 
                         CREATE TABLE IF NOT EXISTS  Teams
