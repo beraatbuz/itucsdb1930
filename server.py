@@ -249,7 +249,7 @@ def team_adding_page():
         return render_template("add_team.html")
 
 @app.route("/team", methods=['GET','POST'])
-def teams_page():
+def team_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Team()
@@ -264,7 +264,7 @@ def teams_page():
             for team_key in form_team_keys:
                 obje.Team_delete(team_key)
             flash("You have deleted.")
-            return redirect(url_for("teams_page"))
+            return redirect(url_for("team_page"))
         else:
             return team_update_page(process)
 
@@ -580,11 +580,47 @@ def team_update_page(process):
             ManagerID = str(request.form["ManagerID"])
             obje = forms.FootballStats()
             obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
-            return redirect(url_for("teams_page"))
+            return redirect(url_for("team_page"))
         cursor=obje.Team_update_info(process)
         print(cursor)
         return render_template("update_team.html",cursor=cursor)
 
+
+@app.route("/player")
+def players_page(player_key):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Player_key(player_key)
+        print(cursor)
+        return render_template("players.html",cursor=cursor)
+app.add_url_rule("/player/<player_key>", view_func=players_page)
+
+@app.route("/teams")
+def teams_page(team_keys):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Team_key(team_keys)
+        print(cursor)
+        return render_template("teams.html",cursor=cursor)
+app.add_url_rule("/team/<team_keys>", view_func=teams_page) 
+
+@app.route("/goals")
+def goals_page(goal_keys):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Goal_key(goal_keys)
+        print(cursor)
+        return render_template("goals.html",cursor=cursor)
+app.add_url_rule("/goal/<goal_keys>", view_func=goals_page) 
+
+@app.route("/managers")
+def managers_page(manager_keys):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Manager_key(manager_keys)
+        print(cursor)
+        return render_template("managers.html",cursor=cursor)
+app.add_url_rule("/manager/<manager_keys>", view_func=managers_page) 
 
 if __name__ == "__main__":
     app.run(debug=True)

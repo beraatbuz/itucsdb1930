@@ -344,3 +344,35 @@ class FootballStats:
 				cursor.execute(statement,([ID]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Player_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Player WHERE ID=%s"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Team_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Teams WHERE ID=%s"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Goal_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Goal WHERE ID=%s"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Manager_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Manager WHERE ID=%s"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
