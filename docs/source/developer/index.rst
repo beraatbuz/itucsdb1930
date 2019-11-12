@@ -25,7 +25,7 @@ Code
 .. toctree::
 
    Muhammed Enes Tırnakçı
-   member2
-   member3
+   Beraat Buz 
+   Ahmet Yılmaz
    member4
    member5
