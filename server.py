@@ -417,7 +417,6 @@ def player_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Player()
-        print(cursor)
         return render_template("players.html",cursor=cursor)
     else:
         process = request.form.get('buttonName')
