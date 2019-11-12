@@ -1,7 +1,7 @@
 User Guide
 ==========
 
-**explain how your application works from the user perspective, use
+**explain how yyour application works from the user perspective, use
 screenshots whereever appropriate**
 
 **to add a picture, use the following example**::
