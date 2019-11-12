@@ -229,7 +229,7 @@ def initialize(url):
 
 
 if __name__ == "__main__":
-    url = os.environ['url']
+    url = os.getenv('url')
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
