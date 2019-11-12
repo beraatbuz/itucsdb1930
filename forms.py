@@ -2,7 +2,7 @@ from boto.s3.connection import S3Connection
 import psycopg2 as dbapi
 import os
 
-url = S3Connection(os.environ['url'])
+url = os.environ['url']
 
 class FootballStats:
 
