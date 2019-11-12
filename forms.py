@@ -1,7 +1,8 @@
+from boto.s3.connection import S3Connection
 import psycopg2 as dbapi
 import os
 
-url = "postgres://ydsnhphm:oTRTqakfv3zfOE29K2ZaBuQ7JJcR8fl8@salt.db.elephantsql.com:5432/ydsnhphm"
+url = os.getenv('url')
 
 class FootballStats:
 
