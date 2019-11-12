@@ -27,5 +27,3 @@ Code
    Muhammed Enes Tırnakçı
    Beraat Buz 
    Ahmet Yılmaz
-   member4
-   member5
