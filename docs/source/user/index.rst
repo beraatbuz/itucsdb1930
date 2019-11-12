@@ -14,7 +14,7 @@ screenshots whereever appropriate**
 
 .. toctree::
 
-   member1
+   Muhammed Enes Tırnakçı
    member2
    member3
    member4
