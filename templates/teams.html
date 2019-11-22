@@ -1,8 +1,19 @@
 {% extends "layout.html" %}
 {% block title %}Teams{% endblock %}
 {% block content %}
+<a class="button is-dark" href="{{ url_for('team_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('goal_page') }}">See All Goals</a>
+<a class="button is-dark" href="{{ url_for('stadium_page') }}">See All Stadiums</a>
+<a class="button is-dark" href="{{ url_for('assist_page') }}">See All Assists</a>
+<a class="button is-dark" href="{{ url_for('statistic_page') }}">See All Statistics</a>
+<a class="button is-dark" href="{{ url_for('standing_page') }}">See Standing</a>
+<a class="button is-dark" href="{{ url_for('referee_page') }}">See Referee</a>
+<a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
 <h1 class="title">Teams</h1>
 <form action="" method="post" name="team_list">
+    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add">Team Add</button><br>
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
   <tr>
       <th></th>
@@ -12,7 +23,7 @@
       <th>ShortName</th>
       <th>FoundationDate</th>
       <th>Capacity</th>
-      <th>ManagerID</th>
+      <th>Manager</th>
       <th></th>
     </tr>
   {% for row in cursor %}

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<textarea rows="20" cols="50">Comments</textarea>
+<br><br>
+<a class="button is-link" href="{{ url_for('goal_adding_page') }}">Goal Add</a>
+<a class="button is-link" href="{{ url_for('assist_add_page') }}">Assist Add</a>
+
+{% endblock %}

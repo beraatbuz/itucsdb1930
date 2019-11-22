@@ -163,20 +163,15 @@ class FootballStats:
 	def Team(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Teams ORDER BY Teamname"""
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=Teams.ID and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
-				#cursor_tuple=()
-				#cursor_list=list(cursor_tuple)
-				#for id,Teamname in cursor:
-					#cursor_list.append(Teamname)
-					#print('%(tt)s: %(nm)s' % {'tt': id, 'nm': Teamname})
 				return cursor_list
 
 	def Player(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Player ORDER BY PlayerName"""
+				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID ORDER BY Teamname ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -184,7 +179,7 @@ class FootballStats:
 	def Goal(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Goal ORDER BY PlayerID"""
+				statement = """Select Goal.ID, PlayerID, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID ORDER BY PlayerID,MatchID ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

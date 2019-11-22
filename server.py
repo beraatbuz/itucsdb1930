@@ -295,7 +295,9 @@ def team_page():
         process = request.form.get('buttonName')
         update = request.form.get('Update')
         print(update)
-        if(process == "Delete"):
+        if (process == "add"):
+            return redirect(url_for("team_adding_page"))
+        elif(process == "Delete"):
             form_team_keys = request.form.getlist("team_keys")
             for team_key in form_team_keys:
                 obje.Team_delete(team_key)
@@ -482,7 +484,9 @@ def player_page():
         process = request.form.get('buttonName')
         update = request.form.get('Update')
         print(update)
-        if(process == "Delete"):
+        if (process == "add"):
+            return redirect(url_for("player_adding_page"))
+        elif(process == "Delete"):
             form_player_keys = request.form.getlist("player_keys")
             for form_player_key in form_player_keys:
                 obje.Player_delete(int(form_player_key))
@@ -522,7 +526,9 @@ def manager_page():
         process = request.form.get('buttonName')
         update = request.form.get('Update')
         print(update)
-        if(process == "Delete"):
+        if (process == "add"):
+            return redirect(url_for("manager_adding_page"))
+        elif(process == "Delete"):
             form_manager_keys = request.form.getlist("manager_keys")
             for form_manager_key in form_manager_keys:
                 obje.Manager_delete(int(form_manager_key))
@@ -561,7 +567,9 @@ def goal_page():
         process = request.form.get('buttonName')
         update = request.form.get('Update')
         print(update)
-        if(process == "Delete"):
+        if (process == "add"):
+            return redirect(url_for("goal_adding_page"))
+        elif(process == "Delete"):
             form_goal_keys = request.form.getlist("goal_keys")
             for form_goal_key in form_goal_keys:
                 obje.Goal_delete(int(form_goal_key))
