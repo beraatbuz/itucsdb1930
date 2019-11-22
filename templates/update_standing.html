@@ -8,10 +8,31 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">TeamID</label>
-  <div class="control">
+  <label for="PlayerName" class="label">Team</label>
     {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="TeamID">
+    <div class="select">
+  <select  id="team" name="TeamID" >
+          <option value="42">A.F.C. Bournemouth</option>
+          <option value="35">Arsenal</option>
+          <option value="53">Aston Villa</option>
+          <option value="43" >Brighton and Hove Albion</option>
+          <option value="51">Burnley</option>
+          <option value="37">Chelsea</option>
+          <option value="44" >Crystal Palace </option>
+          <option value="54">Everton</option>
+          <option value="40">Leicester City</option>
+          <option value="36" >Liverpool</option>
+          <option value="38">Manchester City</option>
+          <option value="45">Manchester United</option>
+          <option value="52" >Newcastle United</option>
+          <option value="55">Norwich City</option>
+          <option value="41">Sheffield United</option>
+          <option value="56" >Southampton</option>
+          <option value="48">Tottenham Hotspur</option>
+          <option value="57">Watford</option>
+          <option value="50" >West Ham United</option>
+          <option value="49">Wolverhampton Wanderers</option>
+      </select>
   </div>
 </div>
 
@@ -64,6 +85,18 @@
     <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
   </div>
 </div>
-{% endfor %}
 </form>
+<script>
+ listBox=document.getElementById('team');
+ 
+ for (var x = 0; x < 20; x++) { 
+  if (listBox.options[x].value == {{row[1]}}) { 
+    listBox.options[x].selected = true; 
+  } 
+} 
+
+
+
+</script>
+{% endfor %}
 {% endblock %}

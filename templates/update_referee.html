@@ -11,35 +11,35 @@
   <label for="PlayerName" class="label">RefereeName</label>
   <div class="control">
     {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. John Walkie "  value="{{row[1]}}" name="RefereeName">
+    <input required="required" class="input" type="text" placeholder="e.g. John Walkie "  value="{{row[1]}}" name="RefereeName" maxlength="30">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Age</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 40"  value="{{row[5]}}" name="Age">
+    <input required="required" class="input" type="text" placeholder="e.g. 40"  value="{{row[5]}}" name="Age" min="18">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">TotalMatch</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[2]}}" name="TotalMatch">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[2]}}" name="TotalMatch" min="0">
   </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">TotalRedCard</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[3]}}" name="TotalRedCard">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[3]}}" name="TotalRedCard" min="0">
   </div>
 </div>
 
 <div class="field">
     <label for="TeamID" class="label">TotalYellowCard</label>
     <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. 82"  value="{{row[4]}}" name="TotalYellowCard">
+      <input required="required" class="input" type="text" placeholder="e.g. 82"  value="{{row[4]}}" name="TotalYellowCard" min="0">
     </div>
   </div>
 

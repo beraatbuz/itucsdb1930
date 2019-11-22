@@ -8,51 +8,72 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">TeamID</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{TeamID}}" name="TeamID">
+  <label for="PlayerName" class="label">Team</label>
+  <div class="select">
+        <select  value="{{TeamID}}" name="TeamID">
+          <option value="42"selected>A.F.C. Bournemouth</option>
+          <option value="35">Arsenal</option>
+          <option value="53">Aston Villa</option>
+          <option value="43" >Brighton and Hove Albion</option>
+          <option value="51">Burnley</option>
+          <option value="37">Chelsea</option>
+          <option value="44" >Crystal Palace </option>
+          <option value="54">Everton</option>
+          <option value="40">Leicester City</option>
+          <option value="36" >Liverpool</option>
+          <option value="38">Manchester City</option>
+          <option value="45">Manchester United</option>
+          <option value="52" >Newcastle United</option>
+          <option value="55">Norwich City</option>
+          <option value="41">Sheffield United</option>
+          <option value="56" >Southampton</option>
+          <option value="48">Tottenham Hotspur</option>
+          <option value="57">Watford</option>
+          <option value="50" >West Ham United</option>
+          <option value="49">Wolverhampton Wanderers</option>
+      </select>
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Played</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 3"  value="{{Played}}" name="Played">
+    <input required="required" class="input" type="number" placeholder="e.g. 3"  value="{{Played}}" name="Played" min="0">
   </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">Won</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Won}}" name="Won">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Won}}" name="Won" min="0">
   </div>
 </div>
 
 <div class="field">
     <label for="TeamID" class="label">Drawn</label>
     <div class="control">
-      <input required="required" class="input" type="number" placeholder="e.g. 2"  value="{{Drawn}}" name="Drawn">
+      <input required="required" class="input" type="number" placeholder="e.g. 2"  value="{{Drawn}}" name="Drawn" min="0">
     </div>
   </div>
 
 <div class="field">
   <label for="TeamID" class="label">Lost</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Lost}}" name="Lost">
+    <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Lost}}" name="Lost" min="0">
   </div>
 </div>
 
 <div class="field">
     <label for="TeamID" class="label">Goals_for</label>
     <div class="control">
-      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_for}}" name="Goals_for">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_for}}" name="Goals_for" min="0">
     </div>
   </div>
 
 <div class="field">
     <label for="TeamID" class="label">Goals_against</label>
     <div class="control">
-      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_against}}" name="Goals_against">
+      <input required="required" class="input" type="number" placeholder="e.g. 4"  value="{{Goals_against}}" name="Goals_against" min="0">
     </div>
   </div>
 
