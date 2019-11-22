@@ -98,7 +98,7 @@ INIT_STATEMENTS = [
                                 Week INTEGER NOT NULL,
                                 MatchDate VARCHAR(30),
                                 Time VARCHAR(30),
-                                Status VARCHAR(10) NOT NULL;
+                                Status VARCHAR(10) NOT NULL
                         )
                         """,
                         """
