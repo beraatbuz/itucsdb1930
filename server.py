@@ -102,8 +102,9 @@ def fixture_update_page(process):
             Week =  request.form["Week"]
             MatchDate =  request.form["MatchDate"]
             Time =  request.form["Time"]
+            Status = request.form["Status"]
             obje = forms.FootballStats()
-            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time)
+            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
             return redirect(url_for("fixture_page"))
         cursor=obje.Fixture_update_info(process)
         return render_template("update_fixture.html",cursor=cursor)
