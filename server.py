@@ -56,7 +56,10 @@ lm.init_app(app)
 lm.login_view = "login_page"
 
 @app.route("/fixture", methods=['GET','POST'])
+@login_required
 def fixture_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Fixtures(1)
@@ -77,7 +80,10 @@ def fixture_page():
         else:
             return fixture_update_page(process)
 @app.route("/update_fixture", methods=['GET','POST'])
+@login_required
 def fixture_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -162,7 +168,10 @@ def referee_adding_page():
         return render_template("add_referee.html")
 
 @app.route("/standing", methods=['GET','POST'])
+@login_required
 def standing_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Standings()
@@ -178,7 +187,10 @@ def standing_page():
         else:
             return standing_update_page(process)
 @app.route("/update_standing", methods=['GET','POST'])
+@login_required
 def standing_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -199,7 +211,10 @@ def standing_update_page(process):
         return render_template("update_standing.html",cursor=cursor)
 
 @app.route("/referee", methods=['GET','POST'])
+@login_required
 def referee_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Referee()
@@ -216,7 +231,10 @@ def referee_page():
         else:
             return referee_update_page(process)
 @app.route("/update_referee", methods=['GET','POST'])
+@login_required
 def referee_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -255,7 +273,10 @@ def team_adding_page():
         return render_template("add_team.html")
 
 @app.route("/team", methods=['GET','POST'])
+@login_required
 def team_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Team()
@@ -275,7 +296,10 @@ def team_page():
             return team_update_page(process)
 
 @app.route("/stadium", methods=['GET','POST'])
+@login_required
 def stadium_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Stadium()
@@ -295,7 +319,10 @@ def stadium_page():
 
 
 @app.route("/add_stadium", methods=['GET','POST'])
+@login_required
 def stadium_add_page():
+    if not current_user.is_admin:
+        abort(401)
     if request.method == 'GET':
         return render_template('add_stadium.html')
     elif request.method == 'POST':
@@ -311,7 +338,10 @@ def stadium_add_page():
         return render_template("add_stadium.html")
 
 @app.route("/update_stadium", methods=['GET','POST'])
+@login_required
 def stadium_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -333,7 +363,10 @@ def stadium_update_page(process):
 
 
 @app.route("/assist", methods=['GET','POST'])
+@login_required
 def assist_page():
+    if not current_user.is_admin:
+        abort(401)
     if request.method == "GET":
         obje = forms.FootballStats()
         cursor=obje.Assist()
@@ -352,7 +385,10 @@ def assist_page():
             return assist_update_page(process)
 
 @app.route("/add_assist", methods=['GET','POST'])
+@login_required
 def assist_add_page():
+    if not current_user.is_admin:
+        abort(401)
     if request.method == 'GET':
         return render_template('add_assist.html')
     elif request.method == 'POST':
@@ -368,7 +404,10 @@ def assist_add_page():
         return render_template("add_assist.html")
 
 @app.route("/update_assist", methods=['GET','POST'])
+@login_required
 def assist_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -390,7 +429,10 @@ def assist_update_page(process):
         return render_template("update_assist.html",cursor=cursor)
 
 @app.route("/statistic", methods=['GET','POST'])
+@login_required
 def statistic_page():
+    if not current_user.is_admin:
+        abort(401)
     if request.method == "GET":
         obje = forms.FootballStats()
         cursor=obje.Statistic()
@@ -419,7 +461,10 @@ def player_adding_page():
         return render_template("add_player.html")
 
 @app.route("/player", methods=['GET','POST'])
+@login_required
 def player_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Player()
@@ -456,7 +501,10 @@ def manager_adding_page():
         return render_template("add_manager.html")
 
 @app.route("/manager", methods=['GET','POST'])
+@login_required
 def manager_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Manager()
@@ -491,7 +539,10 @@ def goal_adding_page():
         return render_template("add_goal.html")
 
 @app.route("/goal", methods=['GET','POST'])
+@login_required
 def goal_page():
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Goal()
@@ -510,7 +561,10 @@ def goal_page():
             return goal_update_page(process)
 
 @app.route("/update_goal", methods=['GET','POST'])
+@login_required
 def goal_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -528,7 +582,10 @@ def goal_update_page(process):
         return render_template("update_goal.html",cursor=cursor)
 
 @app.route("/update_manager", methods=['GET','POST'])
+@login_required
 def manager_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -548,7 +605,10 @@ def manager_update_page(process):
         return render_template("update_manager.html",cursor=cursor)
 
 @app.route("/update_player", methods=['GET','POST'])
+@login_required
 def player_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -570,7 +630,10 @@ def player_update_page(process):
         return render_template("update_player.html",cursor=cursor)
 
 @app.route("/update_team", methods=['GET','POST'])
+@login_required
 def team_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
@@ -592,7 +655,10 @@ def team_update_page(process):
 
 
 @app.route("/player")
+@login_required
 def players_page(player_key):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Player_key(player_key)
@@ -601,7 +667,10 @@ def players_page(player_key):
 app.add_url_rule("/player/<player_key>", view_func=players_page)
 
 @app.route("/teams")
+@login_required
 def teams_page(team_keys):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Team_key(team_keys)
@@ -610,7 +679,10 @@ def teams_page(team_keys):
 app.add_url_rule("/team/<team_keys>", view_func=teams_page) 
 
 @app.route("/goals")
+@login_required
 def goals_page(goal_keys):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Goal_key(goal_keys)
@@ -619,7 +691,10 @@ def goals_page(goal_keys):
 app.add_url_rule("/goal/<goal_keys>", view_func=goals_page) 
 
 @app.route("/managers")
+@login_required
 def managers_page(manager_keys):
+    if not current_user.is_admin:
+        abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Manager_key(manager_keys)
