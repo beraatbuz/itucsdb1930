@@ -343,7 +343,7 @@ class FootballStats:
 	def Player_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Player WHERE ID=%s"""
+				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname FROM Player,Teams WHERE Player.ID=%s and Teams.ID=TeamID ORDER BY Teamname ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -351,7 +351,7 @@ class FootballStats:
 	def Team_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Teams WHERE ID=%s"""
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -359,7 +359,7 @@ class FootballStats:
 	def Goal_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Goal WHERE ID=%s"""
+				statement = """Select Goal.ID, PlayerName, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=%s and Player.ID=PlayerID and MatchID=Fixtures.ID ORDER BY PlayerID,MatchID ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -379,4 +379,3 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
-		
