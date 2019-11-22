@@ -115,8 +115,9 @@ def fixture_adding_page():
         Week =  request.form["Week"]
         MatchDate =  request.form["MatchDate"]
         Time =  request.form["Time"]
+        Status = request.form["Status"]
         obje = forms.FootballStats()
-        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time)
+        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
         flash("You have added.")
         return render_template("add_fixture.html")
 

@@ -79,6 +79,7 @@ INIT_STATEMENTS = [
 
                          """
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS MatchDate VARCHAR(30);
+                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Status VARCHAR(30) NOT NULL;
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Time VARCHAR(30);
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR(2) DEFAULT '-';
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR(2) DEFAULT '-';
@@ -96,7 +97,8 @@ INIT_STATEMENTS = [
                                 AwayScore VARCHAR(2) DEFAULT '-',
                                 Week INTEGER NOT NULL,
                                 MatchDate VARCHAR(30),
-                                Time VARCHAR(30)
+                                Time VARCHAR(30),
+                                Status VARCHAR(10) NOT NULL;
                         )
                         """,
                         """

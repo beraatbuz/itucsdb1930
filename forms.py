@@ -208,7 +208,7 @@ class FootballStats:
 	def Standings(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Standings ORDER BY TeamID"""
+				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points FROM Standings,Teams WHERE Teams.ID=TeamID ORDER BY Points DESC,Goals_difference,TeamName;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -216,7 +216,7 @@ class FootballStats:
 	def Fixtures(self,week):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore FROM Fixtures,Teams AS T1,Teams AS T2 WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam;"""
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status FROM Fixtures,Teams AS T1,Teams AS T2 WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam;"""
 				cursor.execute(statement,([week]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -288,11 +288,11 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 				
-	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
+	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Fixtures(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time]))
+				statement = """ INSERT INTO Fixtures(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status]))
 	
 	def Fixture_delete(self,FixtureId):
 		with dbapi.connect(url) as connection:

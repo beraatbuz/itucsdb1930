@@ -3,13 +3,16 @@
 {% block content %}
 <h1 class="title">FIXTURE</h1>
 <form method="post">
+  <div class="select">
   <select name="select">
           <option value="1"selected>Week 1</option>
           <option value="2">Week 2</option>
           <option value="3">Week 3</option>
           <option value="4" >Week 4</option>
         </select>
-        <button type="submit" class="button is-info is-small" name="buttonName" value="week">See This Week</button>
+        </div>
+        <button type="submit" class="button is-info " name="buttonName" value="week">See This Week</button>
+
 </form>
 <form action="" method="post" name="fixture_list">
         
@@ -25,6 +28,7 @@
                     <th>Week</th>
                     <th>MatchDate</th>
                     <th>Time </th>
+                    <th>Status </th>
                     <th></th>
                   </tr>
                   {% for row in cursor %}
@@ -40,6 +44,7 @@
                       <td>{{row[3]}}</td>
                       <td>{{row[4]}}</td>
                       <td>{{row[5]}}</td>
+                      <td>{{row[8]}}</td>
                       <td>
                             <div class="control">
                             <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
