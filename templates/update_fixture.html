@@ -98,7 +98,14 @@
     <input required="required" class="input" type="time" placeholder="e.g. 20:00"  value="{{row[5]}}" name="Time">
   </div>
 </div>
-
+<label class="radiobox">
+  <input type="radio" name="Status" value="NOTSTARTED" checked>
+  Not Started <br>
+  <input type="radio" name="Status" value="LIVE">
+  LIVE<br>
+  <input type="radio" name="Status" value="FINISHED">
+  FINISHED
+</label>
 <div class="field is-grouped">
   <div class="control">
     <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>

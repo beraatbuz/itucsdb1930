@@ -300,11 +300,11 @@ class FootballStats:
 				statement="""Delete From Fixtures Where ID = %s;"""
 				cursor.execute(statement,([FixtureId]))
 
-	def Fixture_update(self, FixtureID,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time):
+	def Fixture_update(self, FixtureID,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s Where ID=%s;"""
-				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,FixtureID]))
+				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s,Statuse=%s Where ID=%s;"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,FixtureID]))
 	def Fixture_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:

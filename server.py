@@ -64,7 +64,9 @@ def fixture_page():
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
-        if(process == "week"):
+        if (process == "start"):
+            return redirect(url_for("dashboard_page"))#Ahmet sende burası
+        elif (process == "week"):
             week = request.form.get('select') 
             cursor=obje.Fixtures(week)
             return render_template("fixture.html",cursor=cursor)
