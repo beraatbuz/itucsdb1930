@@ -179,7 +179,7 @@ class FootballStats:
 	def Goal(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Goal.ID, PlayerID, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID ORDER BY PlayerID,MatchID ASC;"""
+				statement = """Select Goal.ID, PlayerName, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID and MatchID=Fixtures.ID ORDER BY PlayerID,MatchID ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -371,3 +371,12 @@ class FootballStats:
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Top_goal(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select PlayerName, count(PlayerID) FROM Goal,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID Group BY PlayerName ORDER BY count(PlayerID) DESC;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+		

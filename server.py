@@ -720,5 +720,15 @@ def managers_page(manager_keys):
         return render_template("managers.html",cursor=cursor)
 app.add_url_rule("/manager/<manager_keys>", view_func=managers_page) 
 
+
+@app.route("/top_goal", methods=['GET'])
+def top_goal_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Top_goal()
+        print(cursor)
+        return render_template("top_goal.html",cursor=cursor)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
