@@ -67,7 +67,10 @@ def fixture_page():
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
-        if (process == "start"):
+        if (process == "add"):
+            return redirect(url_for("fixture_adding_page"))
+
+        elif (process == "start"):
             return redirect(url_for("dashboard_page"))#Ahmet sende burası
         elif (process == "week"):
             week = request.form.get('select') 
