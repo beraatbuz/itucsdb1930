@@ -44,7 +44,15 @@
                       <td>{{row[3]}}</td>
                       <td>{{row[4]}}</td>
                       <td>{{row[5]}}</td>
-                      <td>{{row[8]}}</td>
+                      {%if row[8]=='NOTSTARTED' %}
+                      <td style=""><div class="control"><button type="submit" class="button is-warning is-small " name="buttonName" value="start">Start</button></div></td>
+                      {%endif%}
+                      {%if row[8] =='LIVE' %}
+                      <td style="color:red; font-weight: bold;">{{row[8]}}</td>
+                      {%endif%}
+                      {%if row[8] =='FINISHED' %}
+                      <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+                      {%endif%}
                       <td>
                             <div class="control">
                             <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
@@ -59,4 +67,5 @@
             </div>
         </div>
 </form>
+
 {% endblock %}
