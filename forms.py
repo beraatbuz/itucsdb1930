@@ -213,11 +213,11 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 	
-	def Fixtures(self):
+	def Fixtures(self,week):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Fixtures ORDER BY Week"""
-				cursor.execute(statement)
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore FROM Fixtures,Teams AS T1,Teams AS T2 WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam;"""
+				cursor.execute(statement,([week]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
 

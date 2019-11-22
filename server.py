@@ -59,12 +59,17 @@ lm.login_view = "login_page"
 def fixture_page():
     obje = forms.FootballStats()
     if request.method == "GET":
-        cursor=obje.Fixtures()
+        cursor=obje.Fixtures(1)
         return render_template("fixture.html",cursor=cursor)
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
-        if(process == "Delete"):
+        if(process == "week"):
+            week = request.form.get('select') 
+            cursor=obje.Fixtures(week)
+            return render_template("fixture.html",cursor=cursor)
+
+        elif (process == "Delete"):
             form_fixture_keys = request.form.getlist('fixture')
             for form_fixture_key in form_fixture_keys:
                 obje.Fixture_delete(int(form_fixture_key))

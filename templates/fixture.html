@@ -2,7 +2,18 @@
 {% block title %}fixtures{% endblock %}
 {% block content %}
 <h1 class="title">FIXTURE</h1>
-<form action="" method="post" name="assist_list">
+<form method="post">
+  <select name="select">
+          <option value="1"selected>Week 1</option>
+          <option value="2">Week 2</option>
+          <option value="3">Week 3</option>
+          <option value="4" >Week 4</option>
+        </select>
+        <button type="submit" class="button is-info is-small" name="buttonName" value="week">See This Week</button>
+</form>
+<form action="" method="post" name="fixture_list">
+        
+        <br><br>
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
                     <th></th>
