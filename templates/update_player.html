@@ -11,7 +11,7 @@
   <label for="PlayerName" class="label">Player Name</label>
   <div class="control">
       {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. Umut Bulut"  value="{{row[1]}}" name="PlayerName">
+    <input required="required" class="input" type="text" placeholder="e.g. Umut Bulut"  value="{{row[1]}}" name="PlayerName" maxlength="30">
   </div>
 </div>
 
@@ -25,14 +25,14 @@
 <div class="field">
   <label for="PlayerAge" class="label">Player Position</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. ST"  value="{{row[7]}}" name="Position">
+    <input required="required" class="input" type="text" placeholder="e.g. ST"  value="{{row[7]}}" name="Position" maxlength="30">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerNationalty" class="label">Player Nationalty</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. Turkey"  value="{{row[3]}}" name="PlayerNationalty">
+    <input required="required" class="input" type="text" placeholder="e.g. Turkey"  value="{{row[3]}}" name="PlayerNationalty" maxlength="30">
   </div>
 </div>
 
@@ -46,7 +46,7 @@
 <div class="field">
   <label for="PlayerHeight" class="label">Player PlaceOfBirth</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. Sivas"  value="{{row[6]}}" name="PlaceOfBirth">
+    <input required="required" class="input" type="text" placeholder="e.g. Sivas"  value="{{row[6]}}" name="PlaceOfBirth" maxlength="30">
   </div>
 </div>
 

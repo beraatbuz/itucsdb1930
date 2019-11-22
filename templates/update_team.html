@@ -10,27 +10,27 @@
   <label class="label">Add Team Name</label>
   <div class="control">
       {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. Manchester City"  value="{{row[1]}}" name="Teamname">
+    <input required="required" class="input" type="text" placeholder="e.g. Manchester City"  value="{{row[1]}}" name="Teamname" maxlength="30">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Add NickName</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. City Girls"  value="{{row[2]}}" name="NickName">
+    <input required="required" class="input" type="text" placeholder="e.g. City Girls"  value="{{row[2]}}" name="NickName" maxlength="30">
   </div>
 </div>
 <div class="field">
   <label class="label">Add ShortName</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. MC"  value="{{row[3]}}" name="ShortName">
+    <input required="required" class="input" type="text" placeholder="e.g. MC"  value="{{row[3]}}" name="ShortName" maxlength="30">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Add FoundationDate</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 1923"  value="{{row[4]}}" name="FoundationDate">
+    <input required="required" class="input" type="text" placeholder="e.g. 1923"  value="{{row[4]}}" name="FoundationDate" maxlength="30">
   </div>
 </div>
 
