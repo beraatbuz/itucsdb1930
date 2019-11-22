@@ -184,7 +184,9 @@ def standing_page():
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
-        if(process == "Delete"):
+        if (process == "add"):
+            return redirect(url_for("standing_adding_page"))
+        elif (process == "Delete"):
             form_standing_keys = request.form.getlist('standing')
             for form_standing_key in form_standing_keys:
                 obje.Standing_delete(int(form_standing_key))
@@ -227,6 +229,8 @@ def referee_page():
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
+        if (process == "add"):
+            return redirect(url_for("referee_adding_page"))
         if(process == "Delete"):
             form_referee_keys = request.form.getlist('referee')
             for form_referee_key in form_referee_keys:
