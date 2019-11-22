@@ -41,7 +41,7 @@ def login_page():
             if hasher.verify(password, user.password):
                 login_user(user)
                 flash("You have logged in.")#
-                next_page = request.args.get("next", url_for("dashboard_page"))
+                next_page = request.args.get("next", url_for("fixture_page"))
                 return redirect(next_page)
         flash("Invalid credentials.")
         #abort(401)
