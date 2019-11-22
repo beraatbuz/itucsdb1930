@@ -729,7 +729,27 @@ def top_goal_page():
         print(cursor)
         return render_template("top_goal.html",cursor=cursor)
 
+@app.route("/teams_user", methods=['GET'])
+def team_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Team()
+        print(cursor)
+        return render_template("teams_user.html",cursor=cursor)
 
+@app.route("/managers_user", methods=['GET'])
+def manager_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Manager()
+        return render_template("managers_user.html",cursor=cursor)  
+
+@app.route("/players_user", methods=['GET'])
+def player_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Player()
+        return render_template("players_user.html",cursor=cursor)
 
 if __name__ == "__main__":
     app.run(debug=True)

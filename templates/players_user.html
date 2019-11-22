@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Teams{% endblock %}
+{% block content %}
+
+<h1 class="title">Players</h1>
+<form action="" method="post" name="player_list">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+  <tr>
+      <th>Player Name</th>
+      <th>Player Age</th>
+      <th>Player Position</th>
+      <th>Player Nationalty</th>
+      <th>Player Height</th>
+      <th>PlaceOfBirth</th>
+      <th>Team</th>
+    </tr>
+  {% for row in cursor %}
+  <tr>
+      <td>{{row[1]}}</td>
+      <td>{{row[2]}}</td>
+      <td>{{row[3]}}</td>
+      <td>{{row[4]}}</td>
+      <td>{{row[5]}}</td>
+      <td>{{row[6]}}</td>
+      <td>{{row[7]}}</td>
+
+    </td>
+    </tr>
+    {% endfor %}  
+  </table>
+</form>
+
+
+
+{% endblock %}
+
