@@ -450,6 +450,82 @@ def statistic_page():
         cursor=obje.Statistic()
         print(cursor)
         return render_template("statistic.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        if(process == "Delete"):
+            form_statistic_keys = request.form.getlist('statistic_keys')
+            for form_statistic_key in form_statistic_keys:
+                obje.Statistic_delete(int(form_statistic_key))
+            return redirect(url_for("statistic_page"))
+        else:
+            return statistic_update_page(process)
+
+@app.route("/add_statistic", methods=['GET','POST'])
+@login_required
+def statistic_add_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_statistic.html')
+    elif request.method == 'POST':
+        MatchID = str(request.form["MatchID"])
+        HPossesion = str(request.form["HPossesion"])
+        HCorner = str(request.form["HCorner"])
+        HFoul = str(request.form["HFoul"])
+        HOffside = str(request.form["HOffside"])
+        HShot = str(request.form["HShot"])
+        HShotOnTarget = str(request.form["HShotOnTarget"])
+        HShotAccuracy = str(request.form["HShotAccuracy"])
+        HPassAccuracy = str(request.form["HPassAccuracy"])
+        APossesion = str(request.form["APossesion"])
+        ACorner = str(request.form["ACorner"])
+        AFoul = str(request.form["AFoul"])
+        AOffside = str(request.form["AOffside"])
+        AShot = str(request.form["AShot"])
+        AShotOnTarget = str(request.form["AShotOnTarget"])
+        AShotAccuracy = str(request.form["AShotAccuracy"])
+        APassAccuracy = str(request.form["APassAccuracy"])
+        RefereeID = str(request.form["RefereeID"])
+        obje = forms.FootballStats()
+        obje.Statistic_add(MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
+        return render_template("add_statistic.html")
+
+@app.route("/update_statistic", methods=['GET','POST'])
+@login_required
+def statistic_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("statistic.html")
+    elif request.method == 'POST':
+        if update is not None:
+            MatchID = str(request.form["MatchID"])
+            HPossesion = str(request.form["HPossesion"])
+            HCorner = str(request.form["HCorner"])
+            HFoul = str(request.form["HFoul"])
+            HOffside = str(request.form["HOffside"])
+            HShot = str(request.form["HShot"])
+            HShotOnTarget = str(request.form["HShotOnTarget"])
+            HShotAccuracy = str(request.form["HShotAccuracy"])
+            HPassAccuracy = str(request.form["HPassAccuracy"])
+            APossesion = str(request.form["APossesion"])
+            ACorner = str(request.form["ACorner"])
+            AFoul = str(request.form["AFoul"])
+            AOffside = str(request.form["AOffside"])
+            AShot = str(request.form["AShot"])
+            AShotOnTarget = str(request.form["AShotOnTarget"])
+            AShotAccuracy = str(request.form["AShotAccuracy"])
+            APassAccuracy = str(request.form["APassAccuracy"])
+            RefereeID = str(request.form["RefereeID"])
+            obje = forms.FootballStats()
+            obje.Assist_update(update,MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
+            return redirect(url_for("statistic_page"))
+        cursor=obje.Statistic_update_info(process)
+        print(cursor)
+        return render_template("update_statistic.html",cursor=cursor)
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required

@@ -8,27 +8,23 @@
                     <th></th>
                     <th>ID</th>
                     <th>Match ID</th>
-                    <th>Home Score</th>
                     <th>Home Possesion</th>
                     <th>Home Corner</th>
-                    <th>Home Injure</th>
                     <th>Home Foul</th>
                     <th>Home Offside</th>
                     <th>Home Shot</th>
                     <th>Home ShotOnTarget</th>
                     <th>Home ShotAccuracy</th>
                     <th>Home PassAccuracy</th>
-                    <th>Away Score</th>
                     <th>Away Possesion</th>
                     <th>Away Corner</th>
-                    <th>Away Injure</th>
                     <th>Away Foul</th>
                     <th>Away Offside</th>
                     <th>Awat Shot</th>
                     <th>Away ShotOnTarget</th>
                     <th>Away ShotAccuracy</th>
                     <th>Away PassAccuracy</th>
-                    <th>Referee Name</th>
+                    <th>Referee ID</th>
                     <th></th>
                   </tr>
                   {% for row in cursor %}
@@ -57,10 +53,6 @@
                       <td>{{row[16]}}</td>
                       <td>{{row[17]}}</td>
                       <td>{{row[18]}}</td>
-                      <td>{{row[19]}}</td>
-                      <td>{{row[20]}}</td>
-                      <td>{{row[21]}}</td>
-                      <td>{{row[22]}}</td>
                       <td>
                             <div class="control">
                                 <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>

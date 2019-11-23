@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}add Goal {% endblock %}
+{% block title %}add Statistic {% endblock %}
 {% block content %}
 
 <h1 class="title">ADD Statistic</h1>
@@ -11,13 +11,6 @@
   <label for="PlayerName" class="label">MatchID</label>
   <div class="control">
     <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{MatchID}}" name="MatchID">
-  </div>
-</div>
-
-<div class="field">
-  <label for="PlayerAge" class="label">HScore</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HScore}}" name="HScore">
   </div>
 </div>
 
@@ -36,18 +29,12 @@
 </div>
   
 <div class="field">
-<label for="PlayerAge" class="label">HInjure</label>
-<div class="control">
-  <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HInjure}}" name="HInjure">
-</div>
-</div>
-
-<div class="field">
 <label for="TeamID" class="label">HFoul</label>
 <div class="control">
   <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{HFoul}}" name="HFoul">
 </div>
 </div>
+
 <div class="field">
   <label for="PlayerName" class="label">HOffside</label>
   <div class="control">
@@ -81,13 +68,6 @@
     <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{HPassAccuracy}}" name="HPassAccuracy">
   </div>
 </div>
-
-<div class="field">
-  <label for="TeamID" class="label">AScore</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{AScore}}" name="AScore">
-  </div>
-</div>
  
 <div class="field">
     <label for="PlayerName" class="label">APossesion</label>
@@ -103,12 +83,6 @@
   </div>
 </div>
     
-<div class="field">
-<label for="TeamID" class="label">AInjure</label>
-<div class="control">
-  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{AInjure}}" name="AInjure">
-</div>
-</div>
 <div class="field">
   <label for="PlayerName" class="label">AFoul</label>
   <div class="control">
@@ -152,9 +126,9 @@
   </div>
   
   <div class="field">
-    <label for="PlayerName" class="label">Referee_UserName</label>
+    <label for="PlayerName" class="label">RefereeID</label>
     <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{Referee_UserName}}" name="Referee_UserName">
+      <input required="required" class="input" type="number" placeholder="e.g. 34"  value="{{RefereeID}}" name="RefereeID">
     </div>
   </div>
 <div class="field is-grouped">

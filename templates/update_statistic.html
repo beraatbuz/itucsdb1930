@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Statistic{% endblock %}
+{% block content %}
+
+<h1 class="title">Update Statistic</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerName" class="label">MatchID</label>
+  <div class="control">
+     {% for row in cursor %}
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="MatchID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">HPossesion</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[2]}}" name="HPossesion">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerName" class="label">HCorner</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[3]}}" name="HCorner">
+  </div>
+</div>
+  
+<div class="field">
+<label for="TeamID" class="label">HFoul</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[4]}}" name="HFoul">
+</div>
+</div>
+
+<div class="field">
+  <label for="PlayerName" class="label">HOffside</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[5]}}" name="HOffside">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">HShot</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[6]}}" name="HShot">
+  </div>
+</div>
+    
+<div class="field">
+<label for="TeamID" class="label">HShotOnTarget</label>
+<div class="control">
+  <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[7]}}" name="HShotOnTarget">
+</div>
+</div>
+<div class="field">
+  <label for="PlayerName" class="label">HShotAccuracy</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[8]}}" name="HShotAccuracy">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">HPassAccuracy</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[9]}}" name="HPassAccuracy">
+  </div>
+</div>
+ 
+<div class="field">
+    <label for="PlayerName" class="label">APossesion</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[10]}}" name="APossesion">
+    </div>
+  </div>
+  
+<div class="field">
+  <label for="PlayerAge" class="label">ACorner</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[11]}}" name="ACorner">
+  </div>
+</div>
+    
+<div class="field">
+  <label for="PlayerName" class="label">AFoul</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[12]}}" name="AFoul">
+  </div>
+</div>
+
+<div class="field">
+  <label for="PlayerAge" class="label">AOffside</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[13]}}" name="AOffside">
+  </div>
+</div>
+
+<div class="field">
+  <label for="TeamID" class="label">AShot</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[14]}}" name="AShot">
+  </div>
+</div>
+
+<div class="field">
+    <label for="PlayerName" class="label">AShotOnTarget</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[15]}}" name="AShotOnTarget">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="PlayerAge" class="label">AShotAccuracy</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{row[16]}}" name="AShotAccuracy">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="TeamID" class="label">APassAccuracy</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{row[17]}}" name="APassAccuracy">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="PlayerName" class="label">Referee_UserName</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[18]}}" name="Referee_UserName">
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+        </div>
+      </div>
+{% endfor %}
+</form>
+{% endblock %}
