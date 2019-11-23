@@ -412,7 +412,7 @@ class FootballStats:
 	def Manager_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Manager.ID, Name,Age,Nationalty,Height,PlaceOfBirth, Teamname, ManagerID FROM Manager, Teams WHERE Manager.ID=%s and Teams.ManagerID=Manager.ID Group BY Manager.ID, Teamname, Teams.ManagerID;"""
+				statement = """SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname from manager left join teams on manager.id = teams.managerid where manager.id=%s Order By Name"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -420,7 +420,7 @@ class FootballStats:
 	def Top_goal(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select PlayerName, count(PlayerID) FROM Goal,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID Group BY PlayerName ORDER BY count(PlayerID) DESC;"""
+				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Goal,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -428,7 +428,7 @@ class FootballStats:
 	def Manager_user(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Manager.ID, Name,Age,Nationalty,Height,PlaceOfBirth, Teamname, ManagerID FROM Manager, Teams WHERE Manager.ID=ManagerID Group BY Manager.ID, Teamname, Teams.ManagerID;"""
+				statement = """SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname from manager left join teams on manager.id = teams.managerid where manager.id=manager.id Order By Name"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

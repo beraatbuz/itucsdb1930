@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 {% block title %}Teams{% endblock %}
 {% block content %}
-
+<a class="button is-dark" href="{{ url_for('top_goal_page') }}">See Top Goals</a>
+<a class="button is-dark" href="{{ url_for('team_user_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_user_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_user_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a>
+<a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
+<a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
 <h1 class="title">Players</h1>
 <form action="" method="post" name="player_list">
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">

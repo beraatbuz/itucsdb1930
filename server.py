@@ -957,7 +957,7 @@ def top_goal_page():
     if request.method == "GET":
         cursor=obje.Top_goal()
         print(cursor)
-        return render_template("top_goal.html",cursor=cursor)
+        return render_template("user_top_goal.html",cursor=cursor)
 
 @app.route("/teams_user", methods=['GET'])
 def team_user_page():
@@ -965,21 +965,21 @@ def team_user_page():
     if request.method == "GET":
         cursor=obje.Team()
         print(cursor)
-        return render_template("teams_user.html",cursor=cursor)
+        return render_template("user_teams.html",cursor=cursor)
 
 @app.route("/managers_user", methods=['GET'])
 def manager_user_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Manager_user()
-        return render_template("managers_user.html",cursor=cursor)  
+        return render_template("user_managers.html",cursor=cursor)  
 
 @app.route("/players_user", methods=['GET'])
 def player_user_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Player()
-        return render_template("players_user.html",cursor=cursor)
+        return render_template("user_players.html",cursor=cursor)
 
 @app.route("/managers_user")
 def managers_user_page(manager_keys):
@@ -987,7 +987,7 @@ def managers_user_page(manager_keys):
     if request.method == "GET":
         cursor=obje.Manager_key(manager_keys)
         print(cursor)
-        return render_template("managers_user.html",cursor=cursor)
+        return render_template("user_managers.html",cursor=cursor)
 app.add_url_rule("/managers_user/<manager_keys>", view_func=managers_user_page) 
 
 
@@ -997,7 +997,7 @@ def players_user_page(player_key):
     if request.method == "GET":
         cursor=obje.Player_key(player_key)
         print(cursor)
-        return render_template("players_user.html",cursor=cursor)
+        return render_template("user_players.html",cursor=cursor)
 app.add_url_rule("/players_user/<player_key>", view_func=players_user_page)
 
 @app.route("/teams_user")
@@ -1006,7 +1006,7 @@ def teams_user_page(team_keys):
     if request.method == "GET":
         cursor=obje.Team_user_key(team_keys)
         print(cursor)
-        return render_template("teams_user.html",cursor=cursor)
+        return render_template("user_teams.html",cursor=cursor)
 app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
 
 @app.route("/live_match", methods=['GET','POST'])
