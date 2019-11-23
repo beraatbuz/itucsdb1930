@@ -12,7 +12,7 @@ INIT_STATEMENTS = [
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
-                        ALTER TABLE Teams ADD COLUMN Location VARCHAR(50);
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Location VARCHAR(50);
 
                         CREATE TABLE IF NOT EXISTS  Teams
                         (
