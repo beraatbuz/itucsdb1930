@@ -32,7 +32,7 @@
         <input type="checkbox" name="goal_keys" value="{{ row[0] }}"/>
         </td>
     <td>{{row[0]}}</td>
-    <td>{{row[1]}}</td>
+    <td><a href="{{ url_for('player_page')}}/{{row[0]}}">{{row[1]}}</td></a>
     <td>{{row[2]}}</td>
     <td>{{row[3]}}</td>
     <td>

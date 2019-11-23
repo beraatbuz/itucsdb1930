@@ -270,8 +270,9 @@ def team_adding_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_team.html')
-
+        obje = forms.FootballStats()
+        managerCursor=obje.Manager()
+        return render_template('add_team.html',cursor=managerCursor)
     elif request.method == 'POST':
         Teamname = str(request.form["Teamname"])
         NickName = str(request.form["NickName"])
@@ -282,7 +283,7 @@ def team_adding_page():
         obje = forms.FootballStats()
         obje.Team_add(Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
         flash("You have added.")
-        return render_template("add_team.html")
+        return redirect(url_for("team_adding_page"))
 
 @app.route("/team", methods=['GET','POST'])
 @login_required
@@ -381,8 +382,8 @@ def stadium_update_page(process):
 def assist_page():
     if not current_user.is_admin:
         abort(401)
-    if request.method == "GET":
-        obje = forms.FootballStats()
+    obje = forms.FootballStats()
+    if request.method == "GET":    
         cursor=obje.Assist()
         print(cursor)
         return render_template("assist.html",cursor=cursor)
@@ -526,7 +527,7 @@ def statistic_update_page(process):
             APassAccuracy = str(request.form["APassAccuracy"])
             RefereeID = str(request.form["RefereeID"])
             obje = forms.FootballStats()
-            obje.Assist_update(update,MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
+            obje.Statistic_update(update,MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
             return redirect(url_for("statistic_page"))
         cursor=obje.Statistic_update_info(process)
         print(cursor)
@@ -599,7 +600,9 @@ def player_adding_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_player.html')
+        obje = forms.FootballStats()
+        teamCursor=obje.Team()
+        return render_template('add_player.html',cursor=teamCursor)
 
     elif request.method == 'POST':
         PlayerName = str(request.form["PlayerName"])
@@ -612,7 +615,7 @@ def player_adding_page():
         obje = forms.FootballStats()
         obje.Player_add(PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID)
         flash("You have added.")
-        return render_template("add_player.html")
+        return redirect(url_for("player_adding_page"))
 
 @app.route("/player", methods=['GET','POST'])
 @login_required
@@ -654,7 +657,7 @@ def manager_adding_page():
         obje = forms.FootballStats()
         obje.Manager_add(Name, Age, Nationalty, Height, PlaceOfBirth)
         flash("You have added.")
-        return render_template("add_manager.html")
+        return redirect(url_for("manager_adding_page"))
 
 @app.route("/manager", methods=['GET','POST'])
 @login_required
@@ -685,7 +688,10 @@ def goal_adding_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_goal.html')
+        obje = forms.FootballStats()
+        playerCursor=obje.Player()
+        fixtureCursor=obje.Fixtures()
+        return render_template('add_goal.html',cursor=[playerCursor,fixtureCursor])
 
     elif request.method == 'POST':
         PlayerID = str(request.form["PlayerID"])
@@ -694,7 +700,7 @@ def goal_adding_page():
         obje = forms.FootballStats()
         obje.Goal_add(PlayerID, MatchID, Minute)
         flash("You have added.")
-        return render_template("add_goal.html")
+        return redirect(url_for("goal_adding_page"))
 
 @app.route("/goal", methods=['GET','POST'])
 @login_required
@@ -738,8 +744,9 @@ def goal_update_page(process):
             obje.Goal_update(update,PlayerID,MatchID,Minute)
             return redirect(url_for("goal_page"))
         cursor=obje.Goal_update_info(process)
+        playerCursor = obje.Player()
         print(cursor)
-        return render_template("update_goal.html",cursor=cursor)
+        return render_template("update_goal.html",cursor=[cursor,playerCursor])
 
 @app.route("/update_manager", methods=['GET','POST'])
 @login_required
@@ -786,8 +793,9 @@ def player_update_page(process):
             obje.Player_update(update,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,TeamID)
             return redirect(url_for("player_page"))
         cursor=obje.Player_update_info(process)
+        teamCursor = obje.Team()
         print(cursor)
-        return render_template("update_player.html",cursor=cursor)
+        return render_template("update_player.html",cursor=[cursor,teamCursor])
 
 @app.route("/update_team", methods=['GET','POST'])
 @login_required
@@ -810,8 +818,9 @@ def team_update_page(process):
             obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
             return redirect(url_for("team_page"))
         cursor=obje.Team_update_info(process)
+        managerCursor = obje.Manager()
         print(cursor)
-        return render_template("update_team.html",cursor=cursor)
+        return render_template("update_team.html",cursor=[cursor, managerCursor])
 
 
 @app.route("/player")
@@ -893,27 +902,6 @@ def player_user_page():
         cursor=obje.Player()
         return render_template("players_user.html",cursor=cursor)
 
-@app.route("/live_match", methods=['GET','POST'])
-@login_required
-def live_match_page(process):
-    if not current_user.is_admin:
-        abort(401)
-    obje = forms.FootballStats()
-    update = request.form.get('Update') 
-    if request.method == 'GET':
-        return render_template("teams.html")
-    elif request.method == 'POST':
-        if update is not None:
-            MatchID = str(request.form["MatchID"])
-            Detail = str(request.form["Teamname"])
-            Minute = str(request.form["NickName"])
-            obje = forms.FootballStats()
-            obje.Detail_update(update,MatchID,Detail,Minute)
-            return redirect(url_for("detail_page"))
-        cursor=obje.Team_update_info(process)
-        print(cursor)
-        return render_template("update_team.html",cursor=cursor)
-
 @app.route("/managers_user")
 def managers_user_page(manager_keys):
     obje = forms.FootballStats()
@@ -941,6 +929,28 @@ def teams_user_page(team_keys):
         print(cursor)
         return render_template("teams_user.html",cursor=cursor)
 app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
+
+@app.route("/live_match", methods=['GET','POST'])
+@login_required
+def live_match_page(process):
+    if not current_user.is_admin:
+        abort(401)
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("teams.html")
+    elif request.method == 'POST':
+        if update is not None:
+            MatchID = str(request.form["MatchID"])
+            Detail = str(request.form["Teamname"])
+            Minute = str(request.form["NickName"])
+            obje = forms.FootballStats()
+            obje.Detail_update(update,MatchID,Detail,Minute)
+            return redirect(url_for("detail_page"))
+        cursor=obje.Team_update_info(process)
+        print(cursor)
+        return render_template("update_team.html",cursor=cursor)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

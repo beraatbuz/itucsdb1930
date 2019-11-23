@@ -21,7 +21,7 @@
 <div class="field">
   <label for="PlayerName" class="label">Player Name</label>
   <div class="control">
-      {% for row in cursor %}
+      {% for row in cursor[0] %}
     <input required="required" class="input" type="text" placeholder="e.g. Umut Bulut"  value="{{row[1]}}" name="PlayerName" maxlength="30">
   </div>
 </div>
@@ -34,11 +34,23 @@
 </div>
 
 <div class="field">
-  <label for="PlayerAge" class="label">Player Position</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. Forward, Midfielder, Defender, Goalkeeper"  value="{{row[7]}}" name="Position" maxlength="30">
+    <label for="Position" class="label">Player Position</label>
+    <div class="select">
+      <select  value="{{Position}}" name="Position">
+          {% for Player in cursor[0] %}
+          {% if Player[0] == cursor[0][0][7]: %}
+          <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
+          {% else: %}
+            <option value="Forward">Forward</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Defender">Defender</option>
+            <option value="Goalkeeper" >Goalkeeper</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+  
+    </div>
   </div>
-</div>
 
 <div class="field">
   <label for="PlayerNationalty" class="label">Player Nationalty</label>
@@ -62,10 +74,18 @@
 </div>
 
 <div class="field">
-  <label for="TeamID" class="label">Select TeamID</label>
-  <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. TeamID"  value="{{row[5]}}" name="TeamID">
-  </div>
+    <label for="Teamname" class="label">Select Team</label>
+    <div class="select">
+        <select  value="{{TeamID}}" name="TeamID">
+            {% for Teams in cursor[1] %}
+            {% if Teams[0] == cursor[0][0][1]: %}
+            <option value="{{Teams[0]}}" selected>{{Teams[1]}}</option>
+            {% else: %}
+            <option value="{{Teams[0]}}">{{Teams[1]}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
 </div>
 
 <div class="field is-grouped">

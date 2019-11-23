@@ -52,12 +52,15 @@
 </div>
 
 <div class="field">
-  <label class="label">Select ManagerID</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. ManagerID"  value="{{ManagerID}}" name="ManagerID">
+    <label for="Name" class="label">Select Manager</label>
+    <div class="select">
+    <select  value="{{ManagerID}}" name="ManagerID">
+        {% for row in cursor %}
+      <option value="{{row[0]}}">{{row[1]}}</option>
+        {% endfor %}
+    </select>
   </div>
-</div>
-
+  </div>
 <div class="field is-grouped">
   <div class="control">
     <button class="button is-link">Submit</button>
