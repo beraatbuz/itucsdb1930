@@ -12,6 +12,8 @@ INIT_STATEMENTS = [
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
                         ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
+                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Location VARCHAR(30);
+                        ALTER TABLE Teams DROP COLUMN Capacity;
 
                         CREATE TABLE IF NOT EXISTS  Teams
                         (
@@ -19,9 +21,9 @@ INIT_STATEMENTS = [
                                 Teamname VARCHAR(30) NOT NULL,
                                 NickName VARCHAR(30),
                                 ShortName VARCHAR(30) NOT NULL,
-                                FoundationDate VARCHAR(30),
-                                Capacity INTEGER NOT NULL,	
-                                ManagerID INTEGER REFERENCES Manager (ID)
+                                FoundationDate VARCHAR(30),	
+                                ManagerID INTEGER REFERENCES Manager (ID),
+                                Location VARCHAR(30)
                         )
                         """,
                         

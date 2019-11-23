@@ -13,7 +13,7 @@
 <a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
 <a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
 <br><br>
-<h1 class="title">AHMET IS HERE. DON'T PUSH ANYTHING</h1>
+
 <br>
 <h1 class="title">FIXTURE</h1>
 <form method="post">
@@ -63,7 +63,7 @@
                       <td>{{row[5]}}</td>
                       <td>{{row[9]}}</td>
                       {%if row[8]=='NOTSTARTED' %}
-                      <td style=""><div class="control"><button type="submit" class="button is-warning is-small " name="buttonName" value="start">Start</button></div></td>
+                      <td style=""><div class="control"><button  class="button is-warning is-small " name="buttonName" value="start">Start</button></div></td>
                       {%endif%}
                       {%if row[8] =='LIVE' %}
                       <td style="color:red; font-weight: bold;">{{row[8]}}</td>

@@ -1,80 +1,89 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<textarea rows="20" cols="50">Comments</textarea>
-<br><br>
-<a class="button is-link" href="{{ url_for('goal_adding_page') }}">Goal Add</a>
-<a class="button is-link" href="{{ url_for('assist_add_page') }}">Assist Add</a>
 
 <p id="demo">0</p>
-<button onclick="myTimerObj.start()">Start Match</button>
-<button onclick="myTimerObj.end()">Pause Match</button>
-
 
 <script>
-        var myTimerObj = (function(document){
-           
-           var myTimer;
-                   paused = false
-            var c = 0;
-           function start() {
-             myTimer = setInterval(myClock, 1000);
-             
-        
-             function myClock() {
-               document.getElementById("demo").innerHTML = ++c;
-               if (c == 90) {
-                 clearInterval(myTimer);
-                 alert("Match Finished");
-               }
-             }
+    var myTimerObj = (function(document){
+       
+       var myTimer;
+               paused = false
+        var c = 0;
+       function start() {
+         myTimer = setInterval(myClock, 1000);
+         
+    
+         function myClock() {
+           document.getElementById("demo").innerHTML = ++c;
+           if (c == 90) {
+             c=0;
+             clearInterval(myTimer);
+             alert("Match Finished");
            }
-           
-           function end() {
-                   clearInterval(myTimer);
-               myTimer = setInterval(myClock, 1000);
-               function myClock() {
-               document.getElementById("demo").innerHTML = c;
-               if (c == 90) {
-                 clearInterval(myTimer);
-                 alert("Match Finished");
-               }
-             }
+         }
+       }
+       
+       function end() {
+               clearInterval(myTimer);
+           myTimer = setInterval(myClock, 1000);
+           function myClock() {
+           document.getElementById("demo").innerHTML = c;
+           if (c == 90) {
+             clearInterval(myTimer);
+             alert("Match Finished");
            }
-        
-           return {start:start, end:end};
-         })(document);
+         }
+       }
+    
+       return {start:start, end:end};
+     })(document);
 </script>
 
+<button onclick="myTimerObj.start()">Start Match</button>
+<button onclick="myTimerObj.end()">Pause Match</button>
+<br><br>
+<br>
+
+<a class="button is-link" target="_blank" href="{{ url_for('goal_adding_page') }}">Goal Add</a>
+<a class="button is-link" target="_blank" href="{{ url_for('assist_add_page') }}">Assist Add</a>
+<br><br>
+
 <form method='POST'>
-<div class="field">
-    <label for="PlayerAge" class="label">MatchID</label>
-    <div class="control">
-          {% for row in cursor %}
-      <input required="required" class="input" type="number" placeholder="e.g. 12"  value="{{row[1]}}" name="MatchID">
-    </div>
-  </div>
-  
-  <div class="field">
-          <label for="PlayerName" class="label">Detail</label>
-          <div class="control">
-            <textarea rows="4" cols="50" required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[2]}}" name="Detail">
-              </textarea>
-          </div>
-        </div>
-  
-  <div class="field">
-    <label for="TeamID" class="label">Minute</label>
-    <div class="control">
-      <input required="required" class="input" type="number" placeholder="e.g. 87"  value="{{row[3]}}" name="Minute">
-    </div>
-  </div> 
-  <div class="field is-grouped">
+    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="goal_add">Goal Add</button><br><br><br>
+    <div class="field">
+      <label for="PlayerAge" class="label">Match ID</label>
       <div class="control">
-        <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+        <input  class="input" type="text" placeholder="e.g. 12"  value="{{MatchID}}" name="MatchID">
       </div>
-    </div>    
-</form>        
+    </div>
+    
+    <div class="field">
+      <label for="Detail" class="label">Detail</label>
+      <div class="control">
+        <textarea rows="10" cols="30"  placeholder="e.g. Detail"  value="{{Detail}}" name="Detail" maxlength="300"></textarea>
+        
+      </div>
+    </div>
+    
+    <div class="field">
+        <label for="Minute" class="label">Minute</label>
+        <div class="control">
+          <input  class="input" type="text" placeholder="e.g. 87"  value="{{Minute}}" name="Minute" maxlength="2">
+        </div>
+      </div>
+    
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+    </div>
+    
+    </form> 
+    
+
+
+      
         
         
         

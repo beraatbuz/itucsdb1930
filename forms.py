@@ -5,17 +5,17 @@ url = os.getenv("url")
 
 class FootballStats:
 
-	def Team_add(self, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID):
+	def Team_add(self, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID,Location):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID) VALUES(%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID]))
+				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate,  ManagerID,Location) VALUES(%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID]))
 
-	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID):
+	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID,Location):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, Capacity=%s, ManagerID=%s  Where ID=%s;"""
-				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID, TeamID]))
+				statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, ManagerID=%s,Location=%s  Where ID=%s;"""
+				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID, Location, TeamID]))
 	
 	def Team_delete(self, TeamID):
 		with dbapi.connect(url) as connection:
@@ -197,7 +197,7 @@ class FootballStats:
 	def Team(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=Teams.ID and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Name,Location FROM Teams,Manager WHERE Teams.ID=Teams.ID and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -396,7 +396,7 @@ class FootballStats:
 	def Team_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Name,Location FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -436,7 +436,16 @@ class FootballStats:
 	def Team_user_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Location,Name FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Fixtures2(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee WHERE T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id ORDER BY MatchDate,Time;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+

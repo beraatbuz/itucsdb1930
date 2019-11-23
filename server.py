@@ -6,6 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from passlib.hash import pbkdf2_sha256 as hasher
 import forms
+import webbrowser
 lm = LoginManager()
 
 @lm.user_loader
@@ -97,7 +98,7 @@ def fixture_page():
             return redirect(url_for("fixture_adding_page"))
 
         elif (process == "start"):
-            return redirect(url_for("dashboard_page"))#Ahmet sende burası
+            return render_template("live_match.html")#Ahmet sende burası
         elif (process == "week"):
             week = request.form.get('select') 
             cursor=obje.Fixtures(week)
@@ -304,10 +305,10 @@ def team_adding_page():
         NickName = str(request.form["NickName"])
         ShortName = str(request.form["ShortName"])
         FoundationDate = str(request.form["FoundationDate"])
-        Capacity =  str(request.form["Capacity"])
         ManagerID =  str(request.form["ManagerID"])
+        Location =  str(request.form["Location"])
         obje = forms.FootballStats()
-        obje.Team_add(Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
+        obje.Team_add(Teamname,NickName,ShortName,FoundationDate,ManagerID,Location)
         flash("You have added.")
         return redirect(url_for("team_adding_page"))
 
@@ -716,8 +717,7 @@ def goal_adding_page():
     if request.method == 'GET':
         obje = forms.FootballStats()
         playerCursor=obje.Player()
-        fixtureCursor=obje.Fixtures()
-        return render_template('add_goal.html',cursor=[playerCursor,fixtureCursor])
+        return render_template('add_goal.html',cursor=playerCursor)
 
     elif request.method == 'POST':
         PlayerID = str(request.form["PlayerID"])
@@ -838,10 +838,10 @@ def team_update_page(process):
             NickName = str(request.form["NickName"])
             ShortName = str(request.form["ShortName"])
             FoundationDate = str(request.form["FoundationDate"])
-            Capacity = str(request.form["Capacity"])
             ManagerID = str(request.form["ManagerID"])
+            Location = str(request.form["Location"])
             obje = forms.FootballStats()
-            obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,Capacity,ManagerID)
+            obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,ManagerID,Location)
             return redirect(url_for("team_page"))
         cursor=obje.Team_update_info(process)
         managerCursor = obje.Manager()
@@ -1011,25 +1011,32 @@ app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page)
 
 @app.route("/live_match", methods=['GET','POST'])
 @login_required
-def live_match_page(process):
+def live_match_page(process): 
     if not current_user.is_admin:
         abort(401)
     obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
-        return render_template("teams.html")
+        return render_template("live_match.html")
     elif request.method == 'POST':
         if update is not None:
-            MatchID = str(request.form["MatchID"])
-            Detail = str(request.form["Teamname"])
-            Minute = str(request.form["NickName"])
+            HomeTeam = request.form["HomeTeam"]
+            AwayTeam = request.form["AwayTeam"]
+            HomeScore = request.form["HomeScore"]
+            AwayScore =  request.form["AwayScore"]
+            Week =  request.form["Week"]
+            MatchDate =  request.form["MatchDate"]
+            Time =  request.form["Time"]
+            Status = request.form["Status"]
+            Refereeid=request.form["Refereeid"]
             obje = forms.FootballStats()
-            obje.Detail_update(update,MatchID,Detail,Minute)
-            return redirect(url_for("detail_page"))
-        cursor=obje.Team_update_info(process)
-        print(cursor)
-        return render_template("update_team.html",cursor=cursor)
-
+            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
+            return redirect(url_for("live_match_page"))
+        cursor=obje.Fixture_update_info(process)
+        return render_template("live_match.html",cursor=cursor)     
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+###############################################################################3
+        
