@@ -19,16 +19,25 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">Player ID</label>
-  <div class="control">
-        {% for row in cursor %}
-    <input required="required" class="input" type="text"  value="{{row[1]}}" name="PlayerID">
-  </div>
+  <label for="PlayerName" class="label">Player Name</label>
+  <div class="select">
+      <select  value="{{PlayerID}}" name="PlayerID">
+        
+          {% for player in cursor[1] %}
+          {% if player[0] == cursor[0][0][1]: %}
+          <option value="{{player[0]}}" selected>{{player[1]}}</option>
+          {% else: %}
+        <option value="{{player[0]}}">{{player[1]}}</option>
+        {% endif %}
+          {% endfor %}
+      </select>
+    </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Match ID</label>
   <div class="control">
+      {% for row in cursor[0] %}
     <input required="required" class="input" type="text"  value="{{row[2]}}" name="MatchID">
   </div>
 </div>
