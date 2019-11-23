@@ -823,7 +823,7 @@ def team_update_page(process):
         return render_template("update_team.html",cursor=[cursor, managerCursor])
 
 
-@app.route("/player")
+@app.route("/player",methods=['GET','POST'])
 @login_required
 def players_page(player_key):
     if not current_user.is_admin:
@@ -833,9 +833,22 @@ def players_page(player_key):
         cursor=obje.Player_key(player_key)
         print(cursor)
         return render_template("players.html",cursor=cursor)
-app.add_url_rule("/player/<player_key>", view_func=players_page)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if (process == "add"):
+            return redirect(url_for("player_adding_page"))
+        elif(process == "Delete"):
+            form_player_keys = request.form.getlist("player_keys")
+            for form_player_key in form_player_keys:
+                obje.Player_delete(int(form_player_key))
+            return redirect(url_for("player_page"))
+        else:
+            return player_update_page(process)
+app.add_url_rule("/player/<player_key>", view_func=players_page,methods=['GET','POST'])
 
-@app.route("/teams")
+@app.route("/teams",methods=['GET','POST'])
 @login_required
 def teams_page(team_keys):
     if not current_user.is_admin:
@@ -845,9 +858,23 @@ def teams_page(team_keys):
         cursor=obje.Team_key(team_keys)
         print(cursor)
         return render_template("teams.html",cursor=cursor)
-app.add_url_rule("/team/<team_keys>", view_func=teams_page) 
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if (process == "add"):
+            return redirect(url_for("team_adding_page"))
+        elif(process == "Delete"):
+            form_team_keys = request.form.getlist("team_keys")
+            for team_key in form_team_keys:
+                obje.Team_delete(team_key)
+            flash("You have deleted.")
+            return redirect(url_for("team_page"))
+        else:
+            return team_update_page(process)
+app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST']) 
 
-@app.route("/goals")
+@app.route("/goals",methods=['GET','POST'])
 @login_required
 def goals_page(goal_keys):
     if not current_user.is_admin:
@@ -857,9 +884,22 @@ def goals_page(goal_keys):
         cursor=obje.Goal_key(goal_keys)
         print(cursor)
         return render_template("goals.html",cursor=cursor)
-app.add_url_rule("/goal/<goal_keys>", view_func=goals_page) 
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if (process == "add"):
+            return redirect(url_for("goal_adding_page"))
+        elif(process == "Delete"):
+            form_goal_keys = request.form.getlist("goal_keys")
+            for form_goal_key in form_goal_keys:
+                obje.Goal_delete(int(form_goal_key))
+            return redirect(url_for("goal_page"))
+        else:
+            return goal_update_page(process)
+app.add_url_rule("/goal/<goal_keys>", view_func=goals_page,methods=['GET','POST']) 
 
-@app.route("/managers")
+@app.route("/managers", methods=['GET','POST'])
 @login_required
 def managers_page(manager_keys):
     if not current_user.is_admin:
@@ -869,7 +909,20 @@ def managers_page(manager_keys):
         cursor=obje.Manager_key(manager_keys)
         print(cursor)
         return render_template("managers.html",cursor=cursor)
-app.add_url_rule("/manager/<manager_keys>", view_func=managers_page) 
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if (process == "add"):
+            return redirect(url_for("manager_adding_page"))
+        elif(process == "Delete"):
+            form_manager_keys = request.form.getlist("manager_keys")
+            for form_manager_key in form_manager_keys:
+                obje.Manager_delete(int(form_manager_key))
+            return redirect(url_for("manager_page"))
+        else:
+            return manager_update_page(process)
+app.add_url_rule("/manager/<manager_keys>", view_func=managers_page,methods=['GET','POST']) 
 
 
 @app.route("/top_goal", methods=['GET'])

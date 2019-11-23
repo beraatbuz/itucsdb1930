@@ -38,13 +38,27 @@
     <div class="select">
       <select  value="{{Position}}" name="Position">
           {% for Player in cursor[0] %}
-          {% if Player[0] == cursor[0][0][7]: %}
-          <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
-          {% else: %}
+          {% if Player[7] == cursor[0][0][7]: %}
+            {% if Player[7] == "Forward": %}
+            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Defender">Defender</option>
+            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
+            {% if Player[7] == "Midfielder": %}
+            <option value="Forward">Forward</option>
+            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
+            <option value="Defender">Defender</option>
+            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
+            {% if Player[7] == "Defender": %}
+            <option value="Forward">Forward</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
+            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
+            {% if Player[7] == "Goalkeeper": %}
             <option value="Forward">Forward</option>
             <option value="Midfielder">Midfielder</option>
             <option value="Defender">Defender</option>
-            <option value="Goalkeeper" >Goalkeeper</option>
+            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>{% endif %}
             {% endif %}
             {% endfor %}
         </select>
@@ -78,7 +92,7 @@
     <div class="select">
         <select  value="{{TeamID}}" name="TeamID">
             {% for Teams in cursor[1] %}
-            {% if Teams[0] == cursor[0][0][1]: %}
+            {% if Teams[0] == cursor[0][0][5]: %}
             <option value="{{Teams[0]}}" selected>{{Teams[1]}}</option>
             {% else: %}
             <option value="{{Teams[0]}}">{{Teams[1]}}</option>
