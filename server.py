@@ -550,7 +550,7 @@ def detail_page():
         abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
-        cursor=obje.Goal()
+        cursor=obje.Detail()
         print(cursor)
         return render_template("detail.html",cursor=cursor)
     else:
