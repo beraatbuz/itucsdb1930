@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Assist {% endblock %}
+{% block content %}
+<a class="button is-dark" href="{{ url_for('team_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('goal_page') }}">See All Goals</a>
+<a class="button is-dark" href="{{ url_for('stadium_page') }}">See All Stadiums</a>
+<a class="button is-dark" href="{{ url_for('assist_page') }}">See All Assists</a>
+<a class="button is-dark" href="{{ url_for('statistic_page') }}">See All Statistics</a>
+<a class="button is-dark" href="{{ url_for('standing_page') }}">See Standing</a>
+<a class="button is-dark" href="{{ url_for('referee_page') }}">See Referee</a>
+<a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
+<a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
+<br><br>
+<h1 class="title">ADD Detail</h1>
+
+
+<form method='POST'>
+<div class="field">
+  <label for="PlayerAge" class="label">Match ID</label>
+  <div class="control">
+    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{MatchID}}" name="MatchID">
+  </div>
+</div>
+
+<div class="field">
+  <label for="Detail" class="label">Detail</label>
+  <div class="control">
+    <textarea rows="10" cols="30" required="required" placeholder="e.g. Detail"  value="{{Detail}}" name="Detail" maxlength="300"></textarea>
+    
+  </div>
+</div>
+
+<div class="field">
+    <label for="Minute" class="label">Minute</label>
+    <div class="control">
+      <input required="required" class="input" type="text" placeholder="e.g. 87"  value="{{Minute}}" name="Minute" maxlength="2">
+    </div>
+  </div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+</div>
+</form>
+{% endblock %}

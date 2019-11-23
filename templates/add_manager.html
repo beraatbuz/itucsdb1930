@@ -2,7 +2,18 @@
 
 {% block title %}add Manager{% endblock %}
 {% block content %}
-
+<a class="button is-dark" href="{{ url_for('team_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('goal_page') }}">See All Goals</a>
+<a class="button is-dark" href="{{ url_for('stadium_page') }}">See All Stadiums</a>
+<a class="button is-dark" href="{{ url_for('assist_page') }}">See All Assists</a>
+<a class="button is-dark" href="{{ url_for('statistic_page') }}">See All Statistics</a>
+<a class="button is-dark" href="{{ url_for('standing_page') }}">See Standing</a>
+<a class="button is-dark" href="{{ url_for('referee_page') }}">See Referee</a>
+<a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
+<a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
+<br><br>
 <h1 class="title">ADD Manager</h1>
 
 
@@ -17,7 +28,7 @@
 <div class="field">
   <label for="PlayerAge" class="label">Manager Age</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 66"  value="{{Age}}" name="Age">
+    <input required="required" class="input" type="number" placeholder="e.g. 66"  value="{{Age}}" name="Age" maxlength="3">
   </div>
 </div>
 <div class="field">
@@ -29,7 +40,7 @@
 <div class="field">
   <label for="PlayerAge" class="label">Manager Height</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 166"  value="{{Height}}" name="Height">
+    <input required="required" class="input" type="number" placeholder="e.g. 166"  value="{{Height}}" name="Height" maxlength="3">
   </div>
 </div>
 <div class="field">
