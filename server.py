@@ -402,7 +402,9 @@ def assist_add_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_assist.html')
+        obje = forms.FootballStats()
+        playerCursor=obje.Player()
+        return render_template('add_assist.html',cursor=playerCursor)
     elif request.method == 'POST':
         PlayerID = str(request.form["PlayerID"])
         MatchID = str(request.form["MatchID"])
@@ -413,7 +415,7 @@ def assist_add_page():
         StadiumHA = str(request.form["StadiumHA"])
         obje = forms.FootballStats()
         obje.Assist_add(PlayerID,MatchID,Minute,LastTouch,Format,GoldenAssist,StadiumHA)
-        return render_template("add_assist.html")
+        return redirect(url_for("assist_add_page"))
 
 @app.route("/update_assist", methods=['GET','POST'])
 @login_required
