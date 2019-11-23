@@ -22,7 +22,6 @@
   <label for="PlayerName" class="label">Player Name</label>
   <div class="select">
       <select  value="{{PlayerID}}" name="PlayerID">
-        
           {% for player in cursor[1] %}
           {% if player[0] == cursor[0][0][1]: %}
           <option value="{{player[0]}}" selected>{{player[1]}}</option>
