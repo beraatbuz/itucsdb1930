@@ -11,6 +11,7 @@
     <th>Manager Nationalty</th>
     <th>Manager Height</th>
     <th>Manager PlaceOfBirth</th>
+    <th>Team</th>
   </tr>
 {% for row in cursor %}
 <tr>  
@@ -19,6 +20,7 @@
     <td>{{row[3]}}</td>
     <td>{{row[4]}}</td>
     <td>{{row[5]}}</td>
+    <td>{{row[6]}}</td>
   </tr>
   {% endfor %}
 </table>

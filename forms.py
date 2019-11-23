@@ -421,3 +421,11 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Manager_user(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Manager.ID, Name,Age,Nationalty,Height,PlaceOfBirth, Teamname, ManagerID FROM Manager, Teams WHERE Manager.ID=ManagerID Group BY Manager.ID, Teamname, Teams.ManagerID;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list

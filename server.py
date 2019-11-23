@@ -878,7 +878,7 @@ def team_user_page():
 def manager_user_page():
     obje = forms.FootballStats()
     if request.method == "GET":
-        cursor=obje.Manager()
+        cursor=obje.Manager_user()
         return render_template("managers_user.html",cursor=cursor)  
 
 @app.route("/players_user", methods=['GET'])
