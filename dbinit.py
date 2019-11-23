@@ -165,34 +165,42 @@ INIT_STATEMENTS = [
 			
 			
 			"""
+                        ALTER TABLE Statistic ADD COLUMN IF NOT EXISTS Referee integer NOT NULL REFERENCES Referees (ID);
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
 				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
-				HScore integer DEFAULT 0,
 				HPossesion integer DEFAULT 0,
 				HCorner integer DEFAULT 0,
-				HInjure integer DEFAULT 0,
 				HFoul integer DEFAULT 0,
 				HOffside integer DEFAULT 0,
 				HShot integer DEFAULT 0,
 				HShotOnTarget integer DEFAULT 0,
 				HShotAccuracy integer DEFAULT 0,
 				HPassAccuracy integer DEFAULT 0,
-				AScore integer DEFAULT 0,
 				APossesion integer DEFAULT 0,
 				ACorner integer DEFAULT 0,
-				AInjure integer DEFAULT 0,
 				AFoul integer DEFAULT 0,
 				AOffside integer DEFAULT 0,
 				AShot integer DEFAULT 0,
 				AShotOnTarget integer DEFAULT 0,
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
-				Referee_UserName VARCHAR(30),
+				Referee integer NOT NULL REFERENCES Referees (ID),
 				PRIMARY KEY (ID)
 			)
 			""",
+                        """
+			CREATE TABLE IF NOT EXISTS  MatchDetails
+			(
+				ID serial,
+				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
+                                Detail VARCHAR(300) NOT NULL,
+                                Minute integer NOT NULL,
+				PRIMARY KEY (ID)
+			)
+			""",
+                        
 
                         """
                         ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
