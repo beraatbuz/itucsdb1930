@@ -84,13 +84,13 @@ class FootballStats:
 	def Detail_add(self, MatchId, Detail, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO MatchDetails(MatchId, Detail, Minute) VALUES(%s,%s,%s);"""
+				statement = """ INSERT INTO MatchDetails(MatchID, Detail, Minute) VALUES(%s,%s,%s);"""
 				cursor.execute(statement,([MatchId, Detail, Minute]))
 
 	def Detail_update(self, DetailID, MatchId,Detail ,Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update MatchDetails Set MatchId=%s, Detail=%s, Minute=%s Where ID=%s;"""
+				statement="""Update MatchDetails Set MatchID=%s, Detail=%s, Minute=%s Where ID=%s;"""
 				cursor.execute(statement,([MatchId,Detail ,Minute, DetailID]))
 
 	def Detail_delete(self, ID):
@@ -221,7 +221,7 @@ class FootballStats:
 	def Detail(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM MatchDetails ORDER BY ID;"""
+				statement = """Select * FROM MatchDetails ORDER BY ID"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
