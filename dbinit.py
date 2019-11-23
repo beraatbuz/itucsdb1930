@@ -22,7 +22,7 @@ INIT_STATEMENTS = [
                                 ShortName VARCHAR(30) NOT NULL,
                                 FoundationDate VARCHAR(30),	
                                 ManagerID INTEGER REFERENCES Manager (ID),
-                                Location VARCHAR(30)
+                                Location VARCHAR(50)
                         )
                         """,
                         

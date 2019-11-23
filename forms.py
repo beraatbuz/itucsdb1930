@@ -73,6 +73,7 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s, LastTouch=%s, Format=%s,GoldenAssist=%s,StadiumHA=%s Where ID=%s;"""
 				cursor.execute(statement,([PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA, AssistId]))
+				
 	def Assist_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
