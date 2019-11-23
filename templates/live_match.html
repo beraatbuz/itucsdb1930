@@ -44,10 +44,37 @@
         
            return {start:start, end:end};
          })(document);
-         </script>
-        
-        
-        
+</script>
+
+<form method='POST'>
+<div class="field">
+    <label for="PlayerAge" class="label">MatchID</label>
+    <div class="control">
+          {% for row in cursor %}
+      <input required="required" class="input" type="number" placeholder="e.g. 12"  value="{{row[1]}}" name="MatchID">
+    </div>
+  </div>
+  
+  <div class="field">
+          <label for="PlayerName" class="label">Detail</label>
+          <div class="control">
+            <textarea rows="4" cols="50" required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[2]}}" name="Detail">
+              </textarea>
+          </div>
+        </div>
+  
+  <div class="field">
+    <label for="TeamID" class="label">Minute</label>
+    <div class="control">
+      <input required="required" class="input" type="number" placeholder="e.g. 87"  value="{{row[3]}}" name="Minute">
+    </div>
+  </div> 
+  <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+      </div>
+    </div>    
+</form>        
         
         
         
