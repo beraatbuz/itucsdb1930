@@ -81,6 +81,32 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 
+	def Detail_add(self, MatchId, Detail, Minute):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ INSERT INTO Detail(MatchId, Detail, Minute) VALUES(%s,%s,%s);"""
+				cursor.execute(statement,([MatchId, Detail, Minute]))
+
+	def Detail_update(self, DetailID, MatchId,Detail ,Minute):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement="""Update Goal Set MatchId=%s, Detail=%s, Minute=%s Where ID=%s;"""
+				cursor.execute(statement,([MatchId,Detail ,Minute, DetailID]))
+
+	def Detail_delete(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ DELETE FROM Detail WHERE ID = %s;"""
+				cursor.execute(statement,[ID])
+
+	def Detail_update_info(self, ID):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """ Select * From Detail where ID = %s;"""
+				cursor.execute(statement,([ID]))
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
 	def Admins_add(self, UserName, UserPassword):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
@@ -188,6 +214,14 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select Goal.ID, PlayerName, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID and MatchID=Fixtures.ID ORDER BY PlayerID,MatchID ASC;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Detail(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select * FROM Detail ORDER BY ID;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

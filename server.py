@@ -527,6 +527,67 @@ def statistic_update_page(process):
         print(cursor)
         return render_template("update_statistic.html",cursor=cursor)
 
+@app.route("/add_detail", methods=['GET','POST'])
+@login_required
+def detail_adding_page():
+    if not current_user.is_admin:
+        abort(401)
+    if request.method == 'GET':
+        return render_template('add_detail.html')
+    elif request.method == 'POST':
+        Detail = str(request.form["Detail"])
+        MatchID = str(request.form["MatchID"])
+        Minute = str(request.form["Minute"])
+        obje = forms.FootballStats()
+        obje.Detail_add(MatchID,Detail, Minute)
+        flash("You have added.")
+        return render_template("add_detail.html")
+
+@app.route("/detail", methods=['GET','POST'])
+@login_required
+def detail_page():
+    if not current_user.is_admin:
+        abort(401)
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Goal()
+        print(cursor)
+        return render_template("detail.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        update = request.form.get('Update')
+        print(update)
+        if (process == "add"):
+            return redirect(url_for("detail_adding_page"))
+        elif(process == "Delete"):
+            form_detail_keys = request.form.getlist("detail_keys")
+            for form_detail_key in form_detail_keys:
+                obje.Detail_delete(int(form_detail_key))
+            return redirect(url_for("detail_page"))
+        else:
+            return detail_update_page(process)
+
+@app.route("/update_detail", methods=['GET','POST'])
+@login_required
+def detail_update_page(process):
+    if not current_user.is_admin:
+        abort(401)
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("detail.html")
+    elif request.method == 'POST':
+        if update is not None:
+            Detail = str(request.form["Detail"])
+            MatchID = str(request.form["MatchID"])
+            Minute = str(request.form["Minute"])
+            obje = forms.FootballStats()
+            obje.Detail_update(update,MatchID,Detail,Minute)
+            return redirect(url_for("detail_page"))
+        cursor=obje.Detail_update_info(process)
+        print(cursor)
+        return render_template("update_detail.html",cursor=cursor)
+
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
 def player_adding_page():

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Goals{% endblock %}
+{% block title %}Details{% endblock %}
 {% block content %}
 <a class="button is-dark" href="{{ url_for('team_page') }}">See All Teams</a>
 <a class="button is-dark" href="{{ url_for('player_page') }}">See All Players</a>
@@ -11,15 +11,16 @@
 <a class="button is-dark" href="{{ url_for('standing_page') }}">See Standing</a>
 <a class="button is-dark" href="{{ url_for('referee_page') }}">See Referee</a>
 <a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
-<h1 class="title">Goals</h1>
-<form action="" method="post" name="team_list">
-    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add">Goal Add</button><br>
+<a class="button is-dark" href="{{ url_for('detail_page') }}">See Detail</a>
+<h1 class="title">Details</h1>
+<form action="" method="post" name="detail_list">
+    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add">Detail Add</button><br>
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
  <tr>
     <th></th>
     <th>ID</th>
-    <th>Player</th>
     <th>MatchID</th>
+    <th>Detail</th>
     <th>Minute</th>
     <th></th>
   </tr>
@@ -27,7 +28,7 @@
 <tr>
     <td>
         <label class="checkbox">
-        <input type="checkbox" name="goal_keys" value="{{ row[0] }}"/>
+        <input type="checkbox" name="detail_keys" value="{{row[0]}}"/>
         </td>
     <td>{{row[0]}}</td>
     <td>{{row[1]}}</td>
