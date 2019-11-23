@@ -248,7 +248,7 @@ class FootballStats:
 	def Standings(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points FROM Standings,Teams WHERE Teams.ID=TeamID ORDER BY Points DESC,Goals_difference,TeamName;"""
+				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points FROM Standings,Teams WHERE Teams.ID=TeamID ORDER BY Points DESC,Goals_difference DESC,TeamName;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -256,7 +256,7 @@ class FootballStats:
 	def Fixtures(self,week):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id;"""
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id ORDER BY MatchDate,Time;"""
 				cursor.execute(statement,([week]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
