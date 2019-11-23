@@ -18,7 +18,7 @@ app.config.from_object("settings")
 @app.route("/")
 def home_page():
      logout_user()
-     return render_template("home.html")
+     return redirect(url_for("fixture_user_page"))
 
 @app.route("/dashboard")
 @login_required
@@ -54,6 +54,32 @@ def logout_page():
     return redirect(url_for("home_page"))
 lm.init_app(app)
 lm.login_view = "login_page"
+
+@app.route("/fixture_user", methods=['GET','POST'])
+def fixture_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Fixtures(1)
+        return render_template("user-fixture.html",cursor=cursor)
+    else:
+        process = request.form.get('buttonName')
+        week = request.form.get('select') 
+        cursor=obje.Fixtures(week)
+        return render_template("user-fixture.html",cursor=cursor)
+
+@app.route("/referee_user", methods=['GET'])
+def referee_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Referee()
+        return render_template("user-referee.html",cursor=cursor)
+
+@app.route("/standing_user", methods=['GET'])
+def standing_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Standings()
+        return render_template("user-standing.html",cursor=cursor)
 
 @app.route("/fixture", methods=['GET','POST'])
 @login_required

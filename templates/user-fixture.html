@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}user fixtures{% endblock %}
+{% block content %}
+<a class="button is-dark" href="{{ url_for('top_goal_page') }}">See Top Goals</a>
+<a class="button is-dark" href="{{ url_for('team_user_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_user_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_user_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a>
+<a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
+<a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
+<h1 class="title">FIXTURE</h1>
+<form method="post">
+  <div class="select">
+  <select name="select">
+          <option value="1"selected>Week 1</option>
+          <option value="2">Week 2</option>
+          <option value="3">Week 3</option>
+          <option value="4" >Week 4</option>
+        </select>
+        </div>
+        <button type="submit" class="button is-info " name="buttonName" value="week">See This Week</button>
+
+</form>
+        <br><br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+                <tr>
+                  
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Home Score</th>
+                    <th>Away Score</th>
+                    <th>Week</th>
+                    <th>MatchDate</th>
+                    <th>Time </th>
+                    <th>Referee </th>
+                    <th>Status </th>
+
+                    
+                  </tr>
+                  {% for row in cursor %}
+                  <tr> 
+                      
+                      <td>{{row[1]}}</td>
+                      <td>{{row[2]}}</td>
+                      <td>{{row[6]}}</td>
+                      <td>{{row[7]}}</td>
+                      <td>{{row[3]}}</td>
+                      <td>{{row[4]}}</td>
+                      <td>{{row[5]}}</td>
+                      <td>{{row[9]}}</td>
+                      {%if row[8]=='NOTSTARTED' %}
+                      <td style="color:green; font-weight: bold;">{{row[8]}}</td>
+                      {%endif%}
+                      {%if row[8] =='LIVE' %}
+                      <td style=""><div class="control"><button type="submit" class="button is-danger is-small " name="buttonName" value="live">LIVE</button></div></td>
+                      {%endif%}
+                      {%if row[8] =='FINISHED' %}
+                      <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+                      {%endif%}
+                      
+                      
+                </tr>
+                {% endfor %}
+        </table>
+
+{% endblock %}
