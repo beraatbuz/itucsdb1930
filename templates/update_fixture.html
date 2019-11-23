@@ -74,7 +74,31 @@
       </select>
   </div>
 </div>
-
+<div class="field">
+  <label for="PlayerAge" class="label">Referee</label>
+  <div class="select">
+        <select id="referee"  name="Refereeid">
+          <option value="12">Andre Marriner </option>
+          <option value="13">Andy Madley  </option>
+          <option value="17">Anthony Taylor </option>
+          <option value="14" >Chris Kavanagh</option>
+          <option value="9">Craig Pawson</option>
+          <option value="21">David Coote</option>
+          <option value="15">Graham Scott</option>
+          <option value="16">Jonathan Moss</option>
+          <option value="18" >Kevin Friend  </option>
+          <option value="20">Lee Mason  </option>
+          <option value="10">Martin Atkinson</option>
+          <option value="11" >Michael Oliver</option>
+          <option value="7">Mike Dean</option>
+          <option value="24">Oliver Langford  </option>
+          <option value="8" >Paul Tierney</option>
+          <option value="22">Peter Bankes</option>
+          <option value="23">Simon Hooper</option>
+          <option value="19">Stuart Attwell</option>
+      </select>
+  </div>
+</div>
 <div class="field">
   <label for="TeamID" class="label">HomeScore</label>
   <div class="control">
@@ -109,12 +133,12 @@
     <input required="required" class="input" type="time" placeholder="e.g. 20:00"  value="{{row[5]}}" name="Time">
   </div>
 </div>
-<label class="radiobox">
-  <input type="radio" name="Status" value="NOTSTARTED" checked>
+<label class="radiobox" id="radio">
+  <input type="radio" name="Status" value="NOTSTARTED" id="1" >
   Not Started <br>
-  <input type="radio" name="Status" value="LIVE">
+  <input type="radio" name="Status" value="LIVE" id="2">
   LIVE<br>
-  <input type="radio" name="Status" value="FINISHED">
+  <input type="radio" name="Status" value="FINISHED" id="3">
   FINISHED
 </label>
 <div class="field is-grouped">
@@ -138,6 +162,27 @@ listBox2=document.getElementById('away');
     listBox2.options[x].selected = true; 
   } 
 } 
+listBox3=document.getElementById('referee');
+ 
+ for (var x = 0; x < 18; x++) { 
+  if (listBox3.options[x].value == {{row[9]}}) { 
+    listBox3.options[x].selected = true; 
+  } 
+} 
+listBox4=document.getElementById('1');
+  if (listBox4.value == "{{row[8]}}") { 
+    listBox4.checked = true; 
+  } 
+listBox5=document.getElementById('2');
+ 
+  if (listBox5.value == "{{row[8]}}") { 
+    listBox5.checked = true; 
+  } 
+listBox6=document.getElementById('3');
+ 
+  if (listBox6.value == "{{row[8]}}") { 
+    listBox6.checked = true; 
+  } 
 
 
 </script>

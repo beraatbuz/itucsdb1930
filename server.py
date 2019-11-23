@@ -103,8 +103,9 @@ def fixture_update_page(process):
             MatchDate =  request.form["MatchDate"]
             Time =  request.form["Time"]
             Status = request.form["Status"]
+            Refereeid=request.form["Refereeid"]
             obje = forms.FootballStats()
-            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
+            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
             return redirect(url_for("fixture_page"))
         cursor=obje.Fixture_update_info(process)
         return render_template("update_fixture.html",cursor=cursor)
@@ -128,8 +129,9 @@ def fixture_adding_page():
         MatchDate =  request.form["MatchDate"]
         Time =  request.form["Time"]
         Status = request.form["Status"]
+        Refereeid=request.form["Refereeid"]
         obje = forms.FootballStats()
-        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
+        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
         flash("You have added.")
         return render_template("add_fixture.html")
 
@@ -890,6 +892,55 @@ def player_user_page():
     if request.method == "GET":
         cursor=obje.Player()
         return render_template("players_user.html",cursor=cursor)
+
+@app.route("/live_match", methods=['GET','POST'])
+@login_required
+def live_match_page(process):
+    if not current_user.is_admin:
+        abort(401)
+    obje = forms.FootballStats()
+    update = request.form.get('Update') 
+    if request.method == 'GET':
+        return render_template("teams.html")
+    elif request.method == 'POST':
+        if update is not None:
+            MatchID = str(request.form["MatchID"])
+            Detail = str(request.form["Teamname"])
+            Minute = str(request.form["NickName"])
+            obje = forms.FootballStats()
+            obje.Detail_update(update,MatchID,Detail,Minute)
+            return redirect(url_for("detail_page"))
+        cursor=obje.Team_update_info(process)
+        print(cursor)
+        return render_template("update_team.html",cursor=cursor)
+
+@app.route("/managers_user")
+def managers_user_page(manager_keys):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Manager_key(manager_keys)
+        print(cursor)
+        return render_template("managers_user.html",cursor=cursor)
+app.add_url_rule("/managers_user/<manager_keys>", view_func=managers_user_page) 
+
+
+@app.route("/players_user")
+def players_user_page(player_key):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Player_key(player_key)
+        print(cursor)
+        return render_template("players_user.html",cursor=cursor)
+app.add_url_rule("/players_user/<player_key>", view_func=players_user_page)
+
+@app.route("/teams_user")
+def teams_user_page(team_keys):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Team_user_key(team_keys)
+        print(cursor)
+        return render_template("teams_user.html",cursor=cursor)
+app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
 
 if __name__ == "__main__":
     app.run(debug=True)

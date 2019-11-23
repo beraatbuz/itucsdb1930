@@ -15,7 +15,7 @@
   </tr>
 {% for row in cursor %}
 <tr>  
-    <td>{{row[1]}}</td>
+    <td><a href="{{ url_for('managers_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
     <td>{{row[2]}}</td>
     <td>{{row[3]}}</td>
     <td>{{row[4]}}</td>

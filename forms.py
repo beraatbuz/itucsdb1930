@@ -256,7 +256,7 @@ class FootballStats:
 	def Fixtures(self,week):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status FROM Fixtures,Teams AS T1,Teams AS T2 WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam;"""
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee WHERE Week = %s AND T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id;"""
 				cursor.execute(statement,([week]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -328,11 +328,11 @@ class FootballStats:
 				cursor_list=cursor.fetchall()
 				return cursor_list
 				
-	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status):
+	def Fixture_add(self, HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Fixtures(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status]))
+				statement = """ INSERT INTO Fixtures(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid]))
 	
 	def Fixture_delete(self,FixtureId):
 		with dbapi.connect(url) as connection:
@@ -340,11 +340,11 @@ class FootballStats:
 				statement="""Delete From Fixtures Where ID = %s;"""
 				cursor.execute(statement,([FixtureId]))
 
-	def Fixture_update(self, FixtureID,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status):
+	def Fixture_update(self, FixtureID,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s,Status=%s Where ID=%s;"""
-				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,FixtureID]))
+				statement="""Update Fixtures Set HomeTeam=%s, AwayTeam=%s, HomeScore=%s, AwayScore=%s, Week=%s,MatchDate=%s,Time=%s,Status=%s,Refereeid=%s Where ID=%s;"""
+				cursor.execute(statement,([HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid,FixtureID]))
 	def Fixture_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
@@ -412,7 +412,7 @@ class FootballStats:
 	def Manager_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Manager WHERE ID=%s"""
+				statement = """Select Manager.ID, Name,Age,Nationalty,Height,PlaceOfBirth, Teamname, ManagerID FROM Manager, Teams WHERE Manager.ID=%s and Teams.ManagerID=Manager.ID Group BY Manager.ID, Teamname, Teams.ManagerID;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -430,5 +430,13 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """Select Manager.ID, Name,Age,Nationalty,Height,PlaceOfBirth, Teamname, ManagerID FROM Manager, Teams WHERE Manager.ID=ManagerID Group BY Manager.ID, Teamname, Teams.ManagerID;"""
 				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Team_user_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Capacity,Name FROM Teams,Manager WHERE Teams.ID=%s and Manager.ID=ManagerID ORDER BY Teamname ASC;"""
+				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
