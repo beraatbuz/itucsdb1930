@@ -221,7 +221,7 @@ class FootballStats:
 	def Detail(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Detail ORDER BY ID;"""
+				statement = """Select * FROM MatchDetails ORDER BY ID;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
