@@ -103,8 +103,9 @@ def fixture_update_page(process):
             MatchDate =  request.form["MatchDate"]
             Time =  request.form["Time"]
             Status = request.form["Status"]
+            Refereeid=request.form["Refereeid"]
             obje = forms.FootballStats()
-            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
+            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
             return redirect(url_for("fixture_page"))
         cursor=obje.Fixture_update_info(process)
         return render_template("update_fixture.html",cursor=cursor)
@@ -128,8 +129,9 @@ def fixture_adding_page():
         MatchDate =  request.form["MatchDate"]
         Time =  request.form["Time"]
         Status = request.form["Status"]
+        Refereeid=request.form["Refereeid"]
         obje = forms.FootballStats()
-        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status)
+        obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
         flash("You have added.")
         return render_template("add_fixture.html")
 
