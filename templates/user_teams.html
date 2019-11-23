@@ -16,7 +16,7 @@
       <th>NickName</th>
       <th>ShortName</th>
       <th>FoundationDate</th>
-      <th>Capacity</th>
+      <th>Location</th>
       <th>Manager</th>
     </tr>
   {% for row in cursor %}
@@ -25,8 +25,8 @@
       <td>{{row[2]}}</td>
       <td>{{row[3]}}</td>
       <td>{{row[4]}}</td>
-      <td>{{row[5]}}</td>
       <td>{{row[6]}}</td>
+      <td>{{row[5]}}</td>
     </tr></a>
 {% endfor %}
 </table>

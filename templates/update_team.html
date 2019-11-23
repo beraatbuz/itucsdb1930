@@ -48,7 +48,7 @@
 <div class="field">
   <label class="label">Add Location</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. Sivas"  value="{{row[7]}}" name="Location">
+    <input required="required" class="input" type="text" placeholder="e.g. Sivas"  value="{{row[6]}}" name="Location" maxlength="50">
   </div>
 </div>
 
@@ -57,7 +57,7 @@
     <div class="select">
         <select  value="{{ManagerID}}" name="ManagerID">
             {% for Manager in cursor[1] %}
-            {% if Manager[0] == cursor[0][0][6]: %}
+            {% if Manager[0] == cursor[0][0][5]: %}
             <option value="{{Manager[0]}}" selected>{{Manager[1]}}</option>
             {% else: %}
             <option value="{{Manager[0]}}">{{Manager[1]}}</option>

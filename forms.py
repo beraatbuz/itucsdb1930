@@ -5,13 +5,13 @@ url = os.getenv("url")
 
 class FootballStats:
 
-	def Team_add(self, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID,Location):
+	def Team_add(self, TeamName, NickName, ShortName, FoundationDate, ManagerID,Location):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate,  ManagerID,Location) VALUES(%s,%s,%s,%s,%s,%s);"""
 				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID]))
 
-	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, Capacity, ManagerID,Location):
+	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, ManagerID,Location):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, ManagerID=%s,Location=%s  Where ID=%s;"""
@@ -73,7 +73,7 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s, LastTouch=%s, Format=%s,GoldenAssist=%s,StadiumHA=%s Where ID=%s;"""
 				cursor.execute(statement,([PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA, AssistId]))
-				
+
 	def Assist_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
