@@ -85,7 +85,6 @@ INIT_STATEMENTS = [
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR(2) DEFAULT '-';
                         ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR(2) DEFAULT '-';
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS StadiumID;
-                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS RefereeID;
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS HomeTScore;
                         ALTER TABLE Fixtures DROP COLUMN IF EXISTS AwayTScore;
                         
