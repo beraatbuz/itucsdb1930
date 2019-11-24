@@ -22,7 +22,7 @@
   <label for="PlayerName" class="label">Player Name</label>
   <div class="select">
   <select  value="{{PlayerID}}" name="PlayerID">
-      {% for row in cursor %}
+      {% for row in cursor[0] %}
     <option value="{{row[0]}}">{{row[1]}}</option>
       {% endfor %}
   </select>
@@ -30,11 +30,15 @@
 </div>
 
 <div class="field">
-  <label for="PlayerAge" class="label">Match ID</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 12"  value="{{MatchID}}" name="MatchID">
+    <label for="MatchID" class="label">Select MatchID</label>
+    <div class="select">
+    <select  value="{{MatchID}}" name="MatchID">
+        {% for row in cursor[1] %}
+      <option value="{{row[0]}}">{{row[0]}}</option>
+        {% endfor %}
+    </select>
   </div>
-</div>
+  </div>
 
 <div class="field">
   <label for="TeamID" class="label">Minute</label>

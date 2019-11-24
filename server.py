@@ -448,7 +448,8 @@ def assist_add_page():
     if request.method == 'GET':
         obje = forms.FootballStats()
         playerCursor=obje.Player()
-        return render_template('add_assist.html',cursor=playerCursor)
+        fixtureCursor=obje.Fixtures2()
+        return render_template('add_assist.html',cursor=[playerCursor,fixtureCursor])
     elif request.method == 'POST':
         PlayerID = str(request.form["PlayerID"])
         MatchID = str(request.form["MatchID"])
@@ -484,8 +485,9 @@ def assist_update_page(process):
             return redirect(url_for("assist_page"))
         cursor=obje.Assist_update_info(process)
         playerCursor = obje.Player()
+        fixtureCursor = obje.Fixtures2()
         print(cursor)
-        return render_template("update_assist.html",cursor=[cursor, playerCursor])
+        return render_template("update_assist.html",cursor=[cursor,playerCursor,fixtureCursor])
 
 @app.route("/statistic", methods=['GET','POST'])
 @login_required

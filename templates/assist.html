@@ -22,6 +22,7 @@
                     <th>ID</th>
                     <th>Player Name</th>
                     <th>Minute</th>
+                    <th>MatchID</th>
                     <th>Home Team</th>
                     <th>Away Team</th>
                     <th>Last Touch</th>
@@ -40,6 +41,7 @@
                       <td>{{row[0]}}</td>
                       <td><a href="{{ url_for('player_page')}}/{{row[9]}}">{{row[1]}}</td></a>
                       <td>{{row[2]}}</td>
+                      <td>{{row[12]}}</td>
                       <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[3]}}</td></a>
                       <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[4]}}</td></a>
                       <td>{{row[5]}}</td>
