@@ -222,7 +222,7 @@ class FootballStats:
 	def Detail(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM MatchDetails ORDER BY ID"""
+				statement = """Select distinct MatchDetails.ID, MatchID, Detail, Minute From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=MatchID Order By MatchID,Minute"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -478,7 +478,7 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Detail_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select distinct MatchDetails.ID, Detail, Minute, MatchID From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=%s Order By MatchID"""
+				statement = """Select distinct MatchDetails.ID, Detail, Minute, MatchID From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=%s Order By MatchID,Minute"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -487,6 +487,15 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id and team_id=%s ORDER BY Teamname"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Fixture_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee 
+				WHERE T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id and Fixtures.id=%s ORDER BY MatchDate,Time;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list

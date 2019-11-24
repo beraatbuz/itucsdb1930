@@ -24,7 +24,7 @@
         <br><br>
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
-                        <th>Details</th>
+                    
                     <th>Home Team</th>
                     <th>Away Team</th>
                     <th>Home Score</th>
@@ -38,15 +38,7 @@
                     
                   </tr>
                   {% for row in cursor %}
-                  <tr> {%if row[8]=='NOTSTARTED' %}
-                                <td>Match Not Started</td>
-                                {%endif%}
-                                {%if row[8] =='LIVE' %}
-                        <td><a href="{{ url_for('detail_user_page')}}/{{row[0]}}">See Details</td></a>
-                        {%endif%}
-                                {%if row[8] =='FINISHED' %}
-                                <td><a href="{{ url_for('detail_user_page')}}/{{row[0]}}">See Details</td></a>
-                                {%endif%}
+                  
                       <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
                       <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[2]}}</td></a>
                       <td>{{row[6]}}</td>
@@ -59,10 +51,10 @@
                       <td style="color:green; font-weight: bold;">{{row[8]}}</td>
                       {%endif%}
                       {%if row[8] =='LIVE' %}
-                      <td style=""><div class="control"><button type="submit" class="button is-danger is-small " name="buttonName" value="live">LIVE</button></div></td>
+                      <td style=""><div class="control"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">LIVE</button></div></a></td>
                       {%endif%}
                       {%if row[8] =='FINISHED' %}
-                      <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+                      <td style="color:black; font-weight: bold;"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">{{row[8]}}</td></a>
                       {%endif%}
                       
                       

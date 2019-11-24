@@ -582,7 +582,9 @@ def detail_adding_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_detail.html')
+        obje = forms.FootballStats()
+        fixtureCursor=obje.Fixtures2()
+        return render_template('add_detail.html',cursor=fixtureCursor)
     elif request.method == 'POST':
         Detail = str(request.form["Detail"])
         MatchID = str(request.form["MatchID"])
@@ -590,7 +592,7 @@ def detail_adding_page():
         obje = forms.FootballStats()
         obje.Detail_add(MatchID,Detail, Minute)
         flash("You have added.")
-        return render_template("add_detail.html")
+        return redirect(url_for("detail_adding_page"))
 
 @app.route("/detail", methods=['GET','POST'])
 @login_required
@@ -634,8 +636,9 @@ def detail_update_page(process):
             obje.Detail_update(update,MatchID,Detail,Minute)
             return redirect(url_for("detail_page"))
         cursor=obje.Detail_update_info(process)
+        fixturesCursor = obje.Fixtures2()
         print(cursor)
-        return render_template("update_detail.html",cursor=cursor)
+        return render_template("update_detail.html",cursor=[cursor,fixturesCursor])
 
 @app.route("/add_player", methods=['GET','POST'])
 @login_required
@@ -1062,8 +1065,9 @@ def detail_user_page(detail_key):
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Detail_user(detail_key)
+        cursorFixture=obje.Fixture_key(detail_key)
         print(cursor)
-        return render_template("user_detail.html",cursor=cursor)
+        return render_template("user_detail.html",cursor=[cursor,cursorFixture])
 app.add_url_rule("/detail_user/<detail_key>", view_func=detail_user_page) 
 
 @app.route("/live_match", methods=['GET','POST'])

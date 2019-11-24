@@ -19,25 +19,33 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerAge" class="label">MatchID</label>
-  <div class="control">
-        {% for row in cursor %}
-    <input required="required" class="input" type="number" placeholder="e.g. 12"  value="{{row[1]}}" name="MatchID">
-  </div>
+    <label for="MatchID" class="label">Select MatchID</label>
+    <div class="select">
+        <select  value="{{MatchID}}" name="MatchID">
+            {% for Fixtures in cursor[1] %}
+            {% if Fixtures[0] == cursor[0][0][1]: %}
+            <option value="{{Fixtures[0]}}" selected>{{Fixtures[0]}}</option>
+            {% else: %}
+            <option value="{{Fixtures[0]}}">{{Fixtures[0]}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
 </div>
 
 <div class="field">
-        <label for="PlayerName" class="label">Detail</label>
+        <label for="Detail" class="label">Detail</label>
         <div class="control">
-          <textarea rows="4" cols="50" required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[2]}}" name="Detail">
+            {% for row in cursor[0] %}
+          <textarea rows="6" cols="50" required="required" placeholder="e.g. 34"  value="{{row[2]}}" name="Detail" maxlength="300">
             </textarea>
         </div>
       </div>
 
 <div class="field">
-  <label for="TeamID" class="label">Minute</label>
+  <label for="Minute" class="label">Minute</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 87"  value="{{row[3]}}" name="Minute">
+    <input required="required" class="input" type="number" placeholder="e.g. 87"  value="{{row[3]}}" name="Minute" maxlength="2">
   </div>
 </div>
 

@@ -10,12 +10,53 @@
 <a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
 <h1 class="title">Details</h1>
 <form action="" method="post" name="detail_list">
-<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%" >
+
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+        <tr>
+              
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Home Score</th>
+            <th>Away Score</th>
+            <th>Week</th>
+            <th>MatchDate</th>
+            <th>Time </th>
+            <th>Referee </th>
+            <th>Status </th>
+    
+            
+          </tr>
+          {% for row in cursor[1] %}
+        
+              <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
+              <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[2]}}</td></a>
+              <td>{{row[6]}}</td>
+              <td>{{row[7]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+              <td>{{row[5]}}</td>
+              <td><a href="{{ url_for('referees_user_page')}}/{{row[12]}}">{{row[9]}}</td></a>
+              {%if row[8]=='NOTSTARTED' %}
+              <td style="color:green; font-weight: bold;">{{row[8]}}</td>
+              {%endif%}
+              {%if row[8] =='LIVE' %}
+              <td style=""><div class="control"><button type="submit" class="button is-danger is-small " name="buttonName" value="live">LIVE</button></div></td>
+              {%endif%}
+              {%if row[8] =='FINISHED' %}
+              <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+              {%endif%}
+              
+              
+        </tr>
+        {% endfor %}
+    </table>
+
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%" >
  <tr>
     <th>Details</th>
     <th>Minute</th>
   </tr>
-{% for row in cursor %}
+{% for row in cursor[0] %}
 <tr>
     <td>{{row[1]}}</td>
     <td>{{row[2]}}</td>
@@ -24,6 +65,7 @@
 
 {% endfor %}
 </table>
+
 
 </form>
 {% endblock %}
