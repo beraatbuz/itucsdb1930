@@ -19,9 +19,9 @@
 
 <form method='POST'> 
 <div class="field">
-    <label for="PlayerName" class="label">Select Player</label>
+    <label for="PlayerID" class="label">Select Player</label>
     <div class="select">
-        <select  value="{{PlayerName}}" name="PlayerName">
+        <select  value="{{PlayerID}}" name="PlayerID">
             {% for Player in cursor[1] %}
             {% if Player[0] == cursor[0][0][1]: %}
             <option value="{{Player[0]}}" selected>{{Player[1]}}</option>
