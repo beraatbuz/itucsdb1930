@@ -24,7 +24,7 @@
         <br><br>
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
-                        <th>Details</th>
+                       
                     <th>Home Team</th>
                     <th>Away Team</th>
                     <th>Home Score</th>
@@ -38,15 +38,7 @@
                     
                   </tr>
                   {% for row in cursor %}
-                  <tr> {%if row[8]=='NOTSTARTED' %}
-                                <td>Match Not Started</td>
-                                {%endif%}
-                                {%if row[8] =='LIVE' %}
-                        <td><a href="{{ url_for('detail_page')}}/{{row[0]}}">See Details</td></a>
-                        {%endif%}
-                                {%if row[8] =='FINISHED' %}
-                                <td><a href="{{ url_for('detail_page')}}/{{row[0]}}">See Details</td></a>
-                                {%endif%}
+                  <tr> 
                       <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
                       <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[2]}}</td></a>
                       <td>{{row[6]}}</td>
