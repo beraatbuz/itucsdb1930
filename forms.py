@@ -477,7 +477,7 @@ class FootballStats:
 	def Detail_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """"""
+				statement = """Select distinct MatchDetails.ID, Detail, Minute, MatchID From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=%s Order By MatchID"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list

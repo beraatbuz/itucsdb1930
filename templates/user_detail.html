@@ -18,18 +18,14 @@
   </tr>
 {% for row in cursor %}
 <tr>
+    <td>{{row[3]}}</td>
     <td>{{row[1]}}</td>
     <td>{{row[2]}}</td>
-    <td>{{row[3]}}</td>
   </td>
   </tr>
 
 {% endfor %}
 </table>
-<div class="field is-grouped">
-  <div class="control">
-      <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete">Delete</button>
-  </div>
-</div>
+
 </form>
 {% endblock %}

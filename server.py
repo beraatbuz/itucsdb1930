@@ -1036,6 +1036,26 @@ def referees_user_page(referee):
         return render_template("user-referee.html",cursor=cursor)
 app.add_url_rule("/referee_user/<referee>", view_func=referees_user_page) 
 
+@app.route("/detail_user")
+def detail_user_page(detail_key):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Detail_user(detail_key)
+        print(cursor)
+        return render_template("user_detail.html",cursor=cursor)
+app.add_url_rule("/detail_user/<detail_key>", view_func=detail_user_page) 
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/live_match", methods=['GET','POST'])
 @login_required
 def live_match_page(process): 

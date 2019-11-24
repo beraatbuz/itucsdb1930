@@ -42,10 +42,10 @@
                                 <td>Match Not Started</td>
                                 {%endif%}
                                 {%if row[8] =='LIVE' %}
-                        <td><a href="{{ url_for('detail_page')}}/{{row[0]}}">See Details</td></a>
+                        <td><a href="{{ url_for('detail_user_page')}}/{{row[0]}}">See Details</td></a>
                         {%endif%}
                                 {%if row[8] =='FINISHED' %}
-                                <td><a href="{{ url_for('detail_page')}}/{{row[0]}}">See Details</td></a>
+                                <td><a href="{{ url_for('detail_user_page')}}/{{row[0]}}">See Details</td></a>
                                 {%endif%}
                       <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
                       <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[2]}}</td></a>
