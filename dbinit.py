@@ -166,6 +166,7 @@ INIT_STATEMENTS = [
 			
 			
 			"""
+                        ALTER TABLE Statistic ADD COLUMN IF NOT EXISTS Referee integer NOT NULL REFERENCES Referees (ID);
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
@@ -191,6 +192,17 @@ INIT_STATEMENTS = [
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
 				Referee_UserName VARCHAR(30),
+				PRIMARY KEY (ID)
+			)
+			""",
+
+                        """
+			CREATE TABLE IF NOT EXISTS  MatchDetails
+			(
+				ID serial,
+				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
+                                Detail VARCHAR(300) NOT NULL,
+                                Minute integer NOT NULL,
 				PRIMARY KEY (ID)
 			)
 			""",

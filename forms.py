@@ -473,3 +473,11 @@ class FootballStats:
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
+	
+	def Detail_user(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
