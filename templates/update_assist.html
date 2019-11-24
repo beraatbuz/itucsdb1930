@@ -38,7 +38,7 @@
     <div class="select">
         <select  value="{{MatchID}}" name="MatchID">
             {% for Fixtures in cursor[2] %}
-            {% if Fixtures[0] == cursor[0][0][0]: %}
+            {% if Fixtures[0] == cursor[0][0][2]: %}
             <option value="{{Fixtures[0]}}" selected>{{Fixtures[0]}}</option>
             {% else: %}
             <option value="{{Fixtures[0]}}">{{Fixtures[0]}}</option>
