@@ -52,7 +52,7 @@
                       <td style="color:green; font-weight: bold;">{{row[8]}}</td>
                       {%endif%}
                       {%if row[8] =='LIVE' %}
-                      <td style="color:red; font-weight: bold;"><div class="control"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">LIVE</button></div></a></td>
+                      <td style=""><div class="control"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button is-danger">LIVE</button></div></a></td>
                       {%endif%}
                       {%if row[8] =='FINISHED' %}
                       <td style="color:black; font-weight: bold;"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">{{row[8]}}</td></a>
