@@ -12,13 +12,11 @@
 <form action="" method="post" name="detail_list">
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%" >
  <tr>
-    <th>MatchID</th>
-    <th>Detail</th>
+    <th>Details</th>
     <th>Minute</th>
   </tr>
 {% for row in cursor %}
 <tr>
-    <td>{{row[3]}}</td>
     <td>{{row[1]}}</td>
     <td>{{row[2]}}</td>
   </td>

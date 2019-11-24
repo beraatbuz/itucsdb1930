@@ -363,6 +363,8 @@ def stadium_page():
             for form_stadium_key in form_stadium_keys:
                 obje.Stadium_delete(int(form_stadium_key))
             return redirect(url_for("stadium_page"))
+        elif (process == "add"):
+            return redirect(url_for("stadium_add_page"))
         else:
             return stadium_update_page(process)
 
@@ -373,7 +375,9 @@ def stadium_add_page():
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_stadium.html')
+        obje = forms.FootballStats()
+        teamCursor=obje.Team()
+        return render_template('add_stadium.html',cursor=teamCursor)
     elif request.method == 'POST':
         Team_ID = str(request.form["Team_ID"])
         Stadiumname = str(request.form["Stadiumname"])
@@ -407,8 +411,9 @@ def stadium_update_page(process):
             obje.Stadium_update(update,Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
             return redirect(url_for("stadium_page"))
         cursor=obje.Stadium_update_info(process)
+        teamsCursor = obje.Team()
         print(cursor)
-        return render_template("update_stadium.html",cursor=cursor)
+        return render_template("update_stadium.html",cursor=[cursor,teamsCursor])
 
 
 @app.route("/assist", methods=['GET','POST'])
@@ -430,6 +435,8 @@ def assist_page():
             for form_assist_key in form_assist_keys:
                 obje.Assist_delete(int(form_assist_key))
             return redirect(url_for("assist_page"))
+        elif (process == "add"):
+            return redirect(url_for("assist_add_page"))
         else:
             return assist_update_page(process)
 
@@ -498,6 +505,8 @@ def statistic_page():
             for form_statistic_key in form_statistic_keys:
                 obje.Statistic_delete(int(form_statistic_key))
             return redirect(url_for("statistic_page"))
+        elif (process == "add"):
+            return redirect(url_for("statistic_add_page"))
         else:
             return statistic_update_page(process)
 

@@ -18,18 +18,25 @@
 
 
 <form method='POST'>
-<div class="field">
-  <label for="PlayerName" class="label">Team ID</label>
-  <div class="control">
-      {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="Team_ID">
-    
-  </div>
-</div>
 
+<div class="field">
+    <label for="Teamname" class="label">Select Team</label>
+    <div class="select">
+        <select  value="{{TeamID}}" name="TeamID">
+            {% for Teams in cursor[1] %}
+            {% if Teams[0] == cursor[0][0][1]: %}
+            <option value="{{Teams[0]}}" selected>{{Teams[1]}}</option>
+            {% else: %}
+            <option value="{{Teams[0]}}">{{Teams[1]}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
+</div>
 <div class="field">
   <label for="PlayerAge" class="label">Stadium Name</label>
   <div class="control">
+      {% for row in cursor[0] %}
     <input required="required" class="input" type="text" placeholder="e.g. Ali Samiyen"  value="{{row[2]}}" name="Stadiumname">
   </div>
 </div>

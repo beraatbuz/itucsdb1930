@@ -19,12 +19,15 @@
 
 <form method='POST'>
 <div class="field">
-  <label for="PlayerName" class="label">Team_ID</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{Team_ID}}" name="Team_ID">
+    <label for="Teamname" class="label">Select Team</label>
+    <div class="select">
+    <select  value="{{Team_ID}}" name="Team_ID">
+        {% for row in cursor %}
+      <option value="{{row[0]}}">{{row[1]}}</option>
+        {% endfor %}
+    </select>
   </div>
-</div>
-
+  </div>
 <div class="field">
   <label for="PlayerAge" class="label">Stadium Name</label>
   <div class="control">
