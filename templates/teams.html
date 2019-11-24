@@ -40,7 +40,7 @@
       <td>{{row[3]}}</td>
       <td>{{row[4]}}</td>
       <td>{{row[6]}}</td>
-      <td>{{row[5]}}</td>
+      <td><a href="{{ url_for('manager_page')}}/{{row[7]}}">{{row[5]}}</td></a>
       <td>
         <div class="control">
           <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>

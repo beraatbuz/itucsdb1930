@@ -13,7 +13,7 @@
 <a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
 <a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
 <br><br>
-<h1 class="title">Teams</h1>
+<h1 class="title">Team</h1>
 <form action="" method="post" name="team_list">
     <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add">Team Add</button><br>
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
@@ -40,7 +40,7 @@
       <td>{{row[3]}}</td>
       <td>{{row[4]}}</td>
       <td>{{row[6]}}</td>
-      <td>{{row[5]}}</td>
+      <td><a href="{{ url_for('manager_page')}}/{{row[7]}}">{{row[5]}}</td></a>
       <td>
         <div class="control">
           <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>

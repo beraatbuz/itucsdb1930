@@ -931,6 +931,11 @@ def teams_page(team_keys):
         elif(process == team_keys):
             return team_update_page(process)
         else:
+            form_stadium_keys = request.form.getlist('stadium_keys')
+            for form_stadium_key in form_stadium_keys:
+                stadium_keys = str(form_stadium_keys[form_stadium_key])
+                if(process == stadium_keys):
+                    return stadium_update_page(process)
             return player_update_page(process)
 app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST']) 
 

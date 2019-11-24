@@ -38,10 +38,10 @@
                                 </label>
                          </td> 
                       <td>{{row[0]}}</td>
-                      <td>{{row[1]}}</td>
+                      <td><a href="{{ url_for('player_page')}}/{{row[9]}}">{{row[1]}}</td></a>
                       <td>{{row[2]}}</td>
-                      <td>{{row[3]}}</td>
-                      <td>{{row[4]}}</td>
+                      <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[3]}}</td></a>
+                      <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[4]}}</td></a>
                       <td>{{row[5]}}</td>
                       <td>{{row[6]}}</td>
                       <td>{{row[7]}}</td>

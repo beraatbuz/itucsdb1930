@@ -230,10 +230,10 @@ class FootballStats:
 	def Assist(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha FROM Assist, Player,Teams as home, Teams as away, Fixtures 
+				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, HomeTeam,Awayteam FROM Assist, Player,Teams as home, Teams as away, Fixtures 
 				where Assist.playerid = Player.id and Assist.matchid = fixtures.id
 				and home.id=fixtures.hometeam
-				and away.id=fixtures.awayteam ORDER BY ID"""
+				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -273,7 +273,7 @@ class FootballStats:
 	def Manager(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Manager ORDER BY Name"""
+				statement = """Select Manager.id, Name, Age,Nationalty,height,placeofbirth, Teamname,Teams.id FROM Manager,teams Where ManagerID=manager.id ORDER BY Name"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
