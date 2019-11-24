@@ -51,7 +51,7 @@ INIT_STATEMENTS = [
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
                         ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;                                
-                        CREATE TABLE IF NOT EXISTS  Referees
+                        CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,
                                 RefereeName VARCHAR(30),
@@ -187,7 +187,7 @@ INIT_STATEMENTS = [
 				AShotOnTarget integer DEFAULT 0,
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
-				Referee integer NOT NULL REFERENCES Referees (ID),
+				Referee integer NOT NULL REFERENCES Referee (ID),
 				PRIMARY KEY (ID)
 			)
 			""",

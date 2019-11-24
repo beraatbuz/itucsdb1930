@@ -9,7 +9,7 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate,  ManagerID,Location) VALUES(%s,%s,%s,%s,%s,%s);"""
-				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID]))
+				cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID,Location]))
 
 	def Team_update(self, TeamID, TeamName, NickName, ShortName, FoundationDate, ManagerID,Location):
 		with dbapi.connect(url) as connection:
@@ -241,7 +241,8 @@ class FootballStats:
 	def Statistic(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select * FROM Statistic ORDER BY MatchID"""
+				statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, 
+APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee FROM Statistic ORDER BY MatchID"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
