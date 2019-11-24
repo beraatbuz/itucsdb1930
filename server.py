@@ -712,7 +712,7 @@ def manager_page():
         abort(401)
     obje = forms.FootballStats()
     if request.method == "GET":
-        cursor=obje.Manager()
+        cursor=obje.Manager_user()
         return render_template("managers.html",cursor=cursor)   
     else:
         process = request.form.get('buttonName')

@@ -114,11 +114,11 @@ class FootballStats:
 				statement = """ INSERT INTO ADMINS(UserName,UserPassword) VALUES(%s,%s);"""
 				cursor.execute(statement,([UserName, UserPassword]))
 	
-	def Goal_add(self, PlayerId, MatchId, Minute):
+	def Goal_add(self, PlayerID, MatchID, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ INSERT INTO Goal(PlayerId, MatchId, Minute) VALUES(%s,%s,%s);"""
-				cursor.execute(statement,([PlayerId, MatchId,Minute]))
+				statement = """ INSERT INTO Goal(PlayerID, MatchID, Minute) VALUES(%s,%s,%s);"""
+				cursor.execute(statement,([PlayerID, MatchID,Minute]))
 	
 	def Goal_update(self, GoalID, PlayerId, MatchId, Minute):
 		with dbapi.connect(url) as connection:
@@ -494,7 +494,7 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Fixture_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName FROM Fixtures,Teams AS T1,Teams AS T2,Referee 
+				statement = """Select Fixtures.ID,T1.TeamName ,T2.TeamName,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName,HomeTeam,AwayTeam,Refereeid FROM Fixtures,Teams AS T1,Teams AS T2,Referee 
 				WHERE T1.ID=HomeTeam AND T2.ID=AwayTeam AND Refereeid=Referee.id and Fixtures.id=%s ORDER BY MatchDate,Time;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
@@ -511,15 +511,21 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Goal_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Assist,Player WHERE Assist.ID=Assist.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
-				cursor.execute(statement)
+				statement = """Select distinct Goal.ID, PlayerName, Teamname,  Goal.Minute, Fixtures.id, Goal.MatchID,PlayerID,teams.id FROM Goal,Fixtures,Player,MatchDetails,Teams 
+WHERE Goal.ID=Goal.id and Player.ID=PlayerID 
+and Goal.MatchID=Fixtures.ID and Player.TeamID=Teams.id and fixtures.id=%s
+ORDER BY Goal.Minute ASC;"""
+				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
 
 	def Assist_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Assist,Player WHERE Assist.ID=Assist.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
-				cursor.execute(statement)
+				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, HomeTeam,Awayteam FROM Assist, Player,Teams as home, Teams as away, Fixtures 
+				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=%s
+				and home.id=fixtures.hometeam
+				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
+				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list

@@ -71,14 +71,14 @@
     <tr>
 
        <th>Player</th>
-       <th>MatchID</th>
+       <th>Player's Team</th>
        <th>Minute</th>
      </tr>
    {% for row in cursor[2] %}
    <tr>
 
-       <td><a href="{{ url_for('goal_page')}}/{{row[0]}}"></a>{{row[1]}}</td></a>
-       <td>{{row[2]}}</td>
+       <td><a href="{{ url_for('player_user_page')}}/{{row[6]}}">{{row[1]}}</td></a>
+       <td><a href="{{ url_for('team_user_page')}}/{{row[7]}}">{{row[2]}}</td></a>
        <td>{{row[3]}}</td>
      </tr>
    
@@ -101,10 +101,10 @@
       {% for row in cursor[3] %}
       <tr>
             
-          <td><a href="{{ url_for('player_page')}}/{{row[9]}}">{{row[1]}}</td></a>
+          <td><a href="{{ url_for('player_user_page')}}/{{row[9]}}">{{row[1]}}</td></a>
           <td>{{row[2]}}</td>
-          <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[3]}}</td></a>
-          <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[4]}}</td></a>
+          <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[3]}}</td></a>
+          <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[4]}}</td></a>
           <td>{{row[5]}}</td>
           <td>{{row[6]}}</td>
           <td>{{row[7]}}</td>
