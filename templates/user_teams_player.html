@@ -8,7 +8,7 @@
 <a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a>
 <a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
 <a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
-<h1 class="title">Teams</h1>
+<h1 class="title">Team</h1>
 <form action="" method="post" name="team_list">
   <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
   <tr>
@@ -55,5 +55,29 @@
       </tr>
       {% endfor %}  
     </table>
+    <h2 class="title">Stadium</h2>
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+      <tr>
+          <th>Team</th>
+          <th>Stadium Name</th>
+          <th>Capacity</th>
+          <th>Built</th>
+          <th>Pitch Size</th>
+          <th>Surface</th>
+
+        </tr>
+        {% for row in cursor[2] %}
+        <tr>
+            <td><a href="{{ url_for('team_page')}}/{{row[7]}}">{{row[1]}}</td></a>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[6]}}</td>
+      </tr>
+      {% endfor %}
+</table>
+
+</div>
       </form>
 {% endblock %}

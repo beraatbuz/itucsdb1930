@@ -249,7 +249,7 @@ class FootballStats:
 	def Standings(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points FROM Standings,Teams WHERE Teams.ID=TeamID ORDER BY Points DESC,Goals_difference DESC,TeamName;"""
+				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points, Teams.id FROM Standings,Teams WHERE Teams.ID=TeamID ORDER BY Points DESC,Goals_difference DESC,TeamName;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -478,6 +478,14 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select distinct MatchDetails.ID, Detail, Minute, MatchID From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=%s Order By MatchID"""
+				cursor.execute(statement, [Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Stadium_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id and team_id=%s ORDER BY Teamname"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list

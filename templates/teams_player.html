@@ -52,7 +52,7 @@
 </table>
 <div class="field is-grouped">
   <div class="control">
-      <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete">Delete</button>
+      <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete">Delete_team</button>
   </div>
 </div>
       </form>
@@ -97,9 +97,50 @@
         </table>
         <div class="field is-grouped">
           <div class="control">
-              <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_player">Delete</button>
+              <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_player">Delete_player</button>
           </div>
       </div>
         
+      <h1 class="title">Stadium</h1>
+      <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add_stadium">Stadium Add</button><br>
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Team</th>
+            <th>Stadium Name</th>
+            <th>Capacity</th>
+            <th>Built</th>
+            <th>Pitch Size</th>
+            <th>Surface</th>
+            <th></th>
+          </tr>
+          {% for row in cursor[2] %}
+          <tr>
+              <td>
+                  <label class="checkbox">
+                      <input type="checkbox" name="stadium_keys" value="{{row[0]}}"/>
+                    </label>
+                </td>
+              <td>{{row[0]}}</td>
+              <td><a href="{{ url_for('team_page')}}/{{row[7]}}">{{row[1]}}</td></a>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+              <td>{{row[5]}}</td>
+              <td>{{row[6]}}</td>
+              <td>
+                  <div class="control">
+                    <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
+                  </div>
+              </td>
+        </tr>
+        {% endfor %}
+</table>
+<div class="field is-grouped">
+    <div class="control">
+        <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_stadium">Delete_stadium</button>
+    </div>
+</div>
       </form>
 {% endblock %}

@@ -37,35 +37,35 @@
   <label for="PlayerAge" class="label">Stadium Name</label>
   <div class="control">
       {% for row in cursor[0] %}
-    <input required="required" class="input" type="text" placeholder="e.g. Ali Samiyen"  value="{{row[2]}}" name="Stadiumname">
+    <input required="required" class="input" type="text" placeholder="e.g. Ali Samiyen"  value="{{row[2]}}" name="Stadiumname"maxlength="30">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Capacity</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="52.00"  value="{{row[3]}}" name="Capacity">
+    <input required="required" class="input" type="number" placeholder="52.00"  value="{{row[3]}}" name="Capacity">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Built</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="1995"  value="{{row[4]}}" name="Built">
+    <input required="required" class="input" type="number" placeholder="1995"  value="{{row[4]}}" name="Built">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Pitch Size</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="120x150m"  value="{{row[5]}}" name="PitchSize">
+    <input required="required" class="input" type="text" placeholder="120x150m"  value="{{row[5]}}" name="PitchSize"maxlength="10">
   </div>
 </div>
 
 <div class="field">
   <label for="PlayerAge" class="label">Surface</label>
   <div class="control">
-    <input required="required" class="input" type="text" placeholder="Grass/Hybrid"  value="{{row[6]}}" name="Surface">
+    <input required="required" class="input" type="text" placeholder="Grass/Hybrid"  value="{{row[6]}}" name="Surface"maxlength="10">
   </div>
 </div>
 

@@ -899,8 +899,9 @@ def teams_page(team_keys):
     if request.method == "GET":
         cursor=obje.Team_key(team_keys)
         playerCursor=obje.Player_team_user(team_keys)
+        stadiumCursor=obje.Stadium_key(team_keys)
         print(cursor)
-        return render_template("teams_player.html",cursor=[cursor,playerCursor])
+        return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor])
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
@@ -909,6 +910,8 @@ def teams_page(team_keys):
             return redirect(url_for("team_adding_page"))
         elif (process == "add_player"):
             return redirect(url_for("player_adding_page"))
+        elif (process == "add_stadium"):
+            return redirect(url_for("stadium_add_page"))
         elif(process == "Delete"):
             form_team_keys = request.form.getlist("team_keys")
             for team_key in form_team_keys:
@@ -920,6 +923,11 @@ def teams_page(team_keys):
             for form_player_key in form_player_keys:
                 obje.Player_delete(int(form_player_key))
             return redirect(url_for("team_page"))
+        elif(process == "Delete_stadium"):
+            form_stadium_keys = request.form.getlist('stadium_keys')
+            for form_stadium_key in form_stadium_keys:
+                obje.Stadium_delete(int(form_stadium_key))
+            return redirect(url_for("stadium_page"))
         elif(process == team_keys):
             return team_update_page(process)
         else:
@@ -1032,8 +1040,9 @@ def teams_user_page(team_keys):
     if request.method == "GET":
         cursor=obje.Team_user_key(team_keys)
         playerCursor=obje.Player_team_user(team_keys)
+        stadiumCursor=obje.Stadium_key(team_keys)
         print(cursor)
-        return render_template("user_teams_player.html",cursor=[cursor,playerCursor])
+        return render_template("user_teams_player.html",cursor=[cursor,playerCursor,stadiumCursor])
 app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
 
 @app.route("/referee_user")
