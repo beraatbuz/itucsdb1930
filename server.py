@@ -1066,10 +1066,20 @@ def detail_user_page(detail_key):
     if request.method == "GET":
         cursor=obje.Detail_user(detail_key)
         cursorFixture=obje.Fixture_key(detail_key)
+        cursorGoal=obje.Goal_user(detail_key)
+        cursorAssist=obje.Assist_user(detail_key)
         print(cursor)
-        return render_template("user_detail.html",cursor=[cursor,cursorFixture])
+        return render_template("user_detail.html",cursor=[cursor,cursorFixture,cursorGoal,cursorAssist])
 app.add_url_rule("/detail_user/<detail_key>", view_func=detail_user_page) 
 
+@app.route("/top_assist", methods=['GET'])
+def top_assist_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Top_assist()
+        print(cursor)
+        return render_template("user_top_assist.html",cursor=cursor)
+        
 @app.route("/live_match", methods=['GET','POST'])
 @login_required
 def live_match_page(process): 

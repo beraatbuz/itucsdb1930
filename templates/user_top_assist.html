@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Managers{% endblock %}
+{% block title %}Teams{% endblock %}
 {% block content %}
 <a class="button is-dark" href="{{ url_for('top_goal_page') }}">See Top Goals</a>
 <a class="button is-dark" href="{{ url_for('top_assist_page') }}">See Top Assists</a>
@@ -9,30 +9,21 @@
 <a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a>
 <a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
 <a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
-<h1 class="title">Managers</h1>
-<form action="" method="post" name="manager_list">
+<h1 class="title">TOP Assist</h1>
+<form action="" method="post" name="team_list">
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
  <tr>
-    <th>Manager Name</th>
-    <th>Manager Age</th>
-    <th>Manager Nationalty</th>
-    <th>Manager Height</th>
-    <th>Manager PlaceOfBirth</th>
-    <th>Team</th>
+    <th>Player</th>
+    <th>Total Assist</th>
+
   </tr>
 {% for row in cursor %}
-<tr>  
-    <td><a href="{{ url_for('managers_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+<tr>
+    <td><a href="{{ url_for('player_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
     <td>{{row[2]}}</td>
-    <td>{{row[3]}}</td>
-    <td>{{row[4]}}</td>
-    <td>{{row[5]}}</td>
-    <td><a href="{{ url_for('team_user_page')}}/{{row[7]}}">{{row[6]}}</td></a>
   </tr>
-  {% endfor %}
+
+{% endfor %}
 </table>
-
-
 </form>
 {% endblock %}
-

@@ -2,6 +2,7 @@
 {% block title %}Details{% endblock %}
 {% block content %}
 <a class="button is-dark" href="{{ url_for('top_goal_page') }}">See Top Goals</a>
+<a class="button is-dark" href="{{ url_for('top_assist_page') }}">See Top Assists</a>
 <a class="button is-dark" href="{{ url_for('team_user_page') }}">See All Teams</a>
 <a class="button is-dark" href="{{ url_for('player_user_page') }}">See All Players</a>
 <a class="button is-dark" href="{{ url_for('manager_user_page') }}">See All Managers</a>
@@ -65,7 +66,52 @@
 
 {% endfor %}
 </table>
+<h2 class="title">Goals</h2>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+    <tr>
 
+       <th>Player</th>
+       <th>MatchID</th>
+       <th>Minute</th>
+     </tr>
+   {% for row in cursor[2] %}
+   <tr>
+
+       <td><a href="{{ url_for('goal_page')}}/{{row[0]}}"></a>{{row[1]}}</td></a>
+       <td>{{row[2]}}</td>
+       <td>{{row[3]}}</td>
+     </tr>
+   
+   {% endfor %}
+   </table>
+   
+<h2 class="title">Assists</h2>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+    <tr>
+        <th>Player Name</th>
+        <th>Minute</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Last Touch</th>
+        <th>Format</th>
+        <th>Golden Assist</th>
+        <th>Stadium(Home/Away))</th>
+        
+      </tr>
+      {% for row in cursor[3] %}
+      <tr>
+            
+          <td><a href="{{ url_for('player_page')}}/{{row[9]}}">{{row[1]}}</td></a>
+          <td>{{row[2]}}</td>
+          <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[3]}}</td></a>
+          <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[4]}}</td></a>
+          <td>{{row[5]}}</td>
+          <td>{{row[6]}}</td>
+          <td>{{row[7]}}</td>
+          <td>{{row[8]}}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 </form>
 {% endblock %}

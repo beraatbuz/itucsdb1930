@@ -499,3 +499,27 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Top_assist(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Assist,Player WHERE Assist.ID=Assist.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Goal_user(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Assist,Player WHERE Assist.ID=Assist.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Assist_user(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Assist,Player WHERE Assist.ID=Assist.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
