@@ -882,22 +882,32 @@ def teams_page(team_keys):
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Team_key(team_keys)
+        playerCursor=obje.Player_team_user(team_keys)
         print(cursor)
-        return render_template("teams.html",cursor=cursor)
+        return render_template("teams_player.html",cursor=[cursor,playerCursor])
     else:
         process = request.form.get('buttonName')
         update = request.form.get('Update')
         print(update)
         if (process == "add"):
             return redirect(url_for("team_adding_page"))
+        elif (process == "add_player"):
+            return redirect(url_for("player_adding_page"))
         elif(process == "Delete"):
             form_team_keys = request.form.getlist("team_keys")
             for team_key in form_team_keys:
                 obje.Team_delete(team_key)
             flash("You have deleted.")
             return redirect(url_for("team_page"))
-        else:
+        elif(process == "Delete_player"):
+            form_player_keys = request.form.getlist("player_keys")
+            for form_player_key in form_player_keys:
+                obje.Player_delete(int(form_player_key))
+            return redirect(url_for("team_page"))
+        elif(process == team_keys):
             return team_update_page(process)
+        else:
+            return player_update_page(process)
 app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST']) 
 
 @app.route("/goals",methods=['GET','POST'])
@@ -1005,9 +1015,19 @@ def teams_user_page(team_keys):
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Team_user_key(team_keys)
+        playerCursor=obje.Player_team_user(team_keys)
         print(cursor)
-        return render_template("user_teams.html",cursor=cursor)
+        return render_template("user_teams_player.html",cursor=[cursor,playerCursor])
 app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
+
+@app.route("/referee_user")
+def referees_user_page(referee):
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Referee_user_key(referee)
+        print(cursor)
+        return render_template("user-referee.html",cursor=cursor)
+app.add_url_rule("/referee_user/<referee>", view_func=referees_user_page) 
 
 @app.route("/live_match", methods=['GET','POST'])
 @login_required

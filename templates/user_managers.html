@@ -26,7 +26,7 @@
     <td>{{row[3]}}</td>
     <td>{{row[4]}}</td>
     <td>{{row[5]}}</td>
-    <td>{{row[6]}}</td>
+    <td><a href="{{ url_for('team_user_page')}}/{{row[7]}}">{{row[6]}}</td></a>
   </tr>
   {% endfor %}
 </table>

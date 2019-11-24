@@ -19,7 +19,7 @@
       <th>Location</th>
       <th>Manager</th>
     </tr>
-  {% for row in cursor %}
+  {% for row in cursor[0] %}
   <tr> 
       <td><a href="{{ url_for('team_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
       <td>{{row[2]}}</td>
@@ -30,5 +30,30 @@
     </tr></a>
 {% endfor %}
 </table>
+<h2 class="title">Players</h2>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+    <tr>
+        <th>Player Name</th>
+        <th>Player Age</th>
+        <th>Player Position</th>
+        <th>Player Nationalty</th>
+        <th>Player Height</th>
+        <th>PlaceOfBirth</th>
+        <th>Team</th>
+      </tr>
+    {% for row in cursor[1] %}
+    <tr>
+        <td><a href="{{ url_for('player_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+        <td>{{row[2]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[5]}}</td>
+        <td>{{row[6]}}</td>
+        <td><a href="{{ url_for('team_user_page')}}/{{row[8]}}">{{row[7]}}</td></a>
+  
+      </td>
+      </tr>
+      {% endfor %}  
+    </table>
       </form>
 {% endblock %}
