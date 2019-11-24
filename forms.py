@@ -51,7 +51,7 @@ class FootballStats:
 	def Stadium(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id ORDER BY Stadiumname"""
+				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id ORDER BY Teamname"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

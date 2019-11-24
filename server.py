@@ -388,7 +388,7 @@ def stadium_add_page():
         obje = forms.FootballStats()
         obje.Stadium_add(Team_ID,Stadiumname,int(Capacity),Built,PitchSize,Surface)
         flash("Stadium added")
-        return render_template("add_stadium.html")
+        return redirect(url_for("stadium_add_page"))
 
 @app.route("/update_stadium", methods=['GET','POST'])
 @login_required
