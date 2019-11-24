@@ -21,28 +21,11 @@
 <div class="field">
   <label for="PlayerName" class="label">HomeTeam</label>
   <div class="select">
-    {% for row in cursor %}
+    
     <select  id="home" name="HomeTeam" >
-          <option value="42">A.F.C. Bournemouth</option>
-          <option value="35">Arsenal</option>
-          <option value="53">Aston Villa</option>
-          <option value="43" >Brighton and Hove Albion</option>
-          <option value="51">Burnley</option>
-          <option value="37">Chelsea</option>
-          <option value="44" >Crystal Palace </option>
-          <option value="54">Everton</option>
-          <option value="40">Leicester City</option>
-          <option value="36" >Liverpool</option>
-          <option value="38">Manchester City</option>
-          <option value="45">Manchester United</option>
-          <option value="52" >Newcastle United</option>
-          <option value="55">Norwich City</option>
-          <option value="41">Sheffield United</option>
-          <option value="56" >Southampton</option>
-          <option value="48">Tottenham Hotspur</option>
-          <option value="57">Watford</option>
-          <option value="50" >West Ham United</option>
-          <option value="49">Wolverhampton Wanderers</option>
+      {% for row1 in cursor[1] %}
+          <option value="{{row1[0]}}">{{row1[1]}}</option>
+        {% endfor %}
       </select>
 
   </div>
@@ -51,26 +34,9 @@
   <label for="PlayerName" class="label">AwayTeam</label>
 <div class="select">
   <select  id="away" name="AwayTeam" >
-          <option value="42">A.F.C. Bournemouth</option>
-          <option value="35">Arsenal</option>
-          <option value="53">Aston Villa</option>
-          <option value="43" >Brighton and Hove Albion</option>
-          <option value="51">Burnley</option>
-          <option value="37">Chelsea</option>
-          <option value="44" >Crystal Palace </option>
-          <option value="54">Everton</option>
-          <option value="40">Leicester City</option>
-          <option value="36" >Liverpool</option>
-          <option value="38">Manchester City</option>
-          <option value="45">Manchester United</option>
-          <option value="52" >Newcastle United</option>
-          <option value="55">Norwich City</option>
-          <option value="41">Sheffield United</option>
-          <option value="56" >Southampton</option>
-          <option value="48">Tottenham Hotspur</option>
-          <option value="57">Watford</option>
-          <option value="50" >West Ham United</option>
-          <option value="49">Wolverhampton Wanderers</option>
+          {% for row1 in cursor[1] %}
+          <option value="{{row1[0]}}">{{row1[1]}}</option>
+        {% endfor %}
       </select>
   </div>
 </div>
@@ -78,59 +44,45 @@
   <label for="PlayerAge" class="label">Referee</label>
   <div class="select">
         <select id="referee"  name="Refereeid">
-          <option value="12">Andre Marriner </option>
-          <option value="13">Andy Madley  </option>
-          <option value="17">Anthony Taylor </option>
-          <option value="14" >Chris Kavanagh</option>
-          <option value="9">Craig Pawson</option>
-          <option value="21">David Coote</option>
-          <option value="15">Graham Scott</option>
-          <option value="16">Jonathan Moss</option>
-          <option value="18" >Kevin Friend  </option>
-          <option value="20">Lee Mason  </option>
-          <option value="10">Martin Atkinson</option>
-          <option value="11" >Michael Oliver</option>
-          <option value="7">Mike Dean</option>
-          <option value="24">Oliver Langford  </option>
-          <option value="8" >Paul Tierney</option>
-          <option value="22">Peter Bankes</option>
-          <option value="23">Simon Hooper</option>
-          <option value="19">Stuart Attwell</option>
+          {% for row2 in cursor[2] %}
+          <option value="{{row2[0]}}">{{row2[1]}}</option>
+        {% endfor %}
       </select>
   </div>
 </div>
+{% for row0 in cursor[0] %}
 <div class="field">
   <label for="TeamID" class="label">HomeScore</label>
   <div class="control">
-    <input  class="input" type="number" placeholder="e.g. 3"  value="{{row[6]}}" name="HomeScore" min="0">
+    <input  class="input" type="number" placeholder="e.g. 3"  value="{{row0[6]}}" name="HomeScore" min="0">
   </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">AwayScore</label>
   <div class="control">
-    <input  class="input" type="number" placeholder="e.g. 0"  value="{{row[7]}}" name="AwayScore" min="0">
+    <input  class="input" type="number" placeholder="e.g. 0"  value="{{row0[7]}}" name="AwayScore" min="0">
   </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">Week</label>
   <div class="control">
-    <input required="required" class="input" type="number" placeholder="e.g. 1"  value="{{row[3]}}" name="Week" min="1">
+    <input required="required" class="input" type="number" placeholder="e.g. 1"  value="{{row0[3]}}" name="Week" min="1">
   </div>
 </div>
 
 <div class="field">
     <label for="TeamID" class="label">MatchDate</label>
     <div class="control">
-      <input required="required" class="input" type="date" placeholder="e.g. 01.01.2020"  value="{{row[4]}}" name="MatchDate">
+      <input required="required" class="input" type="date" placeholder="e.g. 01.01.2020"  value="{{row0[4]}}" name="MatchDate">
     </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">Time</label>
   <div class="control">
-    <input required="required" class="input" type="time" placeholder="e.g. 20:00"  value="{{row[5]}}" name="Time">
+    <input required="required" class="input" type="time" placeholder="e.g. 20:00"  value="{{row0[5]}}" name="Time">
   </div>
 </div>
 <label class="radiobox" id="radio">
@@ -143,7 +95,7 @@
 </label>
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-link" name="Update" value="{{row[0]}}">Submit</button>
+    <button class="button is-link" name="Update" value="{{row0[0]}}">Submit</button>
   </div>
 </div>
 </form>
@@ -151,36 +103,36 @@
  listBox=document.getElementById('home');
  
  for (var x = 0; x < 20; x++) { 
-  if (listBox.options[x].value == {{row[1]}}) { 
+  if (listBox.options[x].value == {{row0[1]}}) { 
     listBox.options[x].selected = true; 
   } 
 } 
 listBox2=document.getElementById('away');
  
  for (var x = 0; x < 20; x++) { 
-  if (listBox2.options[x].value == {{row[2]}}) { 
+  if (listBox2.options[x].value == {{row0[2]}}) { 
     listBox2.options[x].selected = true; 
   } 
 } 
 listBox3=document.getElementById('referee');
  
  for (var x = 0; x < 18; x++) { 
-  if (listBox3.options[x].value == {{row[9]}}) { 
+  if (listBox3.options[x].value == {{row0[9]}}) { 
     listBox3.options[x].selected = true; 
   } 
 } 
 listBox4=document.getElementById('1');
-  if (listBox4.value == "{{row[8]}}") { 
+  if (listBox4.value == "{{row0[8]}}") { 
     listBox4.checked = true; 
   } 
 listBox5=document.getElementById('2');
  
-  if (listBox5.value == "{{row[8]}}") { 
+  if (listBox5.value == "{{row0[8]}}") { 
     listBox5.checked = true; 
   } 
 listBox6=document.getElementById('3');
  
-  if (listBox6.value == "{{row[8]}}") { 
+  if (listBox6.value == "{{row0[8]}}") { 
     listBox6.checked = true; 
   } 
 

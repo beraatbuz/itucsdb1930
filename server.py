@@ -114,9 +114,9 @@ def fixture_page():
 @app.route("/update_fixture", methods=['GET','POST'])
 @login_required
 def fixture_update_page(process):
+    obje = forms.FootballStats()
     if not current_user.is_admin:
         abort(401)
-    obje = forms.FootballStats()
     update = request.form.get('Update') 
     if request.method == 'GET':
         return render_template("fixture.html")
@@ -131,21 +131,25 @@ def fixture_update_page(process):
             Time =  request.form["Time"]
             Status = request.form["Status"]
             Refereeid=request.form["Refereeid"]
-            obje = forms.FootballStats()
             obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
             return redirect(url_for("fixture_page"))
         cursor=obje.Fixture_update_info(process)
-        return render_template("update_fixture.html",cursor=cursor)
+        cursor1=obje.Team()
+        cursor2=obje.Referee()
+        return render_template("update_fixture.html",cursor=[cursor,cursor1,cursor2])
 
     
     
 @app.route("/add_fixture", methods=['GET','POST'])
 @login_required
 def fixture_adding_page():
+    obje = forms.FootballStats()
+    cursor1=obje.Team()
+    cursor2=obje.Referee()
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_fixture.html')
+        return render_template('add_fixture.html',cursor=[cursor1,cursor2])
 
     elif request.method == 'POST':
         HomeTeam = request.form["HomeTeam"]
@@ -160,15 +164,17 @@ def fixture_adding_page():
         obje = forms.FootballStats()
         obje.Fixture_add(HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
         flash("You have added.")
-        return render_template("add_fixture.html")
+        return render_template("add_fixture.html",cursor=[cursor1,cursor2])
 
 @app.route("/add_standing", methods=['GET','POST'])
 @login_required
 def standing_adding_page():
+    obje = forms.FootballStats()
+    cursor1=obje.Team()
     if not current_user.is_admin:
         abort(401)
     if request.method == 'GET':
-        return render_template('add_standings.html')
+        return render_template('add_standings.html',cursor=cursor1)
 
     elif request.method == 'POST':
         TeamID = request.form["TeamID"]
@@ -181,7 +187,7 @@ def standing_adding_page():
         obje = forms.FootballStats()
         obje.Standing_add(TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against)
         flash("You have added.")
-        return render_template("add_standings.html")
+        return render_template("add_standings.html",cursor=cursor1)
 
 @app.route("/add_referee", methods=['GET','POST'])
 @login_required
@@ -245,7 +251,8 @@ def standing_update_page(process):
             obje.Standing_update(update,TeamID,Played,Won,Drawn,Lost,Goals_for,Goals_against)
             return redirect(url_for("standing_page"))
         cursor=obje.Standing_update_info(process)
-        return render_template("update_standing.html",cursor=cursor)
+        cursor1=obje.Team()
+        return render_template("update_standing.html",cursor=[cursor,cursor1])
 
 @app.route("/referee", methods=['GET','POST'])
 @login_required

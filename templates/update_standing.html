@@ -20,33 +20,16 @@
 <form method='POST'>
 <div class="field">
   <label for="PlayerName" class="label">Team</label>
-    {% for row in cursor %}
+    
     <div class="select">
   <select  id="team" name="TeamID" >
-          <option value="42">A.F.C. Bournemouth</option>
-          <option value="35">Arsenal</option>
-          <option value="53">Aston Villa</option>
-          <option value="43" >Brighton and Hove Albion</option>
-          <option value="51">Burnley</option>
-          <option value="37">Chelsea</option>
-          <option value="44" >Crystal Palace </option>
-          <option value="54">Everton</option>
-          <option value="40">Leicester City</option>
-          <option value="36" >Liverpool</option>
-          <option value="38">Manchester City</option>
-          <option value="45">Manchester United</option>
-          <option value="52" >Newcastle United</option>
-          <option value="55">Norwich City</option>
-          <option value="41">Sheffield United</option>
-          <option value="56" >Southampton</option>
-          <option value="48">Tottenham Hotspur</option>
-          <option value="57">Watford</option>
-          <option value="50" >West Ham United</option>
-          <option value="49">Wolverhampton Wanderers</option>
+          {% for row in cursor[1] %}
+          <option value="{{row[0]}}">{{row[1]}}</option>
+          {% endfor %}
       </select>
   </div>
 </div>
-
+{% for row in cursor[0] %}
 <div class="field">
   <label for="PlayerAge" class="label">Played</label>
   <div class="control">
