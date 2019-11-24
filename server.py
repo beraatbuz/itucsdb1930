@@ -1045,17 +1045,6 @@ def detail_user_page(detail_key):
         return render_template("user_detail.html",cursor=cursor)
 app.add_url_rule("/detail_user/<detail_key>", view_func=detail_user_page) 
 
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/live_match", methods=['GET','POST'])
 @login_required
 def live_match_page(process): 
