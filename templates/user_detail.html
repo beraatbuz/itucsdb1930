@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Details{% endblock %}
+{% block content %}
+<a class="button is-dark" href="{{ url_for('team_page') }}">See All Teams</a>
+<a class="button is-dark" href="{{ url_for('player_page') }}">See All Players</a>
+<a class="button is-dark" href="{{ url_for('manager_page') }}">See All Managers</a>
+<a class="button is-dark" href="{{ url_for('goal_page') }}">See All Goals</a>
+<a class="button is-dark" href="{{ url_for('stadium_page') }}">See All Stadiums</a>
+<a class="button is-dark" href="{{ url_for('assist_page') }}">See All Assists</a>
+<a class="button is-dark" href="{{ url_for('statistic_page') }}">See All Statistics</a>
+<a class="button is-dark" href="{{ url_for('standing_page') }}">See Standing</a>
+<a class="button is-dark" href="{{ url_for('referee_page') }}">See Referee</a>
+<a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
+<a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
+<h1 class="title">Details</h1>
+<form action="" method="post" name="detail_list">
+    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add">Detail Add</button><br>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%" >
+ <tr>
+    <th></th>
+    <th>ID</th>
+    <th>MatchID</th>
+    <th>Detail</th>
+    <th>Minute</th>
+    <th></th>
+  </tr>
+{% for row in cursor %}
+<tr>
+    <td>
+        <label class="checkbox">
+        <input type="checkbox" name="detail_keys" value="{{row[0]}}"/>
+        </td>
+    <td>{{row[0]}}</td>
+    <td>{{row[1]}}</td>
+    <td>{{row[2]}}</td>
+    <td>{{row[3]}}</td>
+    <td>
+      <div class="control">
+        <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
+      </div>
+  </td>
+  </tr>
+
+{% endfor %}
+</table>
+<div class="field is-grouped">
+  <div class="control">
+      <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete">Delete</button>
+  </div>
+</div>
+</form>
+{% endblock %}
