@@ -736,7 +736,8 @@ def goal_adding_page():
     if request.method == 'GET':
         obje = forms.FootballStats()
         playerCursor=obje.Player()
-        return render_template('add_goal.html',cursor=playerCursor)
+        matchCursor=obje.Fixtures2()
+        return render_template('add_goal.html',cursor=[playerCursor,matchCursor])
 
     elif request.method == 'POST':
         PlayerID = str(request.form["PlayerID"])
@@ -790,8 +791,9 @@ def goal_update_page(process):
             return redirect(url_for("goal_page"))
         cursor=obje.Goal_update_info(process)
         playerCursor = obje.Player()
+        matchCursor = obje.Fixtures2()
         print(cursor)
-        return render_template("update_goal.html",cursor=[cursor,playerCursor])
+        return render_template("update_goal.html",cursor=[cursor,playerCursor,matchCursor])
 
 @app.route("/update_manager", methods=['GET','POST'])
 @login_required
@@ -1068,8 +1070,9 @@ def detail_user_page(detail_key):
         cursorFixture=obje.Fixture_key(detail_key)
         cursorGoal=obje.Goal_user(detail_key)
         cursorAssist=obje.Assist_user(detail_key)
+        cursorStatistic=obje.Statistic_user(detail_key)
         print(cursor)
-        return render_template("user_detail.html",cursor=[cursor,cursorFixture,cursorGoal,cursorAssist])
+        return render_template("user_detail.html",cursor=[cursor,cursorFixture,cursorGoal,cursorAssist,cursorStatistic])
 app.add_url_rule("/detail_user/<detail_key>", view_func=detail_user_page) 
 
 @app.route("/top_assist", methods=['GET'])
@@ -1079,6 +1082,14 @@ def top_assist_page():
         cursor=obje.Top_assist()
         print(cursor)
         return render_template("user_top_assist.html",cursor=cursor)
+
+@app.route("/stadium_user", methods=['GET'])
+def stadium_user_page():
+    obje = forms.FootballStats()
+    if request.method == "GET":
+        cursor=obje.Stadium()
+        print(cursor)
+        return render_template("user_stadium.html",cursor=cursor)
         
 @app.route("/live_match", methods=['GET','POST'])
 @login_required

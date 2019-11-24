@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}user referee{% endblock %}
+{% block title %}Stadiums{% endblock %}
 {% block content %}
 <a class="button is-dark" href="{{ url_for('top_goal_page') }}">See Top Goals</a>
 <a class="button is-dark" href="{{ url_for('top_assist_page') }}">See Top Assists</a>
@@ -10,30 +10,33 @@
 <a class="button is-dark" href="{{ url_for('stadium_user_page') }}">See All Stadiums</a> 
 <a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
 <a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
-<h1 class="title">REFEREE</h1>
+<br><br>
+<h1 class="title">Stadiums</h1>
+<form action="" method="post" name="stadium_list">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
                     
-
-                    <th>Referee Name</th>
-                    <th>Age</th>
-                    <th>Total Match</th>
-                    <th>Total Red Card</th>
-                    <th>Total Yellow Card</th>
+                    <th>Team</th>
+                    <th>Stadium Name</th>
+                    <th>Capacity</th>
+                    <th>Built</th>
+                    <th>Pitch Size</th>
+                    <th>Surface</th>
                     
                   </tr>
                   {% for row in cursor %}
-                  <tr> 
-                     
+                  <tr>
                       
-                      <td><a href="{{ url_for('referees_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
-                      <td>{{row[5]}}</td>
+                    
+                      <td><a href="{{ url_for('team_user_page')}}/{{row[7]}}">{{row[1]}}</td></a>
                       <td>{{row[2]}}</td>
                       <td>{{row[3]}}</td>
                       <td>{{row[4]}}</td>
+                      <td>{{row[5]}}</td>
+                      <td>{{row[6]}}</td>
                       
                 </tr>
                 {% endfor %}
         </table>
-
+</form>
 {% endblock %}

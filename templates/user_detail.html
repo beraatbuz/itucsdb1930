@@ -6,7 +6,8 @@
 <a class="button is-dark" href="{{ url_for('team_user_page') }}">See All Teams</a>
 <a class="button is-dark" href="{{ url_for('player_user_page') }}">See All Players</a>
 <a class="button is-dark" href="{{ url_for('manager_user_page') }}">See All Managers</a>
-<a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a>
+<a class="button is-dark" href="{{ url_for('referee_user_page') }}">See All Referee</a> 
+<a class="button is-dark" href="{{ url_for('stadium_user_page') }}">See All Stadiums</a> 
 <a class="button is-dark" href="{{ url_for('standing_user_page') }}">See Standing Table</a>
 <a class="button is-dark" href="{{ url_for('fixture_user_page') }}">See All Fixtures</a>
 <h1 class="title">Details</h1>
@@ -112,6 +113,52 @@
     </tr>
     {% endfor %}
 </table>
-
+<h2 class="title">Statistics</h2>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+    <tr>
+        
+        <th>Home Possesion</th>
+        <th>Home Corner</th>
+        <th>Home Foul</th>
+        <th>Home Offside</th>
+        <th>Home Shot</th>
+        <th>Home ShotOnTarget</th>
+        <th>Home ShotAccuracy</th>
+        <th>Home PassAccuracy</th>
+        <th>Away Possesion</th>
+        <th>Away Corner</th>
+        <th>Away Foul</th>
+        <th>Away Offside</th>
+        <th>Awat Shot</th>
+        <th>Away ShotOnTarget</th>
+        <th>Away ShotAccuracy</th>
+        <th>Away PassAccuracy</th>
+        <th>Referee</th>
+        
+      </tr>
+      {% for row in cursor[4] %}
+      <tr>
+          
+          <td>{{row[2]}}</td>
+          <td>{{row[3]}}</td>
+          <td>{{row[4]}}</td>
+          <td>{{row[5]}}</td>
+          <td>{{row[6]}}</td>
+          <td>{{row[7]}}</td>
+          <td>{{row[8]}}</td>
+          <td>{{row[9]}}</td>
+          <td>{{row[10]}}</td>
+          <td>{{row[11]}}</td>
+          <td>{{row[12]}}</td>
+          <td>{{row[13]}}</td>
+          <td>{{row[14]}}</td>
+          <td>{{row[15]}}</td>
+          <td>{{row[16]}}</td>
+          <td>{{row[17]}}</td>
+          <td><a href="{{ url_for('referees_user_page')}}/{{row[19]}}">{{row[18]}}</td></a>
+          
+    </tr>
+    {% endfor %}
+</table>
 </form>
 {% endblock %}

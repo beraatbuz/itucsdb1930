@@ -120,11 +120,11 @@ class FootballStats:
 				statement = """ INSERT INTO Goal(PlayerID, MatchID, Minute) VALUES(%s,%s,%s);"""
 				cursor.execute(statement,([PlayerID, MatchID,Minute]))
 	
-	def Goal_update(self, GoalID, PlayerId, MatchId, Minute):
+	def Goal_update(self, GoalID, PlayerID, MatchID, Minute):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Goal Set PlayerId=%s, MatchId=%s, Minute=%s Where ID=%s;"""
-				cursor.execute(statement,([PlayerId, MatchId, Minute, GoalID]))
+				statement="""Update Goal Set PlayerID=%s, MatchID=%s, Minute=%s Where ID=%s;"""
+				cursor.execute(statement,([PlayerID, MatchID, Minute, GoalID]))
 	
 	def Goal_delete(self, GoalID):
 		with dbapi.connect(url) as connection:
@@ -526,6 +526,15 @@ ORDER BY Goal.Minute ASC;"""
 				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=%s
 				and home.id=fixtures.hometeam
 				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
+				cursor.execute(statement,[Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+	
+	def Statistic_user(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, 
+APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName, Statistic.Referee FROM Statistic, Referee  Where matchid=%s and Statistic.Referee=Referee.id ORDER BY MatchID"""
 				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
