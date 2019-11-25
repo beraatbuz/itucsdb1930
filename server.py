@@ -517,8 +517,11 @@ def statistic_page():
 def statistic_add_page():
     if not current_user.is_admin:
         abort(401)
+    obje = forms.FootballStats()
+    cursor=obje.Referee()
+    cursor2=obje.Fixtures2()
     if request.method == 'GET':
-        return render_template('add_statistic.html')
+        return render_template('add_statistic.html',cursor=[cursor,cursor2])
     elif request.method == 'POST':
         MatchID = str(request.form["MatchID"])
         HPossesion = str(request.form["HPossesion"])
@@ -540,7 +543,7 @@ def statistic_add_page():
         RefereeID = str(request.form["RefereeID"])
         obje = forms.FootballStats()
         obje.Statistic_add(MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
-        return render_template("add_statistic.html")
+        return render_template("add_statistic.html",cursor=[cursor,cursor2])
 
 @app.route("/update_statistic", methods=['GET','POST'])
 @login_required
@@ -548,6 +551,8 @@ def statistic_update_page(process):
     if not current_user.is_admin:
         abort(401)
     obje = forms.FootballStats()
+    cursorReferee=obje.Referee()
+    cursorFixture=obje.Fixtures2()
     update = request.form.get('Update') 
     if request.method == 'GET':
         return render_template("statistic.html")
@@ -572,11 +577,11 @@ def statistic_update_page(process):
             APassAccuracy = str(request.form["APassAccuracy"])
             RefereeID = str(request.form["RefereeID"])
             obje = forms.FootballStats()
-            obje.Statistic_update(update,MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
+            obje.Statistic_Update(update,MatchID, HPossesion,HCorner,HFoul,HOffside,HShot,HShotOnTarget,HShotAccuracy,HPassAccuracy,APossesion,ACorner,AFoul,AOffside,AShot,AShotOnTarget,AShotAccuracy,APassAccuracy,RefereeID)
             return redirect(url_for("statistic_page"))
         cursor=obje.Statistic_update_info(process)
         print(cursor)
-        return render_template("update_statistic.html",cursor=cursor)
+        return render_template("update_statistic.html",cursor=[cursor,cursorReferee,cursorFixture])
 
 @app.route("/add_detail", methods=['GET','POST'])
 @login_required

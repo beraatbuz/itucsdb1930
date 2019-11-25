@@ -147,13 +147,13 @@ class FootballStats:
 	def Statistic_Update(self, StatisticId, MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement="""Update Statistic Set MatchID=%s, HPossesion=%s, HCorner=%s, HFoul=%s, HOffside=%s, HShot=%s, HShotOnTarget=%s, HShotAccuracy=%s, HPassAccuracy=%s, APossesion=%s, ACorner=%s, AFoul=%s, AOffside=%s, AShot=%s, AShotOnTarget=%s, AShotAccuracy=%s, APassAccuracy=%s, Referee_UserName=%s Where ID=%s;"""
+				statement="""Update Statistic Set MatchID=%s, HPossesion=%s, HCorner=%s, HFoul=%s, HOffside=%s, HShot=%s, HShotOnTarget=%s, HShotAccuracy=%s, HPassAccuracy=%s, APossesion=%s, ACorner=%s, AFoul=%s, AOffside=%s, AShot=%s, AShotOnTarget=%s, AShotAccuracy=%s, APassAccuracy=%s, Referee=%s Where ID=%s;"""
 				cursor.execute(statement,([MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID,StatisticId]))
 	
 	def Statistic_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """ Select * From Statistic where ID = %s;"""
+				statement = """Select * FROM Statistic where ID = %s;"""
 				cursor.execute(statement,([ID]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -242,7 +242,7 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, 
-APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, Referee FROM Statistic ORDER BY MatchID"""
+APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName FROM Statistic,Referee where statistic.Referee=Referee.ID ORDER BY MatchID"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list

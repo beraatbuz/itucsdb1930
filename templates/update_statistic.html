@@ -20,12 +20,19 @@
 <form method='POST'>
 <div class="field">
   <label for="PlayerName" class="label">MatchID</label>
-  <div class="control">
-     {% for row in cursor %}
-    <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[1]}}" name="MatchID">
+  <div class="select">
+    <select  value="{{MatchID}}" name="MatchID">
+        {% for row in cursor[2] %}
+        {% if row[0] == cursor[0][0][-2]: %}
+        <option value="{{row[0]}}" selected>{{row[0]}}</option>
+          {% else: %}
+          <option value="{{row[0]}}">{{row[0]}}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
   </div>
 </div>
-
+{% for row in cursor[0] %}
 <div class="field">
   <label for="TeamID" class="label">HPossesion</label>
   <div class="control">
@@ -138,9 +145,17 @@
   </div>
   
   <div class="field">
-    <label for="PlayerName" class="label">Referee_UserName</label>
-    <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. 34"  value="{{row[18]}}" name="Referee_UserName">
+    <label for="PlayerName" class="label">Referee Name</label>
+    <div class="select">
+      <select  value="{{RefereeID}}" name="RefereeID">
+          {% for row2 in cursor[1] %}
+          {% if row2[0] == cursor[0][0][18]: %}
+          <option value="{{row2[0]}}" selected>{{row2[1]}}</option>
+          {% else: %}
+          <option value="{{row2[0]}}">{{row2[1]}}</option>
+        {% endif %}
+          {% endfor %}
+      </select>
     </div>
   </div>
 
