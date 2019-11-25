@@ -187,7 +187,7 @@ INIT_STATEMENTS = [
 				AShotOnTarget integer DEFAULT 0,
 				AShotAccuracy integer DEFAULT 0,
 				APassAccuracy integer DEFAULT 0,
-				RefereeName integer NOT NULL REFERENCES Referee (ID),
+                                RefereeName integer NOT NULL REFERENCES Referee (ID),
 				PRIMARY KEY (ID)
 			)
 			""",
