@@ -522,10 +522,9 @@ ORDER BY Goal.Minute ASC;"""
 	def Assist_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, HomeTeam,Awayteam FROM Assist, Player,Teams as home, Teams as away, Fixtures 
-				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=%s
-				and home.id=fixtures.hometeam
-				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
+				statement = """Select Assist.id,Player.playername,Teams.Teamname, Assist.minute,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, Player.teamid FROM Assist, Player,Teams,Fixtures 
+				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=21 and Teams.id=Player.Teamid
+				 ORDER BY minute"""
 				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
