@@ -166,7 +166,6 @@ INIT_STATEMENTS = [
 			
 			
 			"""
-                        ALTER TABLE Statistic ADD COLUMN IF NOT EXISTS RefereeID integer NOT NULL REFERENCES Referee (ID);
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
