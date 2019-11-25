@@ -143,7 +143,7 @@
   <div class="field">
     <label for="PlayerName" class="label">Referee Name</label>
     <div class="select">
-      <select  value="{{Referee}}" name="Referee">
+      <select  value="{{RefereeID}}" name="RefereeID">
           {% for row in cursor[0] %}
         <option value="{{row[0]}}">{{row[1]}}</option>
           {% endfor %}
