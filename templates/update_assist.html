@@ -52,32 +52,32 @@
   <label for="TeamID" class="label">Minute</label>
   <div class="control">
       {% for row in cursor[0] %}
-    <input required="required" class="input" type="text"  value="{{row[3]}}" name="Minute">
+    <input required="required" class="input" type="number"  value="{{row[3]}}" name="Minute" maxlength="3">
   </div>
 </div>
 
 <div class="field">
   <label for="TeamID" class="label">Last Touch</label>
   <div class="control">
-    <input required="required" class="input" type="text"  value="{{row[4]}}" name="LastTouch">
+    <input required="required" class="input" type="text"  value="{{row[4]}}" name="LastTouch" maxlength="10">
   </div>
 </div>
 <div class="field">
     <label for="TeamID" class="label">Format</label>
     <div class="control">
-      <input required="required" class="input" type="text" value="{{row[5]}}" name="Format">
+      <input required="required" class="input" type="text" value="{{row[5]}}" name="Format" maxlength="15">
     </div>
 </div>
 <div class="field">
     <label for="TeamID" class="label">Golden Assist</label>
     <div class="control">
-      <input required="required" class="input" type="text" value="{{row[6]}}" name="GoldenAssist">
+      <input required="required" class="input" type="text" value="{{row[6]}}" name="GoldenAssist" maxlength="3">
     </div>
 </div>
 <div class="field">
     <label for="TeamID" class="label">Stadium (Home/Away)</label>
     <div class="control">
-      <input required="required" class="input" type="text"  value="{{row[7]}}" name="StadiumHA">
+      <input required="required" class="input" type="text"  value="{{row[7]}}" name="StadiumHA" maxlength="5">
     </div>
 </div>
 
