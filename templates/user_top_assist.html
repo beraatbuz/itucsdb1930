@@ -18,13 +18,34 @@
     <th>Total Assist</th>
 
   </tr>
-{% for row in cursor %}
-<tr>
-    <td><a href="{{ url_for('player_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+{% for row in cursor[0] %}
+  <tr>
+    <td>
+      <div class="popup" onclick="myFunction{{row[0]}}()">{{row[1]}}
+          
+          <span class="popuptext" id="myPopup{{row[0]}}">
+              {% for infoList in cursor[1] %}
+              {% for info in infoList %}
+              {% if row[0] == info[0] %}
+               {{info[1]}} : {{info[2]}} </br>
+              {% endif %}
+              {% endfor %}
+              {% endfor %}
+              </span>
+    </div>
+    </td>
     <td>{{row[2]}}</td>
   </tr>
-
+  <script>
+      // When the user clicks on div, open the popup
+      function myFunction{{row[0]}}() {
+        var popup = document.getElementById("myPopup{{row[0]}}");
+        popup.classList.toggle("show");
+      }
+      </script>
 {% endfor %}
+
 </table>
 </form>
+
 {% endblock %}

@@ -528,7 +528,24 @@ ORDER BY Goal.Minute ASC;"""
 				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
-	
+				
+	def Assist_information_of_user(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement2 = """ SELECT playerid,lasttouch, Count(lasttouch) FROM assist group by lasttouch,playerid;"""
+				statement3 = """ SELECT playerid,format, Count(format) FROM assist group by format,playerid """
+				statement4 = """ SELECT playerid,goldenassist, Count(goldenassist) FROM assist group by goldenassist,playerid having goldenassist='Yes' """
+				statement5 = """ SELECT playerid,stadiumha, Count(stadiumha) FROM assist group by stadiumha,playerid """
+				cursor.execute(statement2)
+				cursor_list2=cursor.fetchall()
+				cursor.execute(statement3)
+				cursor_list3=cursor.fetchall()
+				cursor.execute(statement4)
+				cursor_list4=cursor.fetchall()
+				cursor.execute(statement5)
+				cursor_list5=cursor.fetchall()
+				return [cursor_list2, cursor_list3, cursor_list4, cursor_list5]
+
 	def Statistic_user(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:

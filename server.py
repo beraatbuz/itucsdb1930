@@ -1090,8 +1090,9 @@ def top_assist_page():
     obje = forms.FootballStats()
     if request.method == "GET":
         cursor=obje.Top_assist()
+        cursorInfo=obje.Assist_information_of_user()
         print(cursor)
-        return render_template("user_top_assist.html",cursor=cursor)
+        return render_template("user_top_assist.html",cursor=[cursor,cursorInfo])
 
 @app.route("/stadium_user", methods=['GET'])
 def stadium_user_page():
