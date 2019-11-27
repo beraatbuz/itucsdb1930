@@ -206,7 +206,7 @@ class FootballStats:
 	def Player(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,TeamID FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID ORDER BY Teamname ASC;"""
+				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,TeamID FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID ORDER BY PlayerName,Teamname ASC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -537,3 +537,25 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Player_fixture_team(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Player.id, PlayerName, Teamname, Fixtures.HomeTeam, Fixtures.ID  From Player, Fixtures, Teams Where ((Teams.ID=Fixtures.HomeTeam and Player.TeamID=Fixtures.HomeTeam) 
+or (Teams.ID=Fixtures.AwayTeam and Player.TeamID=Fixtures.AwayTeam))
+ and Fixtures.ID=%s Order By Teamname"""
+				cursor.execute(statement,[Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+
+	def Standing_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Standings.ID,TeamName,Played,Won,Drawn,Lost,Goals_for,Goals_against,Goals_difference,Points, Teams.id FROM Standings,Teams,Fixtures WHERE Teams.ID=TeamID 
+and (Fixtures.HomeTeam=Teams.id or Fixtures.AwayTeam=Teams.id) and Fixtures.ID=%s
+ORDER BY Points DESC,Goals_difference DESC,TeamName;"""
+				cursor.execute(statement,[Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+		

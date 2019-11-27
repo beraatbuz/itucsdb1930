@@ -14,9 +14,24 @@
 <a class="button is-dark" href="{{ url_for('fixture_page') }}">See Fixture</a>
 <a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
 <br><br>
+
+
+<script>
+    function Random() {
+        var number = Math.floor(Math.random() * 100);
+        document.getElementById('textbox').value = number;
+    }
+
+</script>
+<form name="number">
+    <input style="color:green; font-weight: bold;" type="text" id="textbox" name="textbox" text-align="right" />
+</form>
+
+<button onclick="Random()">Get Random Minute</button>
+
+
+<br>
 <h1 class="title">ADD GOAL</h1>
-
-
 <form method='POST'>
 <div class="field">
     <label for="PlayerID" class="label">Select Player</label>

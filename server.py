@@ -93,12 +93,15 @@ def fixture_page():
         return render_template("fixture.html",cursor=cursor)
     else:
         process = request.form.get('buttonName')
+        processStart = request.form.get('Start')
+        processLive = request.form.get('Live')
         update = request.form.get('Update')
         if (process == "add"):
             return redirect(url_for("fixture_adding_page"))
-
-        elif (process == "start"):
-            return render_template("live_match.html")#Ahmet sende burası
+        elif (processStart):
+            return fixture_update_page(processStart)
+        elif (processLive):
+            return live_match_page(processLive)
         elif (process == "week"):
             week = request.form.get('select') 
             cursor=obje.Fixtures(week)
@@ -1100,32 +1103,24 @@ def stadium_user_page():
         
 @app.route("/live_match", methods=['GET','POST'])
 @login_required
-def live_match_page(process): 
+def live_match_page(processLive): 
     if not current_user.is_admin:
         abort(401)
     obje = forms.FootballStats()
-    update = request.form.get('Update') 
-    if request.method == 'GET':
-        return render_template("live_match.html")
-    elif request.method == 'POST':
-        if update is not None:
-            HomeTeam = request.form["HomeTeam"]
-            AwayTeam = request.form["AwayTeam"]
-            HomeScore = request.form["HomeScore"]
-            AwayScore =  request.form["AwayScore"]
-            Week =  request.form["Week"]
-            MatchDate =  request.form["MatchDate"]
-            Time =  request.form["Time"]
-            Status = request.form["Status"]
-            Refereeid=request.form["Refereeid"]
-            obje = forms.FootballStats()
-            obje.Fixture_update(update,HomeTeam,AwayTeam,HomeScore,AwayScore,Week,MatchDate,Time,Status,Refereeid)
-            return redirect(url_for("live_match_page"))
-        cursor=obje.Fixture_update_info(process)
-        return render_template("live_match.html",cursor=cursor)     
-
+    cursorFixture = obje.Fixture_key(processLive)
+    cursorStanding = obje.Standing_key(processLive)
+    cursorPlayer = obje.Player_fixture_team(processLive)
+    cursorDetail = obje.Detail_user(processLive)
+    cursorGoal = obje.Goal_user(processLive)
+    cursorAssist = obje.Assist_user(processLive)
+    return render_template("live_match.html", cursor=[cursorFixture,cursorStanding,cursorPlayer,cursorDetail,cursorGoal,cursorAssist])
+    
+    
+app.add_url_rule("/live_match/<processLive>", view_func=live_match_page)
 if __name__ == "__main__":
     app.run(debug=True)
 
 ###############################################################################3
+        #if request.method == "POST":
+        #return live_match_page(processLive)
         

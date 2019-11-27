@@ -2,89 +2,157 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<p id="demo">0</p>
 
 <script>
-    var myTimerObj = (function(document){
-       
-       var myTimer;
-               paused = false
-        var c = 0;
-       function start() {
-         myTimer = setInterval(myClock, 1000);
-         
-    
-         function myClock() {
-           document.getElementById("demo").innerHTML = ++c;
-           if (c == 90) {
-             c=0;
-             clearInterval(myTimer);
-             alert("Match Finished");
-           }
-         }
-       }
-       
-       function end() {
-               clearInterval(myTimer);
-           myTimer = setInterval(myClock, 1000);
-           function myClock() {
-           document.getElementById("demo").innerHTML = c;
-           if (c == 90) {
-             clearInterval(myTimer);
-             alert("Match Finished");
-           }
-         }
-       }
-    
-       return {start:start, end:end};
-     })(document);
-</script>
+    function Random() {
+        var number = Math.floor(Math.random() * 100);
+        document.getElementById('textbox').value = number;
+    }
 
-<button onclick="myTimerObj.start()">Start Match</button>
-<button onclick="myTimerObj.end()">Pause Match</button>
+</script>
+<form name="number">
+    <input style="color:green; font-weight: bold;" type="text" id="textbox" name="textbox" text-align="right" />
+</form>
+
+<button onclick="Random()">Get Random Minute</button>
+
+
 <br><br>
 <br>
-
-<a class="button is-link" target="_blank" href="{{ url_for('goal_adding_page') }}">Goal Add</a>
-<a class="button is-link" target="_blank" href="{{ url_for('assist_add_page') }}">Assist Add</a>
-<br><br>
-
 <form method='POST'>
-    <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="goal_add">Goal Add</button><br><br><br>
-    <div class="field">
-      <label for="PlayerAge" class="label">Match ID</label>
-      <div class="control">
-        <input  class="input" type="text" placeholder="e.g. 12"  value="{{MatchID}}" name="MatchID">
-      </div>
-    </div>
-    
-    <div class="field">
-      <label for="Detail" class="label">Detail</label>
-      <div class="control">
-        <textarea rows="10" cols="30"  placeholder="e.g. Detail"  value="{{Detail}}" name="Detail" maxlength="300"></textarea>
-        
-      </div>
-    </div>
-    
-    <div class="field">
-        <label for="Minute" class="label">Minute</label>
-        <div class="control">
-          <input  class="input" type="text" placeholder="e.g. 87"  value="{{Minute}}" name="Minute" maxlength="2">
-        </div>
-      </div>
-    
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link">Submit</button>
-      </div>
-    </div>
-    
-    </form> 
-    
 
 
-      
+<h2 class="title">Fixture Update</h2>
+
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+    <tr>
+       
+        <th>ID</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Home Score</th>
+        <th>Away Score</th>
+        <th>Week</th>
+        <th>MatchDate</th>
+        <th>Time </th>
+        <th>Referee </th>
+        <th>Status </th>
+
         
+      </tr>
+      {% for row in cursor[0] %}
+      <tr> 
+         
+          <td>{{row[0]}}</td>
+          <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[1]}}</td></a>
+          <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[2]}}</td></a>
+          <td>{{row[6]}}</td>
+          <td>{{row[7]}}</td>
+          <td>{{row[3]}}</td>
+          <td>{{row[4]}}</td>
+          <td>{{row[5]}}</td>
+          <td>{{row[9]}}</td>
+          {%if row[8]=='NOTSTARTED' %}
+          <td style=""><div class="control"><button  class="button is-warning is-small " name="Start" value="{{row[0]}}">Start</button></div></td>
+          {%endif%}
+          {%if row[8] =='LIVE' %}
+          <td style="color:red; font-weight: bold;"><div class="control"><button  class="button is-danger is-small " name="Live" value="{{row[0]}}">{{row[8]}}</button></div></td>
+          {%endif%}
+          {%if row[8] =='FINISHED' %}
+          <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+          {%endif%}
         
+    </tr>
+    {% endfor %}
+</table>
+<a class="button is-link" target="_blank" href="{{ url_for('standing_page') }}">Standing Update</a>
+<a class="button is-link" target="_blank" href="{{ url_for('fixture_page') }}">Fixture Update</a>
+<a class="button is-link" target="_blank" href="{{ url_for('detail_adding_page') }}">Add Detail</a>
+<a class="button is-link" target="_blank" href="{{ url_for('goal_adding_page') }}">Add Goal</a>
+<a class="button is-link" target="_blank" href="{{ url_for('assist_add_page') }}">Add Assist</a>
+  
+    <br><h2 class="title">Details</h2>
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%" >
+        <tr>
+           <th>Details</th>
+           <th>Minute</th>
+         </tr>
+       {% for row in cursor[3] %}
+       <tr>
+           <td>{{row[1]}}</td>
+           <td>{{row[2]}}</td>
+         </td>
+         </tr>
+       
+       {% endfor %}
+       </table>
+       <h2 class="title">Goals</h2>
+       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+           <tr>
+       
+              <th>Player</th>
+              <th>Player's Team</th>
+              <th>Minute</th>
+            </tr>
+          {% for row in cursor[4] %}
+          <tr>
+       
+              <td>{{row[1]}}</td>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+            </tr>
+          
+          {% endfor %}
+          </table>
+          
+       <h2 class="title">Assists</h2>
+       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+           <tr>
+               <th>Player Name</th>
+               <th>Player's Team</th>
+               <th>Minute</th>
+               <th>Last Touch</th>
+               <th>Format</th>
+               <th>Golden Assist</th>
+               <th>Stadium(Home/Away))</th>
+               
+             </tr>
+             {% for row in cursor[5] %}
+             <tr>
+                   
+                 <td>{{row[1]}}</td>
+                 <td>{{row[2]}}</td>
+                 <td>{{row[3]}}</td>
+                 <td>{{row[4]}}</td>
+                 <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
+
+           </tr>
+           {% endfor %}
+       </table>
+       <h2 class="title">Players</h2>
+       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+          <tr>
+          
+              <th>ID</th>
+              <th>Player Name</th>
+              <th>Team</th>
         
+            </tr>
+          {% for row in cursor[2] %}
+          <tr>
+              
+              <td>{{row[0]}}</td>
+              <td><a href="{{ url_for('player_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+              <td>{{row[2]}}</td>
+
+            </td>
+            </tr>
+            {% endfor %}  
+          </table>
+
+</form>
+
+  
 {% endblock %}
