@@ -31,20 +31,16 @@
     <input required="required" class="input" type="number" placeholder="e.g. 66"  value="{{PlayerAge}}" name="PlayerAge" min="15" max="55">
   </div>
 </div>
-
-  <div class="field">
-      <label for="Position" class="label">Player Position</label>
-      <div class="select">
-        <select  value="{{Position}}" name="Position">
-              <option value="Forward"selected>Forward</option>
-              <option value="Midfielder">Midfielder</option>
-              <option value="Defender">Defender</option>
-              <option value="Goalkeeper" >Goalkeeper</option>
-          </select>
     
-      </div>
+<div class="field">
+    <label class="radiobox">
+      <input type="radio" name="Position" value="Forward" checked>Forward<br>
+      <input type="radio" name="Position" value="Midfielder">Midfielder<br>
+      <input type="radio" name="Position" value="Defender">Defender<br>
+      <input type="radio" name="Position" value="Goalkeeper">Defender<br>
+    </label>
     </div>
-
+    
 <div class="field">
   <label for="PlayerNationalty" class="label">Player Nationalty</label>
   <div class="control">

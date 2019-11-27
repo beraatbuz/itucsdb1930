@@ -523,7 +523,7 @@ ORDER BY Goal.Minute ASC;"""
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select Assist.id,Player.playername,Teams.Teamname, Assist.minute,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, Player.teamid FROM Assist, Player,Teams,Fixtures 
-				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=21 and Teams.id=Player.Teamid
+				where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=%s and Teams.id=Player.Teamid
 				 ORDER BY minute"""
 				cursor.execute(statement,[Key])
 				cursor_list=cursor.fetchall()
@@ -541,7 +541,7 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Player_fixture_team(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.id, PlayerName, Teamname, Fixtures.HomeTeam, Fixtures.ID  From Player, Fixtures, Teams Where ((Teams.ID=Fixtures.HomeTeam and Player.TeamID=Fixtures.HomeTeam) 
+				statement = """Select Player.ID,PlayerName,Teamname,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth, Fixtures.HomeTeam, Fixtures.ID,Player.TeamID  From Player, Fixtures, Teams Where ((Teams.ID=Fixtures.HomeTeam and Player.TeamID=Fixtures.HomeTeam) 
 or (Teams.ID=Fixtures.AwayTeam and Player.TeamID=Fixtures.AwayTeam))
  and Fixtures.ID=%s Order By Teamname"""
 				cursor.execute(statement,[Key])

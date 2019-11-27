@@ -56,7 +56,7 @@
                       <td style=""><div class="control"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button is-danger">LIVE</button></div></a></td>
                       {%endif%}
                       {%if row[8] =='FINISHED' %}
-                      <td style="color:black; font-weight: bold;"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">{{row[8]}}</td></a>
+                      <td style="color:black; font-weight: bold;"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button is-primary is-small">{{row[8]}}</td></a>
                       {%endif%}
                       
                       

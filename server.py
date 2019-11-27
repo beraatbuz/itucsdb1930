@@ -1115,8 +1115,8 @@ def live_match_page(processLive):
     cursorAssist = obje.Assist_user(processLive)
     return render_template("live_match.html", cursor=[cursorFixture,cursorStanding,cursorPlayer,cursorDetail,cursorGoal,cursorAssist])
     
-    
-app.add_url_rule("/live_match/<processLive>", view_func=live_match_page)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
