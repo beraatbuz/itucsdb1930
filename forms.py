@@ -390,7 +390,7 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Player_key(self,Key):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname FROM Player,Teams WHERE Player.ID=%s and Teams.ID=TeamID ORDER BY Teamname ASC;"""
+				statement = """Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,Teams.ID FROM Player,Teams WHERE Player.ID=%s and Teams.ID=TeamID ORDER BY Teamname ASC;"""
 				cursor.execute(statement, [Key])
 				cursor_list=cursor.fetchall()
 				return cursor_list
