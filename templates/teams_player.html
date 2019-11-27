@@ -43,7 +43,7 @@
       <td><a href="{{ url_for('manager_page')}}/{{row[7]}}">{{row[5]}}</td></a>
       <td>
         <div class="control">
-          <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
+          <button class="button is-primary is-small" name="buttonTeam" value="{{row[0]}}">Update</button>
         </div>
     </td>
     </tr>
@@ -86,7 +86,7 @@
             <td>{{row[4]}}</td>
             <td>{{row[5]}}</td>
             <td>{{row[6]}}</td>
-            <td>{{row[7]}}</td>
+            <td><a href="{{ url_for('team_page')}}/{{row[8]}}">{{row[7]}}</td></a>
             <td>
               <div class="control">
                 <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
@@ -142,5 +142,101 @@
         <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_stadium">Delete_stadium</button>
     </div>
 </div>
+
+<h1 class="title">Matches</h1>
+<button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add_Match">Match Add</button>
+        <br><br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Home Score</th>
+                    <th>Away Score</th>
+                    <th>Week</th>
+                    <th>MatchDate</th>
+                    <th>Time </th>
+                    <th>Referee </th>
+                    <th>Status </th>
+
+                    <th></th>
+                  </tr>
+                  {% for row in cursor[3] %}
+                  <tr> 
+                     <td><label class="checkbox">
+                              <input type="checkbox" name="fixture" value="{{row[0]}}"/>
+                            </label></td>
+                      <td>{{row[0]}}</td>
+                      <td><a href="{{ url_for('team_page')}}/{{row[10]}}">{{row[1]}}</td></a>
+                      <td><a href="{{ url_for('team_page')}}/{{row[11]}}">{{row[2]}}</td></a>
+                      <td>{{row[6]}}</td>
+                      <td>{{row[7]}}</td>
+                      <td>{{row[3]}}</td>
+                      <td>{{row[4]}}</td>
+                      <td>{{row[5]}}</td>
+                      <td>{{row[9]}}</td>
+                      {%if row[8]=='NOTSTARTED' %}
+                      <td style=""><div class="control"><button  class="button is-warning is-small " name="Start" value="{{row[0]}}">Start</button></div></td>
+                      {%endif%}
+                      {%if row[8] =='LIVE' %}
+                      <td style="color:red; font-weight: bold;"><div class="control"><button  class="button is-danger is-small " name="Live" value="{{row[0]}}">{{row[8]}}</button></div></td>
+                      {%endif%}
+                      {%if row[8] =='FINISHED' %}
+                      <td style="color:black; font-weight: bold;">{{row[8]}}</td>
+                      {%endif%}
+                      
+                      <td>
+                            <div class="control">
+                            <button class="button is-primary is-small" name="buttonMatch" value="{{row[0]}}">Update</button>
+                          </div>
+                        </td>
+                </tr>
+                {% endfor %}
+        </table>
+        <div class="field is-grouped">
+            <div class="control">
+                <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_match">Delete_Match</button>
+            </div>
+        </div>
+        <h1 class="title">Manager</h1>
+        <button class="button is-success is-rounded" style="float: left;" name="buttonName" value="add_Manager">Manager Add</button><br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+         <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Manager Name</th>
+            <th>Manager Age</th>
+            <th>Manager Nationalty</th>
+            <th>Manager Height</th>
+            <th>Manager PlaceOfBirth</th>
+            <th>Team</th>
+            <th></th>
+          </tr>
+        {% for row in cursor[4] %}
+        <tr>  <td>
+            <label class="checkbox">
+            <input type="checkbox" name="manager_keys" value="{{ row[0] }}"/>
+            </td>
+            <td>{{row[0]}}</td>
+            <td><a href="{{ url_for('manager_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+            <td><a href="{{ url_for('team_page')}}/{{row[7]}}">{{row[6]}}</td></a>
+            <td>
+              <div class="control">
+                <button class="button is-primary is-small" name="buttonManager" value="{{row[0]}}">Update</button>
+              </div>
+          </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <div class="field is-grouped">
+          <div class="control">
+              <button type="submit" class="button is-danger is-small" name="buttonName" value="Delete_manager">Delete Manager</button>
+          </div>
+        </div>
       </form>
 {% endblock %}

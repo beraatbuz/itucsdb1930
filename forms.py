@@ -422,7 +422,7 @@ APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APass
 	def Top_goal(self):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
-				statement = """Select Player.ID, PlayerName, count(PlayerID) FROM Goal,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID Group BY PlayerName,player.id ORDER BY count(PlayerID) DESC;"""
+				statement = """Select Player.ID, PlayerName, count(PlayerID),Position,Teamname,Player.TeamID FROM Goal,Player,Teams WHERE Goal.ID=Goal.ID and Player.ID=PlayerID and Player.TeamID=Teams.ID Group BY PlayerName,player.id,Teams.Teamname ORDER BY count(PlayerID) DESC;"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
@@ -576,3 +576,21 @@ ORDER BY Points DESC,Goals_difference DESC,TeamName;"""
 				cursor_list=cursor.fetchall()
 				return cursor_list
 		
+	def Fixture_team_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select distinct Fixtures.ID,T1.Teamname ,T2.Teamname,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName,HomeTeam,AwayTeam,Refereeid FROM Fixtures,Teams AS T1,Teams AS T2,Referee 
+WHERE (( T1.ID=HomeTeam AND T2.ID=AwayTeam and Fixtures.Hometeam=T1.ID and HomeTeam=T1.ID) )  
+AND Refereeid=Referee.id  and (T1.ID=%s or T2.ID=%s)  ORDER BY MatchDate,Time"""
+				cursor.execute(statement,[Key,Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list
+
+	def Manager_team_key(self,Key):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname, Teams.ID from manager left join teams on manager.id = teams.managerid 
+where manager.id=manager.id and Teams.ManagerID=Manager.ID and Teams.ID=%s Order By Name"""
+				cursor.execute(statement,[Key])
+				cursor_list=cursor.fetchall()
+				return cursor_list

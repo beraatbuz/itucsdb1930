@@ -915,21 +915,36 @@ def teams_page(team_keys):
         cursor=obje.Team_key(team_keys)
         playerCursor=obje.Player_team_user(team_keys)
         stadiumCursor=obje.Stadium_key(team_keys)
+        fixtureCursor=obje.Fixture_team_key(team_keys)
+        managerCursor=obje.Manager_team_key(team_keys)
         print(cursor)
-        return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor])
+        return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
     else:
         process = request.form.get('buttonName')
         processStadium = request.form.get('buttonStadium')
+        processMatches = request.form.get('buttonMatch')
+        processManager = request.form.get('buttonManager')
+        processTeam = request.form.get('buttonTeam')
         update = request.form.get('Update')
         print(update)
         if(processStadium):
             return stadium_update_page(processStadium)
-        if (process == "add"):
+        elif (processMatches):
+            return fixture_update_page(processMatches)
+        elif (processManager):
+            return manager_update_page(processManager)
+        elif (processTeam):
+            return team_update_page(processTeam)
+        elif (process == "add"):
             return redirect(url_for("team_adding_page"))
         elif (process == "add_player"):
             return redirect(url_for("player_adding_page"))
         elif (process == "add_stadium"):
             return redirect(url_for("stadium_add_page"))
+        elif (process == "add_Match"):
+            return redirect(url_for("fixture_adding_page"))
+        elif (process == "add_Manager"):
+            return redirect(url_for("manager_adding_page"))
         elif(process == "Delete"):
             form_team_keys = request.form.getlist("team_keys")
             for team_key in form_team_keys:
@@ -945,9 +960,17 @@ def teams_page(team_keys):
             form_stadium_keys = request.form.getlist('stadium_keys')
             for form_stadium_key in form_stadium_keys:
                 obje.Stadium_delete(int(form_stadium_key))
-            return redirect(url_for("stadium_page"))
-        elif(process == team_keys):
-            return team_update_page(process)
+            return redirect(url_for("team_page"))
+        elif(process == "Delete_match"):
+            form_fixture_keys = request.form.getlist('fixture')
+            for form_fixture_key in form_fixture_keys:
+                obje.Fixture_delete(int(form_fixture_key))
+            return redirect(url_for("team_page"))
+        elif(process == "Delete_manager"):
+            form_manager_keys = request.form.getlist("manager_keys")
+            for form_manager_key in form_manager_keys:
+                obje.Manager_delete(int(form_manager_key))
+            return redirect(url_for("team_page"))
         else:
             return player_update_page(process)
 app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST']) 
@@ -1059,8 +1082,10 @@ def teams_user_page(team_keys):
         cursor=obje.Team_user_key(team_keys)
         playerCursor=obje.Player_team_user(team_keys)
         stadiumCursor=obje.Stadium_key(team_keys)
+        fixtureCursor=obje.Fixture_team_key(team_keys)
+        managerCursor=obje.Manager_team_key(team_keys)
         print(cursor)
-        return render_template("user_teams_player.html",cursor=[cursor,playerCursor,stadiumCursor])
+        return render_template("user_teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
 app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
 
 @app.route("/referee_user")

@@ -81,5 +81,67 @@
 </table>
 
 </div>
+
+<h3 class="title">Matches</h3>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+  <tr>
+      
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Home Score</th>
+      <th>Away Score</th>
+      <th>Week</th>
+      <th>MatchDate</th>
+      <th>Time </th>
+      <th>Referee </th>
+      <th>Status </th>
+
+      
+    </tr>
+    {% for row in cursor[3] %}
+    
+        <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
+        <td><a href="{{ url_for('team_user_page')}}/{{row[11]}}">{{row[2]}}</td></a>
+        <td>{{row[6]}}</td>
+        <td>{{row[7]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[5]}}</td>
+        <td><a href="{{ url_for('referees_user_page')}}/{{row[12]}}">{{row[9]}}</td></a>
+        {%if row[8]=='NOTSTARTED' %}
+        <td style="color:green; font-weight: bold;">{{row[8]}}</td>
+        {%endif%}
+        {%if row[8] =='LIVE' %}
+        <td style=""><div class="control"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button is-danger">LIVE</button></div></a></td>
+        {%endif%}
+        {%if row[8] =='FINISHED' %}
+        <td style="color:black; font-weight: bold;"><a href="{{ url_for('detail_user_page')}}/{{row[0]}}" class="button">{{row[8]}}</td></a>
+        {%endif%}
+        
+        
+  </tr>
+  {% endfor %}
+</table>
+<h3 class="title">Manager</h3>
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
+  <tr>
+     <th>Manager Name</th>
+     <th>Manager Age</th>
+     <th>Manager Nationalty</th>
+     <th>Manager Height</th>
+     <th>Manager PlaceOfBirth</th>
+     <th>Team</th>
+   </tr>
+ {% for row in cursor[4] %}
+ <tr>  
+     <td><a href="{{ url_for('managers_user_page')}}/{{row[0]}}">{{row[1]}}</td></a>
+     <td>{{row[2]}}</td>
+     <td>{{row[3]}}</td>
+     <td>{{row[4]}}</td>
+     <td>{{row[5]}}</td>
+     <td><a href="{{ url_for('team_user_page')}}/{{row[7]}}">{{row[6]}}</td></a>
+   </tr>
+   {% endfor %}
+ </table>
       </form>
 {% endblock %}
