@@ -27,7 +27,11 @@
               {% for infoList in cursor[1] %}
               {% for info in infoList %}
               {% if row[0] == info[0] %}
+                {% if info[1] == 'Yes' %}
+                Golden : {{info[2]}} </br>
+                {% else %}
                {{info[1]}} : {{info[2]}} </br>
+               {% endif %}
               {% endif %}
               {% endfor %}
               {% endfor %}
