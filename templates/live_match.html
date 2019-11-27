@@ -38,7 +38,7 @@
         <th>Referee </th>
         <th>Status </th>
 
-        
+        <th></th>
       </tr>
       {% for row in cursor[0] %}
       <tr> 
@@ -61,12 +61,16 @@
           {%if row[8] =='FINISHED' %}
           <td style="color:black; font-weight: bold;">{{row[8]}}</td>
           {%endif%}
-        
+          
+          <td>
+                <div class="control">
+                <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
+              </div>
+            </td>
     </tr>
     {% endfor %}
 </table>
 <a class="button is-link" target="_blank" href="{{ url_for('standing_page') }}">Standing Update</a>
-<a class="button is-link" target="_blank" href="{{ url_for('fixture_page') }}">Fixture Update</a>
 <a class="button is-link" target="_blank" href="{{ url_for('detail_adding_page') }}">Add Detail</a>
 <a class="button is-link" target="_blank" href="{{ url_for('goal_adding_page') }}">Add Goal</a>
 <a class="button is-link" target="_blank" href="{{ url_for('assist_add_page') }}">Add Assist</a>
