@@ -57,29 +57,87 @@
 </div>
 
 <div class="field">
-  <label for="TeamID" class="label">Last Touch</label>
-  <div class="control">
-    <input required="required" class="input" type="text"  value="{{row[4]}}" name="LastTouch" maxlength="10">
+    <label for="TeamID" class="label">Last Touch</label>
+  <label class="radiobox">
+      {% if row[4] == 'Foot' %}
+      <input type="radio" name="LastTouch" value="Foot" checked>Foot<br>
+      {% else %}
+      <input type="radio" name="LastTouch" value="Foot">Foot<br>
+      {% endif %}
+      {% if row[4] == 'Head' %}
+      <input type="radio" name="LastTouch" value="Head" checked>Head<br>
+      {% else %}
+      <input type="radio" name="LastTouch" value="Head">Head<br>
+      {% endif %}
+      {% if row[4] == 'Chest' %}
+      <input type="radio" name="LastTouch" value="Chest" checked>Chest<br>
+      {% else %}
+      <input type="radio" name="LastTouch" value="Chest">Chest<br>
+      {% endif %}
+      {% if row[4] == 'Other' %}
+      <input type="radio" name="LastTouch" value="Other" checked>Other<br>
+      {% else %}
+      <input type="radio" name="LastTouch" value="Other">Other<br>
+      {% endif %}
+  </label>
   </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Format</label>
-    <div class="control">
-      <input required="required" class="input" type="text" value="{{row[5]}}" name="Format" maxlength="15">
+  <div class="field">
+      <label for="TeamID" class="label">Format</label>
+    <label class="radiobox">
+        {% if row[5] == 'Pass' %}
+        <input type="radio" name="Format" value="Pass" checked>Pass<br>
+        {% else %}
+        <input type="radio" name="Format" value="Pass">Pass<br>
+        {% endif %}
+        {% if row[5] == 'Interpass' %}
+        <input type="radio" name="Format" value="Interpass" checked>Interpass<br>
+        {% else %}
+        <input type="radio" name="Format" value="Interpass">Interpass<br>
+        {% endif %}
+        {% if row[5] == 'Centre' %}
+        <input type="radio" name="Format" value="Centre" checked>Centre<br>
+        {% else %}
+        <input type="radio" name="Format" value="Centre">Centre<br>
+        {% endif %}
+        {% if row[5] == 'Other' %}
+        <input type="radio" name="Format" value="Other" checked>Other<br>
+        {% else %}
+        <input type="radio" name="Format" value="Other">Other<br>
+        {% endif %}
+    </label>
     </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Golden Assist</label>
-    <div class="control">
-      <input required="required" class="input" type="text" value="{{row[6]}}" name="GoldenAssist" maxlength="3">
-    </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Stadium (Home/Away)</label>
-    <div class="control">
-      <input required="required" class="input" type="text"  value="{{row[7]}}" name="StadiumHA" maxlength="5">
-    </div>
-</div>
+    <div class="field">
+        <label for="TeamID" class="label">Golden Assist</label>
+      <label class="radiobox">
+          {% if row[6] == 'No' %}
+          <input type="radio" name="GoldenAssist" value="No" checked>No<br>
+          {% else %}
+          <input type="radio" name="GoldenAssist" value="No">No<br>
+          {% endif %}
+          {% if row[6] == 'Yes' %}
+          <input type="radio" name="GoldenAssist" value="Yes" checked>Yes<br>
+          {% else %}
+          <input type="radio" name="GoldenAssist" value="Yes">Yes<br>
+          {% endif %}
+      </label>
+      </div>
+      <div class="field">
+          <label for="TeamID" class="label">Stadium (Home/Away)</label>
+        <label class="radiobox">
+            <label class="radiobox">
+                {% if row[7] == 'Home' %}
+                <input type="radio" name="StadiumHA" value="Home" checked>Home<br>
+                {% else %}
+                <input type="radio" name="StadiumHA" value="Home">Home<br>
+                {% endif %}
+                {% if row[7] == 'Away' %}
+                <input type="radio" name="StadiumHA" value="Away" checked>Away<br>
+                {% else %}
+                <input type="radio" name="StadiumHA" value="Away">Away<br>
+                {% endif %}
+            </label>
+        </label>
+        </div>
 
 <div class="field is-grouped">
   <div class="control">

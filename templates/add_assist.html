@@ -60,32 +60,38 @@
     <input required="required" class="input" type="number" placeholder="e.g. 87"  value="{{Minute}}" name="Minute" maxlength="3">
   </div>
 </div>
-
 <div class="field">
-  <label for="TeamID" class="label">Last Touch</label>
-  <div class="control">
-    <input required="required" class="input" type="text" placeholder="e.g. Head, Shoulder"  value="{{LastTouch}}" name="LastTouch" maxlength="10">
+    <label for="TeamID" class="label">Last Touch</label>
+  <label class="radiobox">
+    <input type="radio" name="LastTouch" value="Foot" checked>Foot<br>
+    <input type="radio" name="LastTouch" value="Head">Head<br>
+    <input type="radio" name="LastTouch" value="Chest">Chest<br>
+    <input type="radio" name="LastTouch" value="Other">Other<br>
+  </label>
   </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Format</label>
-    <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. intermediate pass,cross the ball"  value="{{Format}}" name="Format" maxlength="10">
+  <div class="field">
+      <label for="TeamID" class="label">Format</label>
+    <label class="radiobox">
+      <input type="radio" name="Format" value="Pass" checked>Pass<br>
+      <input type="radio" name="Format" value="Interpass">Interpass<br>
+      <input type="radio" name="Format" value="Centre">Centre<br>
+      <input type="radio" name="Format" value="Other">Other<br>
+    </label>
     </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Golden Assist</label>
-    <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. Yes/No"  value="{{GoldenAssist}}" name="GoldenAssist" maxlength="3">
-    </div>
-</div>
-<div class="field">
-    <label for="TeamID" class="label">Stadium (Home/Away)</label>
-    <div class="control">
-      <input required="required" class="input" type="text" placeholder="e.g. Home/Away"  value="{{StadiumHA}}" name="StadiumHA" maxlength="5">
-    </div>
-</div>
-
+    <div class="field">
+        <label for="TeamID" class="label">Golden Assist</label>
+      <label class="radiobox">
+        <input type="radio" name="GoldenAssist" value="No" checked>No<br>
+        <input type="radio" name="GoldenAssist" value="Yes">Yes<br>
+      </label>
+      </div>
+      <div class="field">
+          <label for="TeamID" class="label">Stadium (Home/Away)</label>
+        <label class="radiobox">
+          <input type="radio" name="StadiumHA" value="Home" checked>Home<br>
+          <input type="radio" name="StadiumHA" value="Away">Away<br>
+        </label>
+        </div>
 <div class="field is-grouped">
   <div class="control">
     <button class="button is-link">Submit</button>
