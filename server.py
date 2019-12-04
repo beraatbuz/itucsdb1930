@@ -41,7 +41,7 @@ def login_page():
             password = form.data["password"]
             if hasher.verify(password, user.password):
                 login_user(user)
-                flash("You have logged in.")#
+                flash("You have logged in.")
                 next_page = request.args.get("next", url_for("fixture_page"))
                 return redirect(next_page)
         flash("Invalid credentials.")
@@ -905,6 +905,8 @@ def players_page(player_key):
             return player_update_page(process)
 app.add_url_rule("/player/<player_key>", view_func=players_page,methods=['GET','POST'])
 
+i = 0
+
 @app.route("/teams",methods=['GET','POST'])
 @login_required
 def teams_page(team_keys):
@@ -920,21 +922,32 @@ def teams_page(team_keys):
         print(cursor)
         return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
     else:
+        global i
         process = request.form.get('buttonName')
         processStadium = request.form.get('buttonStadium')
         processMatches = request.form.get('buttonMatch')
         processManager = request.form.get('buttonManager')
         processTeam = request.form.get('buttonTeam')
-        update = request.form.get('Update')
-        print(update)
+        processStart = request.form.get('Start')
+        processPlayer = request.form.get('buttonPlayer')
         if(processStadium):
+            i=1
             return stadium_update_page(processStadium)
         elif (processMatches):
+            i=2
             return fixture_update_page(processMatches)
+        elif (processPlayer):
+            i=3
+            return player_update_page(processPlayer)
         elif (processManager):
+            i=4
             return manager_update_page(processManager)
         elif (processTeam):
+            i=5
             return team_update_page(processTeam)
+        elif (processStart):
+            i=6
+            return fixture_update_page(processStart)
         elif (process == "add"):
             return redirect(url_for("team_adding_page"))
         elif (process == "add_player"):
@@ -972,7 +985,24 @@ def teams_page(team_keys):
                 obje.Manager_delete(int(form_manager_key))
             return redirect(url_for("team_page"))
         else:
-            return player_update_page(process)
+            if(i==1):
+                stadium_update_page(processStadium)
+            elif(i==2):
+                fixture_update_page(processMatches)
+            elif(i==3):  
+                player_update_page(processPlayer)      
+            elif(i==4):
+                manager_update_page(processManager)
+            elif(i==5):
+                team_update_page(processTeam)
+            elif(i==6):
+                fixture_update_page(processStart)
+            cursor=obje.Team_key(team_keys)
+            playerCursor=obje.Player_team_user(team_keys)
+            stadiumCursor=obje.Stadium_key(team_keys)
+            fixtureCursor=obje.Fixture_team_key(team_keys)
+            managerCursor=obje.Manager_team_key(team_keys)
+            return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
 app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST']) 
 
 @app.route("/goals",methods=['GET','POST'])

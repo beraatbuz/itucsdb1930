@@ -22,7 +22,7 @@
 <div class="field">
     <label for="Teamname" class="label">Select Team</label>
     <div class="select">
-        <select  value="{{TeamID}}" name="TeamID">
+        <select  value="{{Team_ID}}" name="Team_ID">
             {% for Teams in cursor[1] %}
             {% if Teams[0] == cursor[0][0][1]: %}
             <option value="{{Teams[0]}}" selected>{{Teams[1]}}</option>

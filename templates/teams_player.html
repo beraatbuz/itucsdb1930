@@ -89,7 +89,7 @@
             <td><a href="{{ url_for('team_page')}}/{{row[8]}}">{{row[7]}}</td></a>
             <td>
               <div class="control">
-                <button class="button is-primary is-small" name="buttonName" value="{{row[0]}}">Update</button>
+                <button class="button is-primary is-small" name="buttonPlayer" value="{{row[0]}}">Update</button>
               </div>
           </td>
           </tr>
@@ -180,7 +180,7 @@
                       <td style=""><div class="control"><button  class="button is-warning is-small " name="Start" value="{{row[0]}}">Start</button></div></td>
                       {%endif%}
                       {%if row[8] =='LIVE' %}
-                      <td style="color:red; font-weight: bold;"><div class="control"><button  class="button is-danger is-small " name="Live" value="{{row[0]}}">{{row[8]}}</button></div></td>
+                      <td style="color:red; font-weight: bold;">{{row[8]}}</td>
                       {%endif%}
                       {%if row[8] =='FINISHED' %}
                       <td style="color:black; font-weight: bold;">{{row[8]}}</td>
