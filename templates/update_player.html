@@ -33,38 +33,31 @@
   </div>
 </div>
 
-<div class="field">
+  <div class="field">
     <label for="Position" class="label">Player Position</label>
-    <div class="select">
-      <select  value="{{Position}}" name="Position">
-          {% for Player in cursor[0] %}
-          {% if Player[7] == cursor[0][0][7]: %}
-            {% if Player[7] == "Forward": %}
-            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
-            <option value="Midfielder">Midfielder</option>
-            <option value="Defender">Defender</option>
-            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
-            {% if Player[7] == "Midfielder": %}
-            <option value="Forward">Forward</option>
-            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
-            <option value="Defender">Defender</option>
-            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
-            {% if Player[7] == "Defender": %}
-            <option value="Forward">Forward</option>
-            <option value="Midfielder">Midfielder</option>
-            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>
-            <option value="Goalkeeper" >Goalkeeper</option>{% endif %}
-            {% if Player[7] == "Goalkeeper": %}
-            <option value="Forward">Forward</option>
-            <option value="Midfielder">Midfielder</option>
-            <option value="Defender">Defender</option>
-            <option value="{{Player[7]}}" selected>{{Player[7]}}</option>{% endif %}
-            {% endif %}
-            {% endfor %}
-        </select>
-  
-    </div>
-  </div>
+  <label class="radiobox">
+      {% if row[7] == 'Goalkeeper' %}
+      <input type="radio" name="Position" value="Goalkeeper" checked>Goalkeeper<br>
+      {% else %}
+      <input type="radio" name="Position" value="Goalkeeper">Goalkeeper<br>
+      {% endif %}
+      {% if row[7] == 'Defender' %}
+      <input type="radio" name="Position" value="Defender" checked>Defender<br>
+      {% else %}
+      <input type="radio" name="Position" value="Defender">Defender<br>
+      {% endif %}
+      {% if row[7] == 'Midfielder' %}
+      <input type="radio" name="Position" value="Midfielder" checked>Midfielder<br>
+      {% else %}
+      <input type="radio" name="Position" value="Midfielder">Midfielder<br>
+      {% endif %}
+      {% if row[7] == 'Forward' %}
+      <input type="radio" name="Position" value="Forward" checked>Forward<br>
+      {% else %}
+      <input type="radio" name="Position" value="Forward">Forward<br>
+      {% endif %}
+  </label>
+  </div> 
 
 <div class="field">
   <label for="PlayerNationalty" class="label">Player Nationalty</label>
