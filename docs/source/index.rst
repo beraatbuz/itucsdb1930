@@ -9,7 +9,7 @@ Welcome to itucsdb1930's documentation!
    * Beraat Buz
    * Ahmet Yılmaz
 
-**project description goes here (a few paragraphs)**
+**This project is about England Premier League**
 
 Contents:
 
