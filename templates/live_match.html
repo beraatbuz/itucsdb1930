@@ -14,24 +14,28 @@
 <a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
 
 <script>
-    function Random() {
-        var number = Math.floor(Math.random() * 100);
-        document.getElementById('textbox').value = number;
+    var sayac=0;
+
+    function say()
+    {
+      document.getElementById("Minute").innerHTML = sayac;
+      if(sayac <=10) {
+          sayac++;
+        } else {
+          document.getElementById("Minute").innerHTML = 'Match Finished';
+        }
     }
-
 </script>
-<form name="number">
-    <br>
-    <input style="color:green; font-weight: bold;" type="text" id="textbox" name="textbox" text-align="right" />
-</form>
-
-<button onclick="Random()">Get Random Minute</button>
-
-
 <br><br>
 <br>
-<form method='POST'>
 
+<button class="button is-primary is-small" onclick="degisken=setInterval(say, 1000)">Başlat/Devam</button>
+<button class="button is-danger is-small " onclick="clearInterval(degisken)">Durdur</button>
+
+<form method='POST'>
+    
+
+  <p id="Minute"></p>
 
 <h2 class="title">Fixture Update</h2>
 
