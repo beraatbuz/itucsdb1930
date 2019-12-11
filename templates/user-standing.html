@@ -15,7 +15,7 @@
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="width:100%">
                 <tr>
                     
-                    
+                    <th>#rank</th>
                     <th>Teams</th>
                     <th>Played</th>
                     <th>Won</th>
@@ -29,9 +29,8 @@
                   </tr>
                   {% for row in cursor %}
                   <tr> 
-                    
-                      
-                        <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
+                      <td>{{loop.index}}</td>
+                      <td><a href="{{ url_for('team_user_page')}}/{{row[10]}}">{{row[1]}}</td></a>
                       <td>{{row[2]}}</td>
                       <td>{{row[3]}}</td>
                       <td>{{row[4]}}</td>
@@ -42,6 +41,7 @@
                       <td>{{row[9]}}</td>
                       
                 </tr>
+
                 {% endfor %}
         </table>
         
