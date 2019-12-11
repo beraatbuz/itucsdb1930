@@ -23,7 +23,8 @@ Code
             self.x = x
 
 .. toctree::
+   :maxdepth: 1
 
    Muhammed Enes Tırnakçı
    Beraat Buz 
-   Ahmet Yılmaz
+   /member1
