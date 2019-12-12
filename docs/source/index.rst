@@ -11,6 +11,12 @@ Welcome to itucsdb1930's documentation!
 
 **This project is about England Premier League**
 
+.. figure:: user/userTopAssist.png
+      :scale: 50 %
+      :alt: Top Player's Assist
+
+      The user can see top assist player in this page by clicking the ‘See Top Assists’ button.
+
 Contents:
 
 .. toctree::
