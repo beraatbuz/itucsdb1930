@@ -71,6 +71,18 @@ Code
 
    .. code-block:: python
 
+      def Assist_user(self,Key):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select Assist.id,Player.playername,Teams.Teamname, Assist.minute,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, Player.teamid FROM Assist, Player,Teams,Fixtures where Assist.playerid = Player.id and Assist.matchid = fixtures.id and fixtures.id=%s and Teams.id=Player.Teamid ORDER BY minute"""
+               cursor.execute(statement,[Key])
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   To show assists information on the user side, we use this query.
+
+   .. code-block:: python
+
       def Stadium(self):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
@@ -79,7 +91,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-   This code get all statistic from db by joining Referee table to show referee’s name.
+   This code get all stadium information from db by joining Teams table to show team’s name.
 
    .. code-block:: python
 	
@@ -89,7 +101,7 @@ Code
                statement = """ INSERT INTO Stadium(Team_ID,Stadiumname,Capacity,Built,PitchSize,Surface) VALUES(%s,%s,%s,%s,%s,%s);"""
                cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface]))
 
-   This method adds new statistic for the match
+   This method adds new stadium for teams.
 
    .. code-block:: python
 	
@@ -99,7 +111,7 @@ Code
                statement="""Delete From Stadium Where ID = %s;"""
                cursor.execute(statement,([StadiumId]))
 
-   This method deletes the statistic according to id value.
+   This method deletes the stadium according to id value.
 
    .. code-block:: python
 
@@ -109,7 +121,7 @@ Code
                statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s, Capacity=%s, Built=%s, PitchSize=%s, Surface=%s Where ID=%s;"""
                cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface, StadiumId]))
 
-   This query updates the statistic that exists before
+   This query updates the stadium that exists before
 
    .. code-block:: python
 
@@ -121,7 +133,85 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
+   To get information of stadium that will be updated and show in the .html page, we use this method.
+
+   .. code-block:: python
+
+      def Stadium_key(self,Key):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id and team_id=%s ORDER BY Teamname"""
+               cursor.execute(statement, [Key])
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   To show stadium information on the user side, we use this query.
+
+   .. code-block:: python
+
+      def Statistic(self):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName FROM Statistic,Referee where "RefereeID"=Referee.ID ORDER BY MatchID"""
+               cursor.execute(statement)
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   This code get all statistic from db by joining Referee table to show referee’s name.
+
+   .. code-block:: python
+	
+      def Statistic_add(self, MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """ INSERT INTO Statistic(MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, "RefereeID") VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
+               cursor.execute(statement,([MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID]))
+
+   This method adds new statistic for the match
+   
+   .. code-block:: python
+      
+      def Statistic_delete(self, StatisticId):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement="""Delete From Statistic Where ID = %s; """
+               cursor.execute(statement,([StatisticId]))
+
+   This method deletes the statistic according to id value.
+
+   .. code-block:: python
+
+      def Statistic_Update(self, StatisticId, MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement="""Update Statistic Set MatchID=%s, HPossesion=%s, HCorner=%s, HFoul=%s, HOffside=%s, HShot=%s, HShotOnTarget=%s, HShotAccuracy=%s, HPassAccuracy=%s, APossesion=%s, ACorner=%s, AFoul=%s, AOffside=%s, AShot=%s, AShotOnTarget=%s, AShotAccuracy=%s, APassAccuracy=%s, "RefereeID"=%s Where ID=%s;"""
+               cursor.execute(statement,([MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID,StatisticId]))
+	
+   This query updates the statistic that exists before
+
+   .. code-block:: python
+      
+      def Statistic_update_info(self, ID):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select * FROM Statistic where ID = %s;"""
+               cursor.execute(statement,([ID]))
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
    To get information of statistic that will be updated and show in the .html page, we use this method.
+
+   .. code-block:: python
+
+      def Statistic_user(self,Key):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName, Statistic."RefereeID" FROM Statistic, Referee  Where matchid=%s and Statistic."RefereeID"=Referee.id ORDER BY MatchID"""
+               cursor.execute(statement,[Key])
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   To show statistic information on the user side, we use this query.
 
 .. toctree:
 
