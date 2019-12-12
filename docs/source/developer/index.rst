@@ -25,13 +25,17 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-	.. code-block:: python
+   This code get all assist from db by joining Teams and Fixtures tables. To show the assist is done in which match we have to join with fixtures table and teams table for team’s name
+
+.. code-block:: python
 
       def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
                statement = """ INSERT INTO Assist(PlayerId,MatchId,Minute,LastTouch,Format,GoldenAssist,StadiumHA) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
                cursor.execute(statement,([PlayerId, MatchId,Minute,LastTouch,Format,GoldenAssist,StadiumHA]))
+
+   This method adds new assist
 
    .. code-block:: python
 
@@ -41,6 +45,8 @@ Code
                statement="""Delete From Assist Where ID = %s; """
                cursor.execute(statement,([AssistId]))
 
+   This method deletes the asistst according to id value.
+
    .. code-block:: python
 
       def Assist_update(self, AssistId, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
@@ -48,6 +54,8 @@ Code
             with connection.cursor() as cursor:
                statement="""Update Assist Set PlayerID=%s, MatchID=%s, Minute=%s, LastTouch=%s, Format=%s,GoldenAssist=%s,StadiumHA=%s Where ID=%s;"""
                cursor.execute(statement,([PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA, AssistId]))
+
+   This query updates the assist that exists before
 
    .. code-block:: python
 
@@ -58,6 +66,8 @@ Code
                cursor.execute(statement,([ID]))
                cursor_list=cursor.fetchall()
                return cursor_list
+
+   To get information of asisst that will be updated and show in the .html page, we use this method.
 
 .. toctree:
 
