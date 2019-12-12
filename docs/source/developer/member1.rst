@@ -1,7 +1,5 @@
 Parts Implemented by Ahmet YILMAZ
 ================================
-Developer Guide
-===============
 
 Database Design
 ---------------

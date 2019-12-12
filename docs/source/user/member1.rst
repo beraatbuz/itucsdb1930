@@ -1,4 +1,4 @@
-User Guide
+Parts Implemented by Ahmet YILMAZ
 ==========
 
 **explain how yyour application works from the user perspective, use
@@ -78,9 +78,3 @@ screenshots whereever appropriate**
       :alt: Update Statistic Page
 
       To update a statistic data, developer can use the this page.
-
-.. toctree::
-   :maxdepth: 1
-   Muhammed Enes Tırnakçı
-   Beraat Buz
-   Ahmet Yılmaz
