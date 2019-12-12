@@ -1,5 +1,11 @@
-Parts Implemented by Ahmet YILMAZ
-================================
+User Guide
+==========
+
+**explain how yyour application works from the user perspective, use
+screenshots whereever appropriate**
+
+**to add a picture, use the following example**:
+
 
    .. figure:: userTopAssist.png
       :scale: 50 %
@@ -72,3 +78,9 @@ Parts Implemented by Ahmet YILMAZ
       :alt: Update Statistic Page
 
       To update a statistic data, developer can use the this page.
+
+.. toctree::
+   :maxdepth: 1
+   Muhammed Enes Tırnakçı
+   Beraat Buz
+   Ahmet Yılmaz
