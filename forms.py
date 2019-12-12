@@ -22,6 +22,14 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """ DELETE FROM Teams WHERE ID = %s;"""
 				cursor.execute(statement,[TeamID])		
+
+	def Stadium(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id ORDER BY Teamname"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
 	
 	def Stadium_add(self, TeamId, StadiumName, Capacity, Built, PitchSize, Surface):
 		with dbapi.connect(url) as connection:
@@ -40,21 +48,14 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s, Capacity=%s, Built=%s, PitchSize=%s, Surface=%s Where ID=%s;"""
 				cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface, StadiumId]))
+				
 	def Stadium_update_info(self, ID):
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """ Select * From Stadium where ID = %s;"""
 				cursor.execute(statement,([ID]))
 				cursor_list=cursor.fetchall()
-				return cursor_list
-
-	def Stadium(self):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id ORDER BY Teamname"""
-				cursor.execute(statement)
-				cursor_list=cursor.fetchall()
-				return cursor_list
+				return cursor_list	
 
 	def Assist(self):
 		with dbapi.connect(url) as connection:

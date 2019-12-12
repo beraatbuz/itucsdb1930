@@ -69,6 +69,60 @@ Code
 
    To get information of asisst that will be updated and show in the .html page, we use this method.
 
+   .. code-block:: python
+
+      def Stadium(self):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """Select Stadium.id, Teamname, StadiumName, capacity,built,pitchsize,surface,team_id FROM Stadium,teams Where Teams.id=team_id ORDER BY Teamname"""
+               cursor.execute(statement)
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   This code get all statistic from db by joining Referee table to show referee’s name.
+
+   .. code-block:: python
+	
+      def Stadium_add(self, TeamId, StadiumName, Capacity, Built, PitchSize, Surface):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """ INSERT INTO Stadium(Team_ID,Stadiumname,Capacity,Built,PitchSize,Surface) VALUES(%s,%s,%s,%s,%s,%s);"""
+               cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface]))
+
+   This method adds new statistic for the match
+
+   .. code-block:: python
+	
+      def Stadium_delete(self,StadiumId):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement="""Delete From Stadium Where ID = %s;"""
+               cursor.execute(statement,([StadiumId]))
+
+   This method deletes the statistic according to id value.
+
+   .. code-block:: python
+
+      def Stadium_update(self, StadiumId, TeamId, StadiumName, Capacity, Built, PitchSize, Surface):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement="""Update Stadium Set Team_ID=%s, Stadiumname=%s, Capacity=%s, Built=%s, PitchSize=%s, Surface=%s Where ID=%s;"""
+               cursor.execute(statement,([TeamId, StadiumName, Capacity, Built, PitchSize, Surface, StadiumId]))
+
+   This query updates the statistic that exists before
+
+   .. code-block:: python
+
+      def Stadium_update_info(self, ID):
+         with dbapi.connect(url) as connection:
+            with connection.cursor() as cursor:
+               statement = """ Select * From Stadium where ID = %s;"""
+               cursor.execute(statement,([ID]))
+               cursor_list=cursor.fetchall()
+               return cursor_list
+
+   To get information of statistic that will be updated and show in the .html page, we use this method.
+
 .. toctree:
 
    Muhammed Enes Tırnakçı
