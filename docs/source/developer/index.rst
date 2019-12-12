@@ -6,7 +6,10 @@ Database Design
 
 **explain the database design of your project**
 
-**include the E/R diagram(s)**
+   .. figure:: erDiagram.png
+         :scale: 50 %
+         :alt: E/R Diagram for Assist, Statistic, Stadium
+
 
 Code
 ----
