@@ -11,7 +11,7 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :scale: 50 %
       :alt: Goals
 
-      The developer can see all goals in this page by clicking the ‘See All Goals’ button.
+      The developer can see all goals in this page by clicking the ‘See All Goals’ button. Developer can delete and update the goals.
        
  .. figure:: manager_add.png
       :scale: 50 %
@@ -35,7 +35,7 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :scale: 50 %
       :alt: Managers
 
-      The developer can see all managers in this page by clicking the ‘See All Managers’ button.
+      The developer can see all managers in this page by clicking the ‘See All Managers’ button. Developer can delete and update the managers.
             
  .. figure:: managers_user.png
       :scale: 50 %
@@ -47,7 +47,7 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :scale: 50 %
       :alt: Players
 
-      The developer can see all players in this page by clicking the ‘See All Players button.
+      The developer can see all players in this page by clicking the ‘See All Players button. Developer can delete and update the players.
             
  .. figure:: player_add.png
       :scale: 50 %
@@ -102,7 +102,7 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :scale: 50 %
       :alt: Teams
 
-      The developer can see all teams in this page by clicking the ‘See All Teams’ button.
+      The developer can see all teams in this page by clicking the ‘See All Teams’ button. Developer can delete and update the teams.
            
                       
  .. figure:: top_goal_user.png
