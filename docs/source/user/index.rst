@@ -7,7 +7,7 @@ screenshots whereever appropriate**
 **to add a picture, use the following example**::
 
 
-   .. figure:: /userTopAssist.png
+   .. figure:: userTopAssist.png
       :scale: 50 %
       :alt: Top Player's Assist
 
