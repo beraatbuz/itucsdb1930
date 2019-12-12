@@ -55,6 +55,17 @@ class FootballStats:
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
+	def Assist(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, HomeTeam,Awayteam,MatchID FROM Assist, Player,Teams as home, Teams as away, Fixtures 
+				where Assist.playerid = Player.id and Assist.matchid = fixtures.id
+				and home.id=fixtures.hometeam
+				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
 			
 	def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
 		with dbapi.connect(url) as connection:
@@ -131,6 +142,15 @@ class FootballStats:
 			with connection.cursor() as cursor:
 				statement = """ DELETE FROM Goal WHERE ID = %s;"""
 				cursor.execute(statement,[GoalID])	
+
+	def Statistic(self):
+		with dbapi.connect(url) as connection:
+			with connection.cursor() as cursor:
+				statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, 
+APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName FROM Statistic,Referee where "RefereeID"=Referee.ID ORDER BY MatchID"""
+				cursor.execute(statement)
+				cursor_list=cursor.fetchall()
+				return cursor_list
 	
 	def Statistic_add(self, MatchID, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeID):
 		with dbapi.connect(url) as connection:
@@ -157,6 +177,7 @@ class FootballStats:
 				cursor.execute(statement,([ID]))
 				cursor_list=cursor.fetchall()
 				return cursor_list
+
 
 	def Player_add(self, PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID):
 		with dbapi.connect(url) as connection:
@@ -223,26 +244,6 @@ class FootballStats:
 		with dbapi.connect(url) as connection:
 			with connection.cursor() as cursor:
 				statement = """Select distinct MatchDetails.ID, MatchID, Detail, Minute From MatchDetails, Fixtures Where MatchDetails.ID=MatchDetails.ID and MatchID=MatchID Order By MatchID,Minute"""
-				cursor.execute(statement)
-				cursor_list=cursor.fetchall()
-				return cursor_list
-	
-	def Assist(self):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """Select Assist.id,Player.playername,Assist.minute,home.teamname as HomeTeam, away.teamname as AwayTeam,Assist.lasttouch,Assist.format,Assist.goldenassist,Assist.stadiumha, Player.id, HomeTeam,Awayteam,MatchID FROM Assist, Player,Teams as home, Teams as away, Fixtures 
-				where Assist.playerid = Player.id and Assist.matchid = fixtures.id
-				and home.id=fixtures.hometeam
-				and away.id=fixtures.awayteam ORDER BY fixtures.ID"""
-				cursor.execute(statement)
-				cursor_list=cursor.fetchall()
-				return cursor_list
-	
-	def Statistic(self):
-		with dbapi.connect(url) as connection:
-			with connection.cursor() as cursor:
-				statement = """Select statistic.ID, matchid, HPossesion, HCorner, HFoul, HOffside, HShot, HShotOnTarget, HShotAccuracy, HPassAccuracy, 
-APossesion, ACorner, AFoul, AOffside, AShot, AShotOnTarget, AShotAccuracy, APassAccuracy, RefereeName FROM Statistic,Referee where "RefereeID"=Referee.ID ORDER BY MatchID"""
 				cursor.execute(statement)
 				cursor_list=cursor.fetchall()
 				return cursor_list
