@@ -27,7 +27,7 @@ Code
 
    This code get all assist from db by joining Teams and Fixtures tables. To show the assist is done in which match we have to join with fixtures table and teams table for team’s name
 
-.. code-block:: python
+   .. code-block:: python
 
       def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
          with dbapi.connect(url) as connection:
