@@ -6,13 +6,6 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
                         """
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Teamname VARCHAR(30) NOT NULL;
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS NickName VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ShortName VARCHAR(30) NOT NULL;
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS FoundationDate VARCHAR(30);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS ManagerID INTEGER REFERENCES Manager (ID);
-                        ALTER TABLE Teams ADD COLUMN IF NOT EXISTS Location VARCHAR(50);
-
                         CREATE TABLE IF NOT EXISTS  Teams
                         (
                                 ID SERIAL PRIMARY KEY,
@@ -26,10 +19,6 @@ INIT_STATEMENTS = [
                         """,
                         
                         """
-                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Capacity INTEGER NOT NULL;
-                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Built INTEGER NOT NULL;
-                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS PitchSize VARCHAR(10) NOT NULL;
-                        ALTER TABLE Stadium ADD COLUMN IF NOT EXISTS Surface VARCHAR(10) NOT NULL;
 
                         CREATE TABLE IF NOT EXISTS  Stadium
                         (
@@ -45,12 +34,7 @@ INIT_STATEMENTS = [
 
                         
 
-                        """
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS Age INTEGER;
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS RefereeName VARCHAR(30);
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalMatch INTEGER;
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalRedCard INTEGER;
-                        ALTER TABLE Referee ADD COLUMN IF NOT EXISTS TotalYellowCard INTEGER;                                
+                        """                 
                         CREATE TABLE IF NOT EXISTS  Referee
                         (
                                 ID SERIAL PRIMARY KEY,
@@ -78,15 +62,6 @@ INIT_STATEMENTS = [
                         """,
 
                          """
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS MatchDate VARCHAR(30);
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Refereeid INTEGER;
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Status VARCHAR(30) NOT NULL;
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS Time VARCHAR(30);
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS  HomeScore VARCHAR(2) DEFAULT '-';
-                        ALTER TABLE Fixtures ADD COLUMN IF NOT EXISTS AwayScore VARCHAR(2) DEFAULT '-';
-                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS StadiumID;
-                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS HomeTScore;
-                        ALTER TABLE Fixtures DROP COLUMN IF EXISTS AwayTScore;
                         
                         CREATE TABLE IF NOT EXISTS  Fixtures
                         (
@@ -103,12 +78,6 @@ INIT_STATEMENTS = [
                         )
                         """,
                         """
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerAge INTEGER;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerNationalty VARCHAR(30) NOT NULL;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlayerHeight INTEGER NOT NULL;
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS Position VARCHAR(30);
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS TeamID INTEGER NOT NULL REFERENCES Teams (ID);
-                        ALTER TABLE Player ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
                                 
                         CREATE TABLE IF NOT EXISTS  Player
                         (
@@ -124,7 +93,6 @@ INIT_STATEMENTS = [
                         """,
 			
 			"""
-                        ALTER TABLE Assist ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
 
                         CREATE TABLE IF NOT EXISTS  Assist
 			(
@@ -150,9 +118,6 @@ INIT_STATEMENTS = [
 			""",
 			
 			""" 
-                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS Minute INTEGER NOT NULL;
-                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS MatchID integer NOT NULL REFERENCES Fixtures (ID);
-                        ALTER TABLE Goal ADD COLUMN IF NOT EXISTS PlayerID integer NOT NULL REFERENCES Player (ID);
 
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
@@ -203,11 +168,6 @@ INIT_STATEMENTS = [
 			""",
 
                         """
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Name VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Age INTEGER NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Nationalty VARCHAR(30) NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS Height INTEGER NOT NULL;
-                        ALTER TABLE Manager ADD COLUMN IF NOT EXISTS PlaceOfBirth VARCHAR(30) NOT NULL;
                         
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
