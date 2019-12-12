@@ -28,7 +28,8 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-	.. code-block:: python		
+	.. code-block:: python
+
       def Assist_add(self, PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
@@ -36,6 +37,7 @@ Code
                cursor.execute(statement,([PlayerId, MatchId,Minute,LastTouch,Format,GoldenAssist,StadiumHA]))
 
    .. code-block:: python
+
       def Assist_delete(self, AssistId):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
@@ -51,6 +53,7 @@ Code
                cursor.execute(statement,([PlayerId, MatchId, Minute, LastTouch, Format, GoldenAssist, StadiumHA, AssistId]))
 
    .. code-block:: python
+   
       def Assist_update_info(self, ID):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
