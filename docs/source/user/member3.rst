@@ -1,85 +1,85 @@
 Parts Implemented by Beraat Buz
 ================================
 
- .. figure:: login.png
+ .. figure:: login.PNG
       :scale: 50 %
       :alt: login
 
       The administrator can login to operate CRUD operations
 
- .. figure:: userfixture.png
+ .. figure:: userfixture.PNG
       :scale: 50 %
       :alt: Fixture
 
       The user can see all fixtures up to week 4, and control the status of matches. Moreover, the user can reach more information about the match using status buttons.
        
- .. figure:: refereekey.png
+ .. figure:: refereekey.PNG
       :scale: 50 %
       :alt: Referee
 
       The user can see some information about the referee by clicking referee name at fixture page.
       
- .. figure:: userreferee.png
+ .. figure:: userreferee.PNG
       :scale: 50 %
       :alt: Referee
 
       The user can see some information about all referees.
             
- .. figure:: userstanding.png
+ .. figure:: userstanding.PNG
       :scale: 50 %
       :alt: Standing
 
       The user can see standing table in the EPL.
             
- .. figure:: crudfixture.png
+ .. figure:: crudfixture.PNG
       :scale: 50 %
       :alt: Crud Fixture
 
       After login, in the beginnig the page in which add, update, delete and starting the match operations about fixture can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
- .. figure:: crudreferee.png
+ .. figure:: crudreferee.PNG
       :scale: 50 %
       :alt: Crud Referee
 
       After login, by clicking see all referee the page in which add, update and delete operations about referees can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
- .. figure:: crudstanding.png
+ .. figure:: crudstanding.PNG
       :scale: 50 %
       :alt: Crud Standing
 
       After login, by clicking see standing table the page in which add, update and delete operations about standing table can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
- .. figure:: addfixture.png
+ .. figure:: addfixture.PNG
       :scale: 50 %
       :alt: add fixture
 
       The administrator can add more fixtures in this page.
             
- .. figure:: addreferee.png
+ .. figure:: addreferee.PNG
       :scale: 50 %
       :alt: add referee
 
       The administrator can add more referees in this page.
             
- .. figure:: addstanding.png
+ .. figure:: addstanding.PNG
       :scale: 50 %
       :alt: add standing
 
       The administrator can add more teams to standing table in this page.
             
- .. figure:: updatefixture.png
+ .. figure:: updatefixture.PNG
       :scale: 50 %
       :alt: updatefixture
 
       The administrator can update the fixture which is selected in this page.
             
- .. figure:: updatereferee.png
+ .. figure:: updatereferee.PNG
       :scale: 50 %
       :alt: update referee
 
       The administrator can update the referee which is selected in this page.
             
- .. figure:: updatestanding.png
+ .. figure:: updatestanding.PNG
       :scale: 50 %
       :alt: Update standing
 
