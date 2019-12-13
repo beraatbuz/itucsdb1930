@@ -35,19 +35,19 @@ Parts Implemented by Beraat Buz
       :scale: 50 %
       :alt: Crud Fixture
 
-      After login, in the beginnig the page in which add, update, delete and starting the match operations about fixture can be done seen. The administrator can do these operations. Delete operation is operated by using checboxes.
+      After login, in the beginnig the page in which add, update, delete and starting the match operations about fixture can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
  .. figure:: crudreferee.png
       :scale: 50 %
       :alt: Crud Referee
 
-      After login, by clicking see all referee the page in which add, update and delete operations about referees can be done seen. The administrator can do these operations. Delete operation is operated by using checboxes.
+      After login, by clicking see all referee the page in which add, update and delete operations about referees can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
  .. figure:: crudstanding.png
       :scale: 50 %
       :alt: Crud Standing
 
-      After login, by clicking see standing table the page in which add, update and delete operations about standing table can be done seen. The administrator can do these operations. Delete operation is operated by using checboxes.
+      After login, by clicking see standing table the page in which add, update and delete operations about standing table can be done seen. The administrator can do these operations. Delete operation is operated by using checkboxes.
             
  .. figure:: addfixture.png
       :scale: 50 %
