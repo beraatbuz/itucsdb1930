@@ -13,7 +13,7 @@ INIT_STATEMENTS = [
                                 NickName VARCHAR(30),
                                 ShortName VARCHAR(30) NOT NULL,
                                 FoundationDate VARCHAR(30),	
-                                ManagerID INTEGER REFERENCES Manager (ID),
+                                ManagerID INTEGER REFERENCES Manager (ID) ON DELETE cascade,
                                 Location VARCHAR(50)
                         )
                         """,
@@ -23,7 +23,7 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Stadium
                         (
                                 ID SERIAL PRIMARY KEY,
-                                Team_ID INTEGER NOT NULL REFERENCES Teams (ID),
+                                Team_ID INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade,
                                 Stadiumname VARCHAR(30) NOT NULL,
                                 Capacity INTEGER NOT NULL,
                                 Built INTEGER NOT NULL,
@@ -49,7 +49,7 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Standings
                         (
                                 ID SERIAL PRIMARY KEY,
-                                TeamID INTEGER NOT NULL REFERENCES Teams (ID),
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade,
                                 Played INTEGER NOT NULL,
                                 Won INTEGER NOT NULL,
                                 Drawn INTEGER NOT NULL,
@@ -66,8 +66,8 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Fixtures
                         (
                                 ID SERIAL PRIMARY KEY,
-                                HomeTeam INTEGER NOT NULL REFERENCES Teams (ID),
-                                AwayTeam INTEGER NOT NULL REFERENCES Teams (ID),
+                                HomeTeam INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade,
+                                AwayTeam INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade,
                                 Refereeid INTEGER REFERENCES Referee (ID),
                                 HomeScore VARCHAR(2) DEFAULT '-',
                                 AwayScore VARCHAR(2) DEFAULT '-',
@@ -88,7 +88,7 @@ INIT_STATEMENTS = [
                                 PlayerNationalty VARCHAR(30) NOT NULL,
                                 PlayerHeight INTEGER NOT NULL,
                                 PlaceOfBirth VARCHAR(30) NOT NULL,
-                                TeamID INTEGER NOT NULL REFERENCES Teams (ID)
+                                TeamID INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade
                         )
                         """,
 			
@@ -97,8 +97,8 @@ INIT_STATEMENTS = [
                         CREATE TABLE IF NOT EXISTS  Assist
 			(
 				ID serial NOT NULL,
-				PlayerID integer REFERENCES Player (ID),
-				MatchID integer  REFERENCES Fixtures (ID),
+				PlayerID integer REFERENCES Player (ID) ON DELETE cascade,
+				MatchID integer  REFERENCES Fixtures (ID) ON DELETE cascade,
                                 Minute INTEGER NOT NULL,
                                 LastTouch VARCHAR(10) NOT NULL,
                                 Format VARCHAR(15) NOT NULL,
@@ -122,8 +122,8 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Goal
 			(
 				ID serial,
-				PlayerID integer NOT NULL REFERENCES Player (ID),
-				MatchID integer NOT NULL REFERENCES Fixtures (ID),
+				PlayerID integer NOT NULL REFERENCES Player (ID) ON DELETE cascade,
+				MatchID integer NOT NULL REFERENCES Fixtures (ID) ON DELETE cascade,
                                 Minute INTEGER NOT NULL,
 				PRIMARY KEY (ID)
 			) 
@@ -134,7 +134,7 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  Statistic
 			(
 				ID serial,
-				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
+				MatchID integer NOT NULL  REFERENCES Fixtures (ID) ON DELETE cascade,
 				HPossesion integer DEFAULT 0,
 				HCorner integer DEFAULT 0,
 				HFoul integer DEFAULT 0,
@@ -160,7 +160,7 @@ INIT_STATEMENTS = [
 			CREATE TABLE IF NOT EXISTS  MatchDetails
 			(
 				ID serial,
-				MatchID integer NOT NULL  REFERENCES Fixtures (ID),
+				MatchID integer NOT NULL  REFERENCES Fixtures (ID) ON DELETE cascade,
                                 Detail VARCHAR(300) NOT NULL,
                                 Minute integer NOT NULL,
 				PRIMARY KEY (ID)
@@ -168,7 +168,7 @@ INIT_STATEMENTS = [
 			""",
 
                         """
-                        
+  
                         CREATE TABLE IF NOT EXISTS  Manager
                         (
                                 ID SERIAL PRIMARY KEY,
@@ -176,8 +176,8 @@ INIT_STATEMENTS = [
                                 Age INTEGER NOT NULL,
                                 Nationalty VARCHAR(30) NOT NULL,
                                 Height INTEGER NOT NULL,
-                                PlaceOfBirth VARCHAR(30) NOT NULL
-                        
+                                PlaceOfBirth VARCHAR(30) NOT NULL,
+                                teamid REFERENCES teams (ID) ON DELETE cascade
                         )
                         """
                 
