@@ -177,7 +177,7 @@ INIT_STATEMENTS = [
                                 Nationalty VARCHAR(30) NOT NULL,
                                 Height INTEGER NOT NULL,
                                 PlaceOfBirth VARCHAR(30) NOT NULL,
-                                teamid REFERENCES teams (ID) ON DELETE cascade
+                                teamid integer REFERENCES teams (ID) ON DELETE cascade
                         )
                         """
                 
