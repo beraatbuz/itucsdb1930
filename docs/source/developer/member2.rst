@@ -414,6 +414,7 @@ Code
    In this method, if we enter the team page with get method, we list information of teams. If it is post, we investigate the button value. If the value is add we go to team adding page, if it is delete, we call team delete method. In the other possibility we go to team update page by calling team information method that gets the information of team that will be updated. 
 
    .. code-block:: python
+      
       @app.route("/add_player", methods=['GET','POST'])
       @login_required
       def player_adding_page():
@@ -440,6 +441,7 @@ Code
    If our method is post, we get the form information and we add new player.
 
    .. code-block:: python
+      
       @app.route("/player", methods=['GET','POST'])
       @login_required
       def player_page():
@@ -466,6 +468,7 @@ Code
    In this method, if we enter the player page with get method, we list information of players. If it is post, we investigate the button value. If the value is add we go to player adding page, if it is delete, we call player delete method. In the other possibility we go to player update page by calling player information method that gets the information of player that will be updated. 
 
    .. code-block:: python
+      
       @app.route("/add_manager", methods=['GET','POST'])
       @login_required
       def manager_adding_page():
@@ -488,6 +491,7 @@ Code
    If our method is post, we get the form information and we add new manager.
 
    .. code-block:: python
+      
       @app.route("/manager", methods=['GET','POST'])
       @login_required
       def manager_page():
@@ -514,6 +518,7 @@ Code
    In this method, if we enter the manager page with get method, we list information of managers. If it is post, we investigate the button value. If the value is add we go to manager adding page, if it is delete, we call manager delete method. In the other possibility we go to manager update page by calling manager information method that gets the information of manager that will be updated. 
 
    .. code-block:: python
+      
       @app.route("/add_goal", methods=['GET','POST'])
       @login_required
       def goal_adding_page():
@@ -537,6 +542,7 @@ Code
    If our method is post, we get the form information and we add new goal.
 
    .. code-block:: python
+      
       @app.route("/goal", methods=['GET','POST'])
       @login_required
       def goal_page():
@@ -564,6 +570,7 @@ Code
    In this method, if we enter the goal page with get method, we list information of goals. If it is post, we investigate the button value. If the value is add we go to goal adding page, if it is delete, we call goal delete method. In the other possibility we go to goal update page by calling goal information method that gets the information of goal that will be updated. 
 
    .. code-block:: python
+     
       @app.route("/update_goal", methods=['GET','POST'])
       @login_required
       def goal_update_page(process):
@@ -664,6 +671,7 @@ Code
    If our method is post, we update the team, player, goal or manager according the id value received as a parameter.
 
    .. code-block:: python
+      
       i = 0
 
       @app.route("/teams",methods=['GET','POST'])
@@ -767,6 +775,7 @@ Code
    This method creates a page for single team with its players, stadium, manager, fixture informations by using key access when form is GET. When form is post, since all of the team, players, stadium, manager, fixture buttons which are delete, add, update are directed to the its right function.
 
    .. code-block:: python
+      
       @app.route("/goals",methods=['GET','POST'])
       @login_required
       def goals_page(goal_keys):
@@ -845,6 +854,7 @@ Code
    In this method is used for creating pages for single tuples by using key access. In POST form Delete, add, update are same as methods that do not have key access. 
 
    .. code-block:: python
+      
       @app.route("/top_goal", methods=['GET'])
       def top_goal_page():
          obje = forms.FootballStats()
@@ -878,6 +888,7 @@ Code
    These methods are used for creating user players, managers, teams, and top goal pages.
 
    .. code-block:: python
+      
       @app.route("/managers_user")
       def managers_user_page(manager_keys):
          obje = forms.FootballStats()
@@ -913,6 +924,7 @@ Code
    These methods are used for creating user players, managers, teams, and top goal pages. These function perform key access, and teams_user_page not only show teams' informations but also shows that team's manager, stadium, players, and played or unplayed matches.
 
    .. code-block:: python
+      
       @app.route("/live_match", methods=['GET','POST'])
       @login_required
       def live_match_page(processLive): 
