@@ -381,5 +381,550 @@ Code
             flash("You have added.")
             return redirect(url_for("team_adding_page"))
 
-   If our method is post, we get the form information and we add new team.
-  
+   In this method, if our method is post, we get the form information and we add new team.
+
+   .. code-block:: python
+
+      @app.route("/team", methods=['GET','POST'])
+      @login_required
+      def team_page():
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Team()
+            print(cursor)
+            return render_template("teams.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("team_adding_page"))
+            elif(process == "Delete"):
+                  form_team_keys = request.form.getlist("team_keys")
+                  for team_key in form_team_keys:
+                     obje.Team_delete(team_key)
+                  flash("You have deleted.")
+                  return redirect(url_for("team_page"))
+            else:
+                  return team_update_page(process)
+   
+
+   In this method, if we enter the team page with get method, we list information of teams. If it is post, we investigate the button value. If the value is add we go to team adding page, if it is delete, we call team delete method. In the other possibility we go to team update page by calling team information method that gets the information of team that will be updated. 
+
+   .. code-block:: python
+      @app.route("/add_player", methods=['GET','POST'])
+      @login_required
+      def player_adding_page():
+         if not current_user.is_admin:
+            abort(401)
+         if request.method == 'GET':
+            obje = forms.FootballStats()
+            teamCursor=obje.Team()
+            return render_template('add_player.html',cursor=teamCursor)
+
+         elif request.method == 'POST':
+            PlayerName = str(request.form["PlayerName"])
+            PlayerAge = str(request.form["PlayerAge"])
+            Position = str(request.form["Position"])
+            PlayerNationalty = str(request.form["PlayerNationalty"])
+            PlayerHeight = str(request.form["PlayerHeight"])
+            PlaceOfBirth = str(request.form["PlaceOfBirth"])
+            TeamID = str(request.form["TeamID"])
+            obje = forms.FootballStats()
+            obje.Player_add(PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID)
+            flash("You have added.")
+            return redirect(url_for("player_adding_page"))
+   
+   If our method is post, we get the form information and we add new player.
+
+   .. code-block:: python
+      @app.route("/player", methods=['GET','POST'])
+      @login_required
+      def player_page():
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Player()
+            return render_template("players.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("player_adding_page"))
+            elif(process == "Delete"):
+                  form_player_keys = request.form.getlist("player_keys")
+                  for form_player_key in form_player_keys:
+                     obje.Player_delete(int(form_player_key))
+                  return redirect(url_for("player_page"))
+            else:
+                  return player_update_page(process)
+   
+   In this method, if we enter the player page with get method, we list information of players. If it is post, we investigate the button value. If the value is add we go to player adding page, if it is delete, we call player delete method. In the other possibility we go to player update page by calling player information method that gets the information of player that will be updated. 
+
+   .. code-block:: python
+      @app.route("/add_manager", methods=['GET','POST'])
+      @login_required
+      def manager_adding_page():
+         if not current_user.is_admin:
+            abort(401)
+         if request.method == 'GET':
+            return render_template('add_manager.html')
+
+         elif request.method == 'POST':
+            Name = str(request.form["Name"])
+            Age = str(request.form["Age"])
+            Nationalty = str(request.form["Nationalty"])
+            Height = str(request.form["Height"])
+            PlaceOfBirth = str(request.form["PlaceOfBirth"])
+            obje = forms.FootballStats()
+            obje.Manager_add(Name, Age, Nationalty, Height, PlaceOfBirth)
+            flash("You have added.")
+            return redirect(url_for("manager_adding_page"))
+
+   If our method is post, we get the form information and we add new manager.
+
+   .. code-block:: python
+      @app.route("/manager", methods=['GET','POST'])
+      @login_required
+      def manager_page():
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Manager_user()
+            return render_template("managers.html",cursor=cursor)   
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("manager_adding_page"))
+            elif(process == "Delete"):
+                  form_manager_keys = request.form.getlist("manager_keys")
+                  for form_manager_key in form_manager_keys:
+                     obje.Manager_delete(int(form_manager_key))
+                  return redirect(url_for("manager_page"))
+            else:
+                  return manager_update_page(process)
+
+   In this method, if we enter the manager page with get method, we list information of managers. If it is post, we investigate the button value. If the value is add we go to manager adding page, if it is delete, we call manager delete method. In the other possibility we go to manager update page by calling manager information method that gets the information of manager that will be updated. 
+
+   .. code-block:: python
+      @app.route("/add_goal", methods=['GET','POST'])
+      @login_required
+      def goal_adding_page():
+         if not current_user.is_admin:
+            abort(401)
+         if request.method == 'GET':
+            obje = forms.FootballStats()
+            playerCursor=obje.Player()
+            matchCursor=obje.Fixtures2()
+            return render_template('add_goal.html',cursor=[playerCursor,matchCursor])
+
+         elif request.method == 'POST':
+            PlayerID = str(request.form["PlayerID"])
+            MatchID = str(request.form["MatchID"])
+            Minute = str(request.form["Minute"])
+            obje = forms.FootballStats()
+            obje.Goal_add(PlayerID, MatchID, Minute)
+            flash("You have added.")
+            return redirect(url_for("goal_adding_page"))
+
+   If our method is post, we get the form information and we add new goal.
+
+   .. code-block:: python
+      @app.route("/goal", methods=['GET','POST'])
+      @login_required
+      def goal_page():
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Goal()
+            print(cursor)
+            return render_template("goals.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("goal_adding_page"))
+            elif(process == "Delete"):
+                  form_goal_keys = request.form.getlist("goal_keys")
+                  for form_goal_key in form_goal_keys:
+                     obje.Goal_delete(int(form_goal_key))
+                  return redirect(url_for("goal_page"))
+            else:
+                  return goal_update_page(process)
+   
+   In this method, if we enter the goal page with get method, we list information of goals. If it is post, we investigate the button value. If the value is add we go to goal adding page, if it is delete, we call goal delete method. In the other possibility we go to goal update page by calling goal information method that gets the information of goal that will be updated. 
+
+   .. code-block:: python
+      @app.route("/update_goal", methods=['GET','POST'])
+      @login_required
+      def goal_update_page(process):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         update = request.form.get('Update') 
+         if request.method == 'GET':
+            return render_template("goals.html")
+         elif request.method == 'POST':
+            if update is not None:
+                  PlayerID = str(request.form["PlayerID"])
+                  MatchID = str(request.form["MatchID"])
+                  Minute = str(request.form["Minute"])
+                  obje = forms.FootballStats()
+                  obje.Goal_update(update,PlayerID,MatchID,Minute)
+                  return redirect(url_for("goal_page"))
+            cursor=obje.Goal_update_info(process)
+            playerCursor = obje.Player()
+            matchCursor = obje.Fixtures2()
+            print(cursor)
+            return render_template("update_goal.html",cursor=[cursor,playerCursor,matchCursor])
+
+      @app.route("/update_manager", methods=['GET','POST'])
+      @login_required
+      def manager_update_page(process):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         update = request.form.get('Update') 
+         if request.method == 'GET':
+            return render_template("managers.html")
+         elif request.method == 'POST':
+            if update is not None:
+                  Name = str(request.form["Name"])
+                  Age = str(request.form["Age"])
+                  Nationalty = str(request.form["Nationalty"])
+                  Height = str(request.form["Height"])
+                  PlaceOfBirth = str(request.form["PlaceOfBirth"])
+                  obje = forms.FootballStats()
+                  obje.Manager_update(update,Name,Age,Nationalty,Height,PlaceOfBirth)
+                  return redirect(url_for("manager_page"))
+            cursor=obje.Manager_update_info(process)
+            print(cursor)
+            return render_template("update_manager.html",cursor=cursor)
+
+      @app.route("/update_player", methods=['GET','POST'])
+      @login_required
+      def player_update_page(process):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         update = request.form.get('Update') 
+         if request.method == 'GET':
+            return render_template("players.html")
+         elif request.method == 'POST':
+            if update is not None:
+                  PlayerName = str(request.form["PlayerName"])
+                  PlayerAge = str(request.form["PlayerAge"])
+                  Position = str(request.form["Position"])
+                  PlayerNationalty = str(request.form["PlayerNationalty"])
+                  PlayerHeight = str(request.form["PlayerHeight"])
+                  PlaceOfBirth = str(request.form["PlaceOfBirth"])
+                  TeamID = str(request.form["TeamID"])
+                  obje = forms.FootballStats()
+                  obje.Player_update(update,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,TeamID)
+                  return redirect(url_for("player_page"))
+            cursor=obje.Player_update_info(process)
+            teamCursor = obje.Team()
+            print(cursor)
+            return render_template("update_player.html",cursor=[cursor,teamCursor])
+
+      @app.route("/update_team", methods=['GET','POST'])
+      @login_required
+      def team_update_page(process):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         update = request.form.get('Update') 
+         if request.method == 'GET':
+            return render_template("teams.html")
+         elif request.method == 'POST':
+            if update is not None:
+                  Teamname = str(request.form["Teamname"])
+                  NickName = str(request.form["NickName"])
+                  ShortName = str(request.form["ShortName"])
+                  FoundationDate = str(request.form["FoundationDate"])
+                  ManagerID = str(request.form["ManagerID"])
+                  Location = str(request.form["Location"])
+                  obje = forms.FootballStats()
+                  obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,ManagerID,Location)
+                  return redirect(url_for("team_page"))
+            cursor=obje.Team_update_info(process)
+            managerCursor = obje.Manager()
+            print(cursor)
+            return render_template("update_team.html",cursor=[cursor, managerCursor])
+   
+   If our method is post, we update the team, player, goal or manager according the id value received as a parameter.
+
+   .. code-block:: python
+      i = 0
+
+      @app.route("/teams",methods=['GET','POST'])
+      @login_required
+      def teams_page(team_keys):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Team_key(team_keys)
+            playerCursor=obje.Player_team_user(team_keys)
+            stadiumCursor=obje.Stadium_key(team_keys)
+            fixtureCursor=obje.Fixture_team_key(team_keys)
+            managerCursor=obje.Manager_team_key(team_keys)
+            print(cursor)
+            return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
+         else:
+            global i
+            process = request.form.get('buttonName')
+            processStadium = request.form.get('buttonStadium')
+            processMatches = request.form.get('buttonMatch')
+            processManager = request.form.get('buttonManager')
+            processTeam = request.form.get('buttonTeam')
+            processStart = request.form.get('Start')
+            processPlayer = request.form.get('buttonPlayer')
+            if(processStadium):
+                  i=1
+                  return stadium_update_page(processStadium)
+            elif (processMatches):
+                  i=2
+                  return fixture_update_page(processMatches)
+            elif (processPlayer):
+                  i=3
+                  return player_update_page(processPlayer)
+            elif (processManager):
+                  i=4
+                  return manager_update_page(processManager)
+            elif (processTeam):
+                  i=5
+                  return team_update_page(processTeam)
+            elif (processStart):
+                  i=6
+                  return fixture_update_page(processStart)
+            elif (process == "add"):
+                  return redirect(url_for("team_adding_page"))
+            elif (process == "add_player"):
+                  return redirect(url_for("player_adding_page"))
+            elif (process == "add_stadium"):
+                  return redirect(url_for("stadium_add_page"))
+            elif (process == "add_Match"):
+                  return redirect(url_for("fixture_adding_page"))
+            elif (process == "add_Manager"):
+                  return redirect(url_for("manager_adding_page"))
+            elif(process == "Delete"):
+                  form_team_keys = request.form.getlist("team_keys")
+                  for team_key in form_team_keys:
+                     obje.Team_delete(team_key)
+                  flash("You have deleted.")
+                  return redirect(url_for("team_page"))
+            elif(process == "Delete_player"):
+                  form_player_keys = request.form.getlist("player_keys")
+                  for form_player_key in form_player_keys:
+                     obje.Player_delete(int(form_player_key))
+                  return redirect(url_for("team_page"))
+            elif(process == "Delete_stadium"):
+                  form_stadium_keys = request.form.getlist('stadium_keys')
+                  for form_stadium_key in form_stadium_keys:
+                     obje.Stadium_delete(int(form_stadium_key))
+                  return redirect(url_for("team_page"))
+            elif(process == "Delete_match"):
+                  form_fixture_keys = request.form.getlist('fixture')
+                  for form_fixture_key in form_fixture_keys:
+                     obje.Fixture_delete(int(form_fixture_key))
+                  return redirect(url_for("team_page"))
+            elif(process == "Delete_manager"):
+                  form_manager_keys = request.form.getlist("manager_keys")
+                  for form_manager_key in form_manager_keys:
+                     obje.Manager_delete(int(form_manager_key))
+                  return redirect(url_for("team_page"))
+            else:
+                  if(i==1):
+                     stadium_update_page(processStadium)
+                  elif(i==2):
+                     fixture_update_page(processMatches)
+                  elif(i==3):  
+                     player_update_page(processPlayer)      
+                  elif(i==4):
+                     manager_update_page(processManager)
+                  elif(i==5):
+                     team_update_page(processTeam)
+                  elif(i==6):
+                     fixture_update_page(processStart)
+                  cursor=obje.Team_key(team_keys)
+                  playerCursor=obje.Player_team_user(team_keys)
+                  stadiumCursor=obje.Stadium_key(team_keys)
+                  fixtureCursor=obje.Fixture_team_key(team_keys)
+                  managerCursor=obje.Manager_team_key(team_keys)
+                  return render_template("teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
+      app.add_url_rule("/team/<team_keys>", view_func=teams_page,methods=['GET','POST'])
+   
+   This method creates a page for single team with its players, stadium, manager, fixture informations by using key access when form is GET. When form is post, since all of the team, players, stadium, manager, fixture buttons which are delete, add, update are directed to the its right function.
+
+   .. code-block:: python
+      @app.route("/goals",methods=['GET','POST'])
+      @login_required
+      def goals_page(goal_keys):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Goal_key(goal_keys)
+            print(cursor)
+            return render_template("goals.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("goal_adding_page"))
+            elif(process == "Delete"):
+                  form_goal_keys = request.form.getlist("goal_keys")
+                  for form_goal_key in form_goal_keys:
+                     obje.Goal_delete(int(form_goal_key))
+                  return redirect(url_for("goal_page"))
+            else:
+                  return goal_update_page(process)
+      app.add_url_rule("/goal/<goal_keys>", view_func=goals_page,methods=['GET','POST']) 
+
+      @app.route("/managers", methods=['GET','POST'])
+      @login_required
+      def managers_page(manager_keys):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Manager_key(manager_keys)
+            print(cursor)
+            return render_template("managers.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("manager_adding_page"))
+            elif(process == "Delete"):
+                  form_manager_keys = request.form.getlist("manager_keys")
+                  for form_manager_key in form_manager_keys:
+                     obje.Manager_delete(int(form_manager_key))
+                  return redirect(url_for("manager_page"))
+            else:
+                  return manager_update_page(process)
+      app.add_url_rule("/manager/<manager_keys>", view_func=managers_page,methods=['GET','POST']) 
+
+      @app.route("/player",methods=['GET','POST'])
+      @login_required
+      def players_page(player_key):
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Player_key(player_key)
+            print(cursor)
+            return render_template("players.html",cursor=cursor)
+         else:
+            process = request.form.get('buttonName')
+            update = request.form.get('Update')
+            print(update)
+            if (process == "add"):
+                  return redirect(url_for("player_adding_page"))
+            elif(process == "Delete"):
+                  form_player_keys = request.form.getlist("player_keys")
+                  for form_player_key in form_player_keys:
+                     obje.Player_delete(int(form_player_key))
+                  return redirect(url_for("player_page"))
+            else:
+                  return player_update_page(process)
+      app.add_url_rule("/player/<player_key>", view_func=players_page,methods=['GET','POST'])
+
+   In this method is used for creating pages for single tuples by using key access. In POST form Delete, add, update are same as methods that do not have key access. 
+
+   .. code-block:: python
+      @app.route("/top_goal", methods=['GET'])
+      def top_goal_page():
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Top_goal()
+            print(cursor)
+            return render_template("user_top_goal.html",cursor=cursor)
+
+      @app.route("/teams_user", methods=['GET'])
+      def team_user_page():
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Team()
+            print(cursor)
+            return render_template("user_teams.html",cursor=cursor)
+
+      @app.route("/managers_user", methods=['GET'])
+      def manager_user_page():
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Manager_user()
+            return render_template("user_managers.html",cursor=cursor)  
+
+      @app.route("/players_user", methods=['GET'])
+      def player_user_page():
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Player()
+            return render_template("user_players.html",cursor=cursor)
+   
+   These methods are used for creating user players, managers, teams, and top goal pages.
+
+   .. code-block:: python
+      @app.route("/managers_user")
+      def managers_user_page(manager_keys):
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Manager_key(manager_keys)
+            print(cursor)
+            return render_template("user_managers.html",cursor=cursor)
+      app.add_url_rule("/managers_user/<manager_keys>", view_func=managers_user_page) 
+
+
+      @app.route("/players_user")
+      def players_user_page(player_key):
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Player_key(player_key)
+            print(cursor)
+            return render_template("user_players.html",cursor=cursor)
+      app.add_url_rule("/players_user/<player_key>", view_func=players_user_page)
+
+      @app.route("/teams_user")
+      def teams_user_page(team_keys):
+         obje = forms.FootballStats()
+         if request.method == "GET":
+            cursor=obje.Team_user_key(team_keys)
+            playerCursor=obje.Player_team_user(team_keys)
+            stadiumCursor=obje.Stadium_key(team_keys)
+            fixtureCursor=obje.Fixture_team_key(team_keys)
+            managerCursor=obje.Manager_team_key(team_keys)
+            print(cursor)
+            return render_template("user_teams_player.html",cursor=[cursor,playerCursor,stadiumCursor,fixtureCursor,managerCursor])
+      app.add_url_rule("/teams_user/<team_keys>", view_func=teams_user_page) 
+   
+   These methods are used for creating user players, managers, teams, and top goal pages. These function perform key access, and teams_user_page not only show teams' informations but also shows that team's manager, stadium, players, and played or unplayed matches.
+
+   .. code-block:: python
+      @app.route("/live_match", methods=['GET','POST'])
+      @login_required
+      def live_match_page(processLive): 
+         if not current_user.is_admin:
+            abort(401)
+         obje = forms.FootballStats()
+         cursorFixture = obje.Fixture_key(processLive)
+         cursorStanding = obje.Standing_key(processLive)
+         cursorPlayer = obje.Player_fixture_team(processLive)
+         cursorDetail = obje.Detail_user(processLive)
+         cursorGoal = obje.Goal_user(processLive)
+         cursorAssist = obje.Assist_user(processLive)
+         return render_template("live_match.html", cursor=[cursorFixture,cursorStanding,cursorPlayer,cursorDetail,cursorGoal,cursorAssist])
+
+   This method creates a live match page in order to control matches by developer. Cursor used for showing details, players, current fixture state, etc. to show current state of match to developer. 
