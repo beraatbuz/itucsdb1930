@@ -308,7 +308,7 @@ def team_adding_page():
         abort(401)
     if request.method == 'GET':
         obje = forms.FootballStats()
-        managerCursor=obje.Manager()
+        managerCursor=obje.Manager_user()
         return render_template('add_team.html',cursor=managerCursor)
     elif request.method == 'POST':
         Teamname = str(request.form["Teamname"])
