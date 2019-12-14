@@ -15,7 +15,10 @@
 <a class="button is-dark" href="{{ url_for('detail_page') }}">See Details</a>
 <br><br>
 <h1 class="title">Update Player</h1>
-
+<button class="button is-primary is-small" onclick="document.getElementById('Age').innerHTML = getRndInteger(15,55)">Get Random Age</button>
+<p id="Age"></p> 
+<button class="button is-danger is-small " onclick="document.getElementById('Height').innerHTML = getRndInteger(125,225)">Get Random Height</button>
+<p id="Height"></p>
 
 <form method='POST'>
 <div class="field">
@@ -102,4 +105,9 @@
   </div>
 {% endfor %}
 </form>
+<script>
+  function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+  </script>
 {% endblock %}
