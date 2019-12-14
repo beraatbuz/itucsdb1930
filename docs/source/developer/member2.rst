@@ -20,7 +20,7 @@ Code
                statement = """ INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate,  ManagerID,Location) VALUES(%s,%s,%s,%s,%s,%s);"""
                cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID,Location]))
 
-    This method adds new team.
+   This method adds new team.
 
  
    .. code-block:: python
@@ -31,7 +31,7 @@ Code
                statement="""Update Teams Set Teamname=%s, NickName=%s, ShortName=%s, FoundationDate=%s, ManagerID=%s,Location=%s  Where ID=%s;"""
                cursor.execute(statement,([TeamName, NickName, ShortName, FoundationDate, ManagerID, Location, TeamID]))
 
-    This method updates teams.
+   This method updates teams.
     
    .. code-block:: python
 
@@ -41,7 +41,7 @@ Code
                statement = """ DELETE FROM Teams WHERE ID = %s;"""
                cursor.execute(statement,[TeamID])		
 
-    This method deletes teams.
+   This method deletes teams.
     
    .. code-block:: python
 
@@ -51,7 +51,7 @@ Code
                statement = """ INSERT INTO Goal(PlayerID, MatchID, Minute) VALUES(%s,%s,%s);"""
                cursor.execute(statement,([PlayerID, MatchID,Minute]))
 
-    This method adds new goal.
+   This method adds new goal.
     
    .. code-block:: python
 
@@ -61,7 +61,7 @@ Code
                statement="""Update Goal Set PlayerID=%s, MatchID=%s, Minute=%s Where ID=%s;"""
                cursor.execute(statement,([PlayerID, MatchID, Minute, GoalID]))
 
-    This method updates goals.
+   This method updates goals.
     
    .. code-block:: python
 
@@ -71,7 +71,7 @@ Code
                statement = """ DELETE FROM Goal WHERE ID = %s;"""
                cursor.execute(statement,[GoalID])	
 
-    This method deletes goals.
+   This method deletes goals.
     
    .. code-block:: python
 
@@ -82,7 +82,7 @@ Code
                                  INSERT INTO Player(PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
                cursor.execute(statement,([PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID]))
 
-    This method adds new player.
+   This method adds new player.
     
    .. code-block:: python
 
@@ -92,7 +92,7 @@ Code
                statement = """ DELETE FROM Player WHERE ID = %s;"""
                cursor.execute(statement,[PlayerID])
 
-    This method deletes players.
+   This method deletes players.
     
    .. code-block:: python
 
@@ -102,7 +102,7 @@ Code
                statement="""Update Player Set PlayerName=%s, PlayerAge=%s, Position=%s, PlayerNationalty=%s, PlayerHeight=%s, PlaceOfBirth=%s, TeamID=%s Where ID=%s;"""
                cursor.execute(statement,([PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID, PlayerID]))
 
-    This method updates players.
+   This method updates players.
     
    .. code-block:: python
 
@@ -112,7 +112,7 @@ Code
                statement = """INSERT INTO Manager(Name, Age, Nationalty, Height, PlaceOfBirth) VALUES(%s,%s,%s,%s,%s);"""
                cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth]))
 
-    This method adds new manager.
+   This method adds new manager.
     
    .. code-block:: python
 
@@ -122,7 +122,7 @@ Code
                statement="""Update Manager Set Name=%s, Age=%s, Nationalty=%s, Height=%s, PlaceOfBirth=%s Where ID=%s;"""
                cursor.execute(statement,([Name, Age, Nationalty, Height, PlaceOfBirth, ManagerID]))
 
-    This method updates managers.
+   This method updates managers.
     
    .. code-block:: python
 
@@ -132,7 +132,7 @@ Code
                statement = """ DELETE FROM Manager WHERE ID = %s;"""
                cursor.execute(statement,[ManagerID])
 
-    This method deletes managers.
+   This method deletes managers.
     
    .. code-block:: python
 
@@ -168,7 +168,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    These methods are used for getting all teams, players, goals, and managers by join operation.
+   These methods are used for getting all teams, players, goals, and managers by join operation.
     
    .. code-block:: python
 
@@ -204,7 +204,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    These methods are used for getting information of goals, managers, players, teams that will be updated and show in the .html page.
+   These methods are used for getting information of goals, managers, players, teams that will be updated and show in the .html page.
     
    .. code-block:: python
 
@@ -240,7 +240,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method are used for accessing indivual tuple by its primal key.
+   This method are used for accessing indivual tuple by its primal key.
     
    .. code-block:: python
 	
@@ -252,7 +252,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used to show top goal players in user mode by countig each player how many goal that they have.
+   This method used to show top goal players in user mode by countig each player how many goal that they have.
     
    .. code-block:: python
 
@@ -264,7 +264,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used for showing all managers with their teams by joining Teams and Manager table in user mode.
+   This method used for showing all managers with their teams by joining Teams and Manager table in user mode.
     
    .. code-block:: python
 
@@ -276,7 +276,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used for accessing one single team by their primal key, and to show its manager, I used joined Manager table and Teams table.
+   This method used for accessing one single team by their primal key, and to show its manager, I used joined Manager table and Teams table.
     
    .. code-block:: python
 
@@ -288,7 +288,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method gets all informations about all player in one team, and that one team will be accessed by user using key accessing.
+   This method gets all informations about all player in one team, and that one team will be accessed by user using key accessing.
     
    .. code-block:: python
 
@@ -300,7 +300,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method gets all informations about all player in one team, and that one team will be accessed by developer using key accessing.
+   This method gets all informations about all player in one team, and that one team will be accessed by developer using key accessing.
     
    .. code-block:: python
 
@@ -315,7 +315,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method shows goal in user live match page.
+   This method shows goal in user live match page.
     
    .. code-block:: python
 
@@ -329,7 +329,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used for showing each teams' players in live match page.
+   This method used for showing each teams' players in live match page.
     
    .. code-block:: python
 
@@ -343,7 +343,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used for when accessing a team by key access in order to show teams' played or unplayed matches.
+   This method used for when accessing a team by key access in order to show teams' played or unplayed matches.
     
    .. code-block:: python
 
@@ -356,7 +356,7 @@ Code
                cursor_list=cursor.fetchall()
                return cursor_list
 
-    This method used for when accessing a team by key access in order to show teams' managers.
+   This method used for when accessing a team by key access in order to show teams' managers.
     
    .. code-block:: python
 
@@ -381,5 +381,5 @@ Code
             flash("You have added.")
             return redirect(url_for("team_adding_page"))
 
-    If our method is post, we get the form information and we add new team.
+   If our method is post, we get the form information and we add new team.
   
