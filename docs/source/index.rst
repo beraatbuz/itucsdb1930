@@ -10,9 +10,10 @@ Welcome to itucsdb1930's documentation!
    * Ahmet Yılmaz
 
 **This project is about England Premier League
+
 http://itucsdb1930.herokuapp.com/ 
 
-https://github.com/itucsdb1930/itucsdb1930**
+https://github.com/itucsdb1930/itucsdb1930 **
 
 Contents:
 
