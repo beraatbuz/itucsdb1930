@@ -4,6 +4,9 @@ The project uses the Python language, the Flask web application framework,
 and the PostgreSQL database.
 
 Members:
+
 Ahmet Yılmaz
+
 Muhammed Enes Tırnakçı
+
 Beraat Buz
