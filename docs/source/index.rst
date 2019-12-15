@@ -9,7 +9,9 @@ Welcome to itucsdb1930's documentation!
    * Beraat Buz
    * Ahmet Yılmaz
 
-**This project is about England Premier League
+**This system follows live football matches and keep some statistic about
+footballers, teams, matches over the matches played before in England
+Premier League.
 
 http://itucsdb1930.herokuapp.com/ 
 
