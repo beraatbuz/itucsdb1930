@@ -7,6 +7,12 @@ Parts Implemented by Muhammed Enes Tırnakçı
 
       Goal addding page for developer.
 
+ .. figure:: update_goal.png
+      :scale: 50 %
+      :alt: Goal Add
+
+      Goal update page for developer.
+
  .. figure:: goals.png
       :scale: 50 %
       :alt: Goals
@@ -18,7 +24,13 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :alt: Manager Add
 
       Manager addding page for developer.
-            
+       
+ .. figure:: update_manager.png
+      :scale: 50 %
+      :alt: Manager Add
+
+      Manager update page for developer.
+
  .. figure:: manager_key.png
       :scale: 50 %
       :alt: Manager Key
@@ -54,7 +66,13 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :alt: Player Add
 
       Player addding page for developer.
-            
+             
+ .. figure:: update_player.png
+      :scale: 50 %
+      :alt: Player Add
+
+      Player update page for developer.
+
  .. figure:: player_key.png
       :scale: 50 %
       :alt: Player Key
@@ -78,7 +96,13 @@ Parts Implemented by Muhammed Enes Tırnakçı
       :alt: Team Add
 
       Team addding page for developer.
-            
+              
+ .. figure:: update_team.png
+      :scale: 50 %
+      :alt: Team Add
+
+      Team update page for developer.
+               
  .. figure:: team_all_user.png
       :scale: 50 %
       :alt: Teams User
