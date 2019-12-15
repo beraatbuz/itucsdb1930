@@ -14,6 +14,62 @@ Code
 
    .. code-block:: python
 
+      """
+
+      CREATE TABLE IF NOT EXISTS  Teams
+      (
+               ID SERIAL PRIMARY KEY,
+               Teamname VARCHAR(30) NOT NULL,
+               NickName VARCHAR(30),
+               ShortName VARCHAR(30) NOT NULL,
+               FoundationDate VARCHAR(30),	
+               ManagerID INTEGER REFERENCES Manager (ID) ON DELETE cascade,
+               Location VARCHAR(50)
+      )
+      """,
+      """
+
+      CREATE TABLE IF NOT EXISTS  Player
+      (
+               ID SERIAL PRIMARY KEY,
+               PlayerName VARCHAR(30) NOT NULL,
+               PlayerAge INTEGER NOT NULL,
+               Position VARCHAR(30),
+               PlayerNationalty VARCHAR(30) NOT NULL,
+               PlayerHeight INTEGER NOT NULL,
+               PlaceOfBirth VARCHAR(30) NOT NULL,
+               TeamID INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade
+      )
+      """,
+      """
+
+      CREATE TABLE IF NOT EXISTS  Manager
+      (
+               ID SERIAL PRIMARY KEY,
+               Name VARCHAR(30) NOT NULL,
+               Age INTEGER NOT NULL,
+               Nationalty VARCHAR(30) NOT NULL,
+               Height INTEGER NOT NULL,
+               PlaceOfBirth VARCHAR(30) NOT NULL,
+               teamid integer REFERENCES teams (ID) ON DELETE cascade
+      )
+      """,
+      """ 
+
+      CREATE TABLE IF NOT EXISTS  Goal
+      (
+         ID serial,
+         PlayerID integer NOT NULL REFERENCES Player (ID) ON DELETE cascade,
+         MatchID integer NOT NULL REFERENCES Fixtures (ID) ON DELETE cascade,
+                              Minute INTEGER NOT NULL,
+         PRIMARY KEY (ID)
+      ) 
+      """,
+
+   These methods create tables.
+
+   .. code-block:: python
+
       def Team_add(self, TeamName, NickName, ShortName, FoundationDate, ManagerID,Location):
          with dbapi.connect(url) as connection:
             with connection.cursor() as cursor:
