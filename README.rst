@@ -3,14 +3,18 @@ of the Istanbul Technical University Computer Engineering Department.
 The project uses the Python language, the Flask web application framework,
 and the PostgreSQL database.
 
-http://itucsdb1930.herokuapp.com/ 
+App: http://itucsdb1930.herokuapp.com/ 
 
-https://itucsdb1930.github.io/itucsdb1930/index.html
+Documentation: https://itucsdb1930.github.io/itucsdb1930/index.html
 
-Members:
+
+Members
+-------
 
 Ahmet Yılmaz
 
 Muhammed Enes Tırnakçı
 
 Beraat Buz
+
+-------

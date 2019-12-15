@@ -11,11 +11,11 @@ Welcome to itucsdb1930's documentation!
 
 **This system follows live football matches and keep some statistic about
 footballers, teams, matches over the matches played before in England
-Premier League.
+Premier League.**
 
-http://itucsdb1930.herokuapp.com/ 
+App: http://itucsdb1930.herokuapp.com/ 
 
-https://github.com/itucsdb1930/itucsdb1930 **
+Github Page: https://github.com/itucsdb1930/itucsdb1930 
 
 Contents:
 
