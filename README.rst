@@ -11,10 +11,10 @@ Documentation: https://itucsdb1930.github.io/itucsdb1930/index.html
 Members
 -------
 
-Ahmet Yılmaz
+Ahmet Yılmaz - 150160805
 
-Muhammed Enes Tırnakçı
+Muhammed Enes Tırnakçı - 150160038
 
-Beraat Buz
+Beraat Buz - 150160002
 
 -------
