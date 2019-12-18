@@ -875,7 +875,7 @@ def team_update_page(process):
             obje.Team_update(update,Teamname,NickName,ShortName,FoundationDate,ManagerID,Location)
             return redirect(url_for("team_page"))
         cursor=obje.Team_update_info(process)
-        managerCursor = obje.Manager()
+        managerCursor = obje.Manager_user()
         print(cursor)
         return render_template("update_team.html",cursor=[cursor, managerCursor])
 
