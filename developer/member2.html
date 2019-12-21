@@ -1,0 +1,1132 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Muhammed Enes Tırnakçı &mdash; itucsdb1930  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Beraat Buz" href="member3.html" />
+    <link rel="prev" title="Parts Implemented by Ahmet YILMAZ" href="member1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> itucsdb1930
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="member1.html">Parts Implemented by Ahmet YILMAZ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parts Implemented by Muhammed Enes Tırnakçı</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database-design">Database Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="member3.html">Parts Implemented by Beraat Buz</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">itucsdb1930</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Muhammed Enes Tırnakçı</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-muhammed-enes-tirnakci">
+<h1>Parts Implemented by Muhammed Enes Tırnakçı<a class="headerlink" href="#parts-implemented-by-muhammed-enes-tirnakci" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="database-design">
+<h2>Database Design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/erDiagramEnes.png"><img alt="E/R Diagram for Teams, Player, Manager, Goal Table" src="../_images/erDiagramEnes.png" style="width: 452.5px; height: 241.0px;" /></a>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">CREATE TABLE IF NOT EXISTS  Teams</span>
+<span class="sd">(</span>
+<span class="sd">         ID SERIAL PRIMARY KEY,</span>
+<span class="sd">         Teamname VARCHAR(30) NOT NULL,</span>
+<span class="sd">         NickName VARCHAR(30),</span>
+<span class="sd">         ShortName VARCHAR(30) NOT NULL,</span>
+<span class="sd">         FoundationDate VARCHAR(30),</span>
+<span class="sd">         ManagerID INTEGER REFERENCES Manager (ID) ON DELETE cascade,</span>
+<span class="sd">         Location VARCHAR(50)</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">CREATE TABLE IF NOT EXISTS  Player</span>
+<span class="sd">(</span>
+<span class="sd">         ID SERIAL PRIMARY KEY,</span>
+<span class="sd">         PlayerName VARCHAR(30) NOT NULL,</span>
+<span class="sd">         PlayerAge INTEGER NOT NULL,</span>
+<span class="sd">         Position VARCHAR(30),</span>
+<span class="sd">         PlayerNationalty VARCHAR(30) NOT NULL,</span>
+<span class="sd">         PlayerHeight INTEGER NOT NULL,</span>
+<span class="sd">         PlaceOfBirth VARCHAR(30) NOT NULL,</span>
+<span class="sd">         TeamID INTEGER NOT NULL REFERENCES Teams (ID) ON DELETE cascade</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">CREATE TABLE IF NOT EXISTS  Manager</span>
+<span class="sd">(</span>
+<span class="sd">         ID SERIAL PRIMARY KEY,</span>
+<span class="sd">         Name VARCHAR(30) NOT NULL,</span>
+<span class="sd">         Age INTEGER NOT NULL,</span>
+<span class="sd">         Nationalty VARCHAR(30) NOT NULL,</span>
+<span class="sd">         Height INTEGER NOT NULL,</span>
+<span class="sd">         PlaceOfBirth VARCHAR(30) NOT NULL,</span>
+<span class="sd">         teamid integer REFERENCES teams (ID) ON DELETE cascade</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">CREATE TABLE IF NOT EXISTS  Goal</span>
+<span class="sd">(</span>
+<span class="sd">   ID serial,</span>
+<span class="sd">   PlayerID integer NOT NULL REFERENCES Player (ID) ON DELETE cascade,</span>
+<span class="sd">   MatchID integer NOT NULL REFERENCES Fixtures (ID) ON DELETE cascade,</span>
+<span class="sd">                        Minute INTEGER NOT NULL,</span>
+<span class="sd">   PRIMARY KEY (ID)</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>These methods create tables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Team_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TeamName</span><span class="p">,</span> <span class="n">NickName</span><span class="p">,</span> <span class="n">ShortName</span><span class="p">,</span> <span class="n">FoundationDate</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span><span class="n">Location</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; INSERT INTO Teams(TeamName, NickName, ShortName, FoundationDate,  ManagerID,Location) VALUES(</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">);&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">TeamName</span><span class="p">,</span> <span class="n">NickName</span><span class="p">,</span> <span class="n">ShortName</span><span class="p">,</span> <span class="n">FoundationDate</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span><span class="n">Location</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method adds new team.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Team_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">,</span> <span class="n">TeamName</span><span class="p">,</span> <span class="n">NickName</span><span class="p">,</span> <span class="n">ShortName</span><span class="p">,</span> <span class="n">FoundationDate</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span><span class="n">Location</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Update Teams Set Teamname=</span><span class="si">%s</span><span class="s2">, NickName=</span><span class="si">%s</span><span class="s2">, ShortName=</span><span class="si">%s</span><span class="s2">, FoundationDate=</span><span class="si">%s</span><span class="s2">, ManagerID=</span><span class="si">%s</span><span class="s2">,Location=</span><span class="si">%s</span><span class="s2">  Where ID=</span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">TeamName</span><span class="p">,</span> <span class="n">NickName</span><span class="p">,</span> <span class="n">ShortName</span><span class="p">,</span> <span class="n">FoundationDate</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span> <span class="n">Location</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method updates teams.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Team_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DELETE FROM Teams WHERE ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">TeamID</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method deletes teams.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Goal_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PlayerID</span><span class="p">,</span> <span class="n">MatchID</span><span class="p">,</span> <span class="n">Minute</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; INSERT INTO Goal(PlayerID, MatchID, Minute) VALUES(</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">);&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">PlayerID</span><span class="p">,</span> <span class="n">MatchID</span><span class="p">,</span><span class="n">Minute</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method adds new goal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Goal_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">GoalID</span><span class="p">,</span> <span class="n">PlayerID</span><span class="p">,</span> <span class="n">MatchID</span><span class="p">,</span> <span class="n">Minute</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Update Goal Set PlayerID=</span><span class="si">%s</span><span class="s2">, MatchID=</span><span class="si">%s</span><span class="s2">, Minute=</span><span class="si">%s</span><span class="s2"> Where ID=</span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">PlayerID</span><span class="p">,</span> <span class="n">MatchID</span><span class="p">,</span> <span class="n">Minute</span><span class="p">,</span> <span class="n">GoalID</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method updates goals.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Goal_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">GoalID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DELETE FROM Goal WHERE ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">GoalID</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method deletes goals.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PlayerName</span><span class="p">,</span> <span class="n">PlayerAge</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">PlayerNationalty</span><span class="p">,</span> <span class="n">PlayerHeight</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                           INSERT INTO Player(PlayerName, PlayerAge, Position, PlayerNationalty, PlayerHeight, PlaceOfBirth, TeamID) VALUES(</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">);&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">PlayerName</span><span class="p">,</span> <span class="n">PlayerAge</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">PlayerNationalty</span><span class="p">,</span> <span class="n">PlayerHeight</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method adds new player.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PlayerID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DELETE FROM Player WHERE ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">PlayerID</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method deletes players.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PlayerID</span><span class="p">,</span> <span class="n">PlayerName</span><span class="p">,</span> <span class="n">PlayerAge</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">PlayerNationalty</span><span class="p">,</span> <span class="n">PlayerHeight</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Update Player Set PlayerName=</span><span class="si">%s</span><span class="s2">, PlayerAge=</span><span class="si">%s</span><span class="s2">, Position=</span><span class="si">%s</span><span class="s2">, PlayerNationalty=</span><span class="si">%s</span><span class="s2">, PlayerHeight=</span><span class="si">%s</span><span class="s2">, PlaceOfBirth=</span><span class="si">%s</span><span class="s2">, TeamID=</span><span class="si">%s</span><span class="s2"> Where ID=</span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">PlayerName</span><span class="p">,</span> <span class="n">PlayerAge</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">PlayerNationalty</span><span class="p">,</span> <span class="n">PlayerHeight</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">,</span> <span class="n">PlayerID</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method updates players.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Manager_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Age</span><span class="p">,</span> <span class="n">Nationalty</span><span class="p">,</span> <span class="n">Height</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;INSERT INTO Manager(Name, Age, Nationalty, Height, PlaceOfBirth) VALUES(</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">);&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">Name</span><span class="p">,</span> <span class="n">Age</span><span class="p">,</span> <span class="n">Nationalty</span><span class="p">,</span> <span class="n">Height</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method adds new manager.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Manager_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Age</span><span class="p">,</span> <span class="n">Nationalty</span><span class="p">,</span> <span class="n">Height</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Update Manager Set Name=</span><span class="si">%s</span><span class="s2">, Age=</span><span class="si">%s</span><span class="s2">, Nationalty=</span><span class="si">%s</span><span class="s2">, Height=</span><span class="si">%s</span><span class="s2">, PlaceOfBirth=</span><span class="si">%s</span><span class="s2"> Where ID=</span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">Name</span><span class="p">,</span> <span class="n">Age</span><span class="p">,</span> <span class="n">Nationalty</span><span class="p">,</span> <span class="n">Height</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>This method updates managers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Manager_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ManagerID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; DELETE FROM Manager WHERE ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">ManagerID</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method deletes managers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Team</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Name,Location, ManagerID FROM Teams,Manager WHERE Teams.ID=Teams.ID and Manager.ID=ManagerID ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Player</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,TeamID FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID ORDER BY PlayerName,Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Goal.ID, PlayerName, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=Goal.ID and Player.ID=PlayerID and MatchID=Fixtures.ID ORDER BY PlayerID,MatchID ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Manager.id, Name, Age,Nationalty,height,placeofbirth, Teamname,Teams.id FROM Manager,teams Where ManagerID=manager.id ORDER BY Name&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>These methods are used for getting all teams, players, goals, and managers by join operation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Goal_update_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; Select * From Goal where ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">ID</span><span class="p">]))</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Manager_update_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; Select * From Manager where ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">ID</span><span class="p">]))</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Team_update_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; Select * From Teams where ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">ID</span><span class="p">]))</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Player_update_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; Select * From Player where ID = </span><span class="si">%s</span><span class="s2">;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,([</span><span class="n">ID</span><span class="p">]))</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>These methods are used for getting information of goals, managers, players, teams that will be updated and show in the .html page.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,Teams.ID FROM Player,Teams WHERE Player.ID=</span><span class="si">%s</span><span class="s2"> and Teams.ID=TeamID ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Team_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Name,Location, ManagerID FROM Teams,Manager WHERE Teams.ID=</span><span class="si">%s</span><span class="s2"> and Manager.ID=ManagerID ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Goal_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Goal.ID, PlayerName, MatchID,Minute FROM Goal,Fixtures,Player WHERE Goal.ID=</span><span class="si">%s</span><span class="s2"> and Player.ID=PlayerID and MatchID=Fixtures.ID ORDER BY PlayerID,MatchID ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+
+<span class="k">def</span> <span class="nf">Manager_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname from manager left join teams on manager.id = teams.managerid where manager.id=</span><span class="si">%s</span><span class="s2"> Order By Name&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method are used for accessing indivual tuple by its primal key.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Top_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID, PlayerName, count(PlayerID),Position,Teamname,Player.TeamID FROM Goal,Player,Teams WHERE Goal.ID=Goal.ID and Player.ID=PlayerID and Player.TeamID=Teams.ID Group BY PlayerName,player.id,Teams.Teamname ORDER BY count(PlayerID) DESC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used to show top goal players in user mode by countig each player how many goal that they have.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Manager_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname, teams.id from manager left join teams on manager.id = teams.managerid where manager.id=manager.id Order By Name&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used for showing all managers with their teams by joining Teams and Manager table in user mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Team_user_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Teams.ID,Teamname,NickName,ShortName,FoundationDate,Name,Location, ManagerID FROM Teams,Manager WHERE Teams.ID=</span><span class="si">%s</span><span class="s2"> and Manager.ID=ManagerID ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used for accessing one single team by their primal key, and to show its manager, I used joined Manager table and Teams table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_team_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,Teams.ID FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID and Teams.ID=</span><span class="si">%s</span><span class="s2">  ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method gets all informations about all player in one team, and that one team will be accessed by user using key accessing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_team</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID,PlayerName,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth,Teamname,Teams.ID FROM Player,Teams WHERE Player.ID=Player.ID and Teams.ID=TeamID and Teams.ID=</span><span class="si">%s</span><span class="s2">  ORDER BY Teamname ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="p">[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method gets all informations about all player in one team, and that one team will be accessed by developer using key accessing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Goal_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select distinct Goal.ID, PlayerName, Teamname,  Goal.Minute, Fixtures.id, Goal.MatchID,PlayerID,teams.id FROM Goal,Fixtures,Player,MatchDetails,Teams</span>
+<span class="s2">                     WHERE Goal.ID=Goal.id and Player.ID=PlayerID</span>
+<span class="s2">                     and Goal.MatchID=Fixtures.ID and Player.TeamID=Teams.id and fixtures.id=</span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">                     ORDER BY Goal.Minute ASC;&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method shows goal in user live match page.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Player_fixture_team</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select Player.ID,PlayerName,Teamname,PlayerAge,Position,PlayerNationalty,PlayerHeight,PlaceOfBirth, Fixtures.HomeTeam, Fixtures.ID,Player.TeamID  From Player, Fixtures, Teams Where ((Teams.ID=Fixtures.HomeTeam and Player.TeamID=Fixtures.HomeTeam)</span>
+<span class="s2">         or (Teams.ID=Fixtures.AwayTeam and Player.TeamID=Fixtures.AwayTeam))</span>
+<span class="s2">         and Fixtures.ID=</span><span class="si">%s</span><span class="s2"> Order By Teamname&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used for showing each teams’ players in live match page.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Fixture_team_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Select distinct Fixtures.ID,T1.Teamname ,T2.Teamname,Week,MatchDate,Time,HomeScore,AwayScore,Status,RefereeName,HomeTeam,AwayTeam,Refereeid FROM Fixtures,Teams AS T1,Teams AS T2,Referee</span>
+<span class="s2">         WHERE (( T1.ID=HomeTeam AND T2.ID=AwayTeam and Fixtures.Hometeam=T1.ID and HomeTeam=T1.ID) )</span>
+<span class="s2">         AND Refereeid=Referee.id  and (T1.ID=</span><span class="si">%s</span><span class="s2"> or T2.ID=</span><span class="si">%s</span><span class="s2">)  ORDER BY MatchDate,Time&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">Key</span><span class="p">,</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used for when accessing a team by key access in order to show teams’ played or unplayed matches.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Manager_team_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Key</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+         <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;SELECT manager.id, manager.name, manager.age, manager.nationalty, manager.height, manager.placeofbirth, teams.teamname, Teams.ID from manager left join teams on manager.id = teams.managerid</span>
+<span class="s2">         where manager.id=manager.id and Teams.ManagerID=Manager.ID and Teams.ID=</span><span class="si">%s</span><span class="s2"> Order By Name&quot;&quot;&quot;</span>
+         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,[</span><span class="n">Key</span><span class="p">])</span>
+         <span class="n">cursor_list</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+         <span class="k">return</span> <span class="n">cursor_list</span>
+</pre></div>
+</div>
+<p>This method used for when accessing a team by key access in order to show teams’ managers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_team&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">team_adding_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">managerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;add_team.html&#39;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">managerCursor</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="n">Teamname</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Teamname&quot;</span><span class="p">])</span>
+      <span class="n">NickName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;NickName&quot;</span><span class="p">])</span>
+      <span class="n">ShortName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;ShortName&quot;</span><span class="p">])</span>
+      <span class="n">FoundationDate</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;FoundationDate&quot;</span><span class="p">])</span>
+      <span class="n">ManagerID</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;ManagerID&quot;</span><span class="p">])</span>
+      <span class="n">Location</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">obje</span><span class="o">.</span><span class="n">Team_add</span><span class="p">(</span><span class="n">Teamname</span><span class="p">,</span><span class="n">NickName</span><span class="p">,</span><span class="n">ShortName</span><span class="p">,</span><span class="n">FoundationDate</span><span class="p">,</span><span class="n">ManagerID</span><span class="p">,</span><span class="n">Location</span><span class="p">)</span>
+      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have added.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_adding_page&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this method, if our method is post, we get the form information and we add new team.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/team&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">team_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_team_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;team_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">team_key</span> <span class="ow">in</span> <span class="n">form_team_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Team_delete</span><span class="p">(</span><span class="n">team_key</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have deleted.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">team_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this method, if we enter the team page with get method, we list information of teams. If it is post, we investigate the button value. If the value is add we go to team adding page, if it is delete, we call team delete method. In the other possibility we go to team update page by calling team information method that gets the information of team that will be updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_player&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">player_adding_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">teamCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;add_player.html&#39;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">teamCursor</span><span class="p">)</span>
+
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="n">PlayerName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerName&quot;</span><span class="p">])</span>
+      <span class="n">PlayerAge</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerAge&quot;</span><span class="p">])</span>
+      <span class="n">Position</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Position&quot;</span><span class="p">])</span>
+      <span class="n">PlayerNationalty</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerNationalty&quot;</span><span class="p">])</span>
+      <span class="n">PlayerHeight</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerHeight&quot;</span><span class="p">])</span>
+      <span class="n">PlaceOfBirth</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlaceOfBirth&quot;</span><span class="p">])</span>
+      <span class="n">TeamID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;TeamID&quot;</span><span class="p">])</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">obje</span><span class="o">.</span><span class="n">Player_add</span><span class="p">(</span><span class="n">PlayerName</span><span class="p">,</span> <span class="n">PlayerAge</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">PlayerNationalty</span><span class="p">,</span> <span class="n">PlayerHeight</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">,</span> <span class="n">TeamID</span><span class="p">)</span>
+      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have added.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_adding_page&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If our method is post, we get the form information and we add new player.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/player&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">player_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;players.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_player_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;player_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_player_key</span> <span class="ow">in</span> <span class="n">form_player_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Player_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_player_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">player_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this method, if we enter the player page with get method, we list information of players. If it is post, we investigate the button value. If the value is add we go to player adding page, if it is delete, we call player delete method. In the other possibility we go to player update page by calling player information method that gets the information of player that will be updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_manager&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">manager_adding_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;add_manager.html&#39;</span><span class="p">)</span>
+
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="n">Name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span>
+      <span class="n">Age</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+      <span class="n">Nationalty</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Nationalty&quot;</span><span class="p">])</span>
+      <span class="n">Height</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">])</span>
+      <span class="n">PlaceOfBirth</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlaceOfBirth&quot;</span><span class="p">])</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">obje</span><span class="o">.</span><span class="n">Manager_add</span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Age</span><span class="p">,</span> <span class="n">Nationalty</span><span class="p">,</span> <span class="n">Height</span><span class="p">,</span> <span class="n">PlaceOfBirth</span><span class="p">)</span>
+      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have added.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_adding_page&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If our method is post, we get the form information and we add new manager.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/manager&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">manager_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_user</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;managers.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_manager_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;manager_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_manager_key</span> <span class="ow">in</span> <span class="n">form_manager_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Manager_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_manager_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">manager_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this method, if we enter the manager page with get method, we list information of managers. If it is post, we investigate the button value. If the value is add we go to manager adding page, if it is delete, we call manager delete method. In the other possibility we go to manager update page by calling manager information method that gets the information of manager that will be updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/add_goal&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">goal_adding_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">playerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player</span><span class="p">()</span>
+      <span class="n">matchCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Fixtures2</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;add_goal.html&#39;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">playerCursor</span><span class="p">,</span><span class="n">matchCursor</span><span class="p">])</span>
+
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="n">PlayerID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerID&quot;</span><span class="p">])</span>
+      <span class="n">MatchID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;MatchID&quot;</span><span class="p">])</span>
+      <span class="n">Minute</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Minute&quot;</span><span class="p">])</span>
+      <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+      <span class="n">obje</span><span class="o">.</span><span class="n">Goal_add</span><span class="p">(</span><span class="n">PlayerID</span><span class="p">,</span> <span class="n">MatchID</span><span class="p">,</span> <span class="n">Minute</span><span class="p">)</span>
+      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have added.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_adding_page&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If our method is post, we get the form information and we add new goal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/goal&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">goal_page</span><span class="p">():</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;goals.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_goal_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;goal_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_goal_key</span> <span class="ow">in</span> <span class="n">form_goal_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Goal_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_goal_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">goal_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this method, if we enter the goal page with get method, we list information of goals. If it is post, we investigate the button value. If the value is add we go to goal adding page, if it is delete, we call goal delete method. In the other possibility we go to goal update page by calling goal information method that gets the information of goal that will be updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/update_goal&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">goal_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;goals.html&quot;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">PlayerID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerID&quot;</span><span class="p">])</span>
+            <span class="n">MatchID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;MatchID&quot;</span><span class="p">])</span>
+            <span class="n">Minute</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Minute&quot;</span><span class="p">])</span>
+            <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+            <span class="n">obje</span><span class="o">.</span><span class="n">Goal_update</span><span class="p">(</span><span class="n">update</span><span class="p">,</span><span class="n">PlayerID</span><span class="p">,</span><span class="n">MatchID</span><span class="p">,</span><span class="n">Minute</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_page&quot;</span><span class="p">))</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Goal_update_info</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+      <span class="n">playerCursor</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Player</span><span class="p">()</span>
+      <span class="n">matchCursor</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Fixtures2</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update_goal.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span><span class="n">playerCursor</span><span class="p">,</span><span class="n">matchCursor</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/update_manager&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">manager_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;managers.html&quot;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">Name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span>
+            <span class="n">Age</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+            <span class="n">Nationalty</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Nationalty&quot;</span><span class="p">])</span>
+            <span class="n">Height</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">])</span>
+            <span class="n">PlaceOfBirth</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlaceOfBirth&quot;</span><span class="p">])</span>
+            <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+            <span class="n">obje</span><span class="o">.</span><span class="n">Manager_update</span><span class="p">(</span><span class="n">update</span><span class="p">,</span><span class="n">Name</span><span class="p">,</span><span class="n">Age</span><span class="p">,</span><span class="n">Nationalty</span><span class="p">,</span><span class="n">Height</span><span class="p">,</span><span class="n">PlaceOfBirth</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_page&quot;</span><span class="p">))</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_update_info</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update_manager.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/update_player&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">player_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;players.html&quot;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">PlayerName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerName&quot;</span><span class="p">])</span>
+            <span class="n">PlayerAge</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerAge&quot;</span><span class="p">])</span>
+            <span class="n">Position</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Position&quot;</span><span class="p">])</span>
+            <span class="n">PlayerNationalty</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerNationalty&quot;</span><span class="p">])</span>
+            <span class="n">PlayerHeight</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlayerHeight&quot;</span><span class="p">])</span>
+            <span class="n">PlaceOfBirth</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;PlaceOfBirth&quot;</span><span class="p">])</span>
+            <span class="n">TeamID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;TeamID&quot;</span><span class="p">])</span>
+            <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+            <span class="n">obje</span><span class="o">.</span><span class="n">Player_update</span><span class="p">(</span><span class="n">update</span><span class="p">,</span><span class="n">PlayerName</span><span class="p">,</span><span class="n">PlayerAge</span><span class="p">,</span><span class="n">Position</span><span class="p">,</span><span class="n">PlayerNationalty</span><span class="p">,</span><span class="n">PlayerHeight</span><span class="p">,</span><span class="n">PlaceOfBirth</span><span class="p">,</span><span class="n">TeamID</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_page&quot;</span><span class="p">))</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_update_info</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+      <span class="n">teamCursor</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Team</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update_player.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span><span class="n">teamCursor</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/update_team&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">team_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">update</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">Teamname</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Teamname&quot;</span><span class="p">])</span>
+            <span class="n">NickName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;NickName&quot;</span><span class="p">])</span>
+            <span class="n">ShortName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;ShortName&quot;</span><span class="p">])</span>
+            <span class="n">FoundationDate</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;FoundationDate&quot;</span><span class="p">])</span>
+            <span class="n">ManagerID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;ManagerID&quot;</span><span class="p">])</span>
+            <span class="n">Location</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+            <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+            <span class="n">obje</span><span class="o">.</span><span class="n">Team_update</span><span class="p">(</span><span class="n">update</span><span class="p">,</span><span class="n">Teamname</span><span class="p">,</span><span class="n">NickName</span><span class="p">,</span><span class="n">ShortName</span><span class="p">,</span><span class="n">FoundationDate</span><span class="p">,</span><span class="n">ManagerID</span><span class="p">,</span><span class="n">Location</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team_update_info</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+      <span class="n">managerCursor</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update_team.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span> <span class="n">managerCursor</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>If our method is post, we update the team, player, goal or manager according the id value received as a parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/teams&quot;</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">teams_page</span><span class="p">(</span><span class="n">team_keys</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">playerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_team_user</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">stadiumCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Stadium_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">fixtureCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Fixture_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">managerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams_player.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span><span class="n">playerCursor</span><span class="p">,</span><span class="n">stadiumCursor</span><span class="p">,</span><span class="n">fixtureCursor</span><span class="p">,</span><span class="n">managerCursor</span><span class="p">])</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="k">global</span> <span class="n">i</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">processStadium</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonStadium&#39;</span><span class="p">)</span>
+      <span class="n">processMatches</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonMatch&#39;</span><span class="p">)</span>
+      <span class="n">processManager</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonManager&#39;</span><span class="p">)</span>
+      <span class="n">processTeam</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonTeam&#39;</span><span class="p">)</span>
+      <span class="n">processStart</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">)</span>
+      <span class="n">processPlayer</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonPlayer&#39;</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">processStadium</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">stadium_update_page</span><span class="p">(</span><span class="n">processStadium</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">processMatches</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">2</span>
+            <span class="k">return</span> <span class="n">fixture_update_page</span><span class="p">(</span><span class="n">processMatches</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">processPlayer</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">3</span>
+            <span class="k">return</span> <span class="n">player_update_page</span><span class="p">(</span><span class="n">processPlayer</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">processManager</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">4</span>
+            <span class="k">return</span> <span class="n">manager_update_page</span><span class="p">(</span><span class="n">processManager</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">processTeam</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">5</span>
+            <span class="k">return</span> <span class="n">team_update_page</span><span class="p">(</span><span class="n">processTeam</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">processStart</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">6</span>
+            <span class="k">return</span> <span class="n">fixture_update_page</span><span class="p">(</span><span class="n">processStart</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add_player&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add_stadium&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;stadium_add_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add_Match&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;fixture_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add_Manager&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_team_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;team_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">team_key</span> <span class="ow">in</span> <span class="n">form_team_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Team_delete</span><span class="p">(</span><span class="n">team_key</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have deleted.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete_player&quot;</span><span class="p">):</span>
+            <span class="n">form_player_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;player_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_player_key</span> <span class="ow">in</span> <span class="n">form_player_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Player_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_player_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete_stadium&quot;</span><span class="p">):</span>
+            <span class="n">form_stadium_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s1">&#39;stadium_keys&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_stadium_key</span> <span class="ow">in</span> <span class="n">form_stadium_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Stadium_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_stadium_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete_match&quot;</span><span class="p">):</span>
+            <span class="n">form_fixture_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s1">&#39;fixture&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_fixture_key</span> <span class="ow">in</span> <span class="n">form_fixture_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Fixture_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_fixture_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete_manager&quot;</span><span class="p">):</span>
+            <span class="n">form_manager_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;manager_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_manager_key</span> <span class="ow">in</span> <span class="n">form_manager_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Manager_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_manager_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;team_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+               <span class="n">stadium_update_page</span><span class="p">(</span><span class="n">processStadium</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+               <span class="n">fixture_update_page</span><span class="p">(</span><span class="n">processMatches</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+               <span class="n">player_update_page</span><span class="p">(</span><span class="n">processPlayer</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span>
+               <span class="n">manager_update_page</span><span class="p">(</span><span class="n">processManager</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">5</span><span class="p">):</span>
+               <span class="n">team_update_page</span><span class="p">(</span><span class="n">processTeam</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">6</span><span class="p">):</span>
+               <span class="n">fixture_update_page</span><span class="p">(</span><span class="n">processStart</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+            <span class="n">playerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_team_user</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+            <span class="n">stadiumCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Stadium_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+            <span class="n">fixtureCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Fixture_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+            <span class="n">managerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams_player.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span><span class="n">playerCursor</span><span class="p">,</span><span class="n">stadiumCursor</span><span class="p">,</span><span class="n">fixtureCursor</span><span class="p">,</span><span class="n">managerCursor</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/team/&lt;team_keys&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">teams_page</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method creates a page for single team with its players, stadium, manager, fixture informations by using key access when form is GET. When form is post, since all of the team, players, stadium, manager, fixture buttons which are delete, add, update are directed to the its right function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/goals&quot;</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">goals_page</span><span class="p">(</span><span class="n">goal_keys</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Goal_key</span><span class="p">(</span><span class="n">goal_keys</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;goals.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_goal_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;goal_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_goal_key</span> <span class="ow">in</span> <span class="n">form_goal_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Goal_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_goal_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;goal_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">goal_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/goal/&lt;goal_keys&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">goals_page</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/managers&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">managers_page</span><span class="p">(</span><span class="n">manager_keys</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_key</span><span class="p">(</span><span class="n">manager_keys</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;managers.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_manager_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;manager_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_manager_key</span> <span class="ow">in</span> <span class="n">form_manager_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Manager_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_manager_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;manager_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">manager_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/manager/&lt;manager_keys&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">managers_page</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/player&quot;</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">players_page</span><span class="p">(</span><span class="n">player_key</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_key</span><span class="p">(</span><span class="n">player_key</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;players.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">process</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;buttonName&#39;</span><span class="p">)</span>
+      <span class="n">update</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_adding_page&quot;</span><span class="p">))</span>
+      <span class="k">elif</span><span class="p">(</span><span class="n">process</span> <span class="o">==</span> <span class="s2">&quot;Delete&quot;</span><span class="p">):</span>
+            <span class="n">form_player_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;player_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">form_player_key</span> <span class="ow">in</span> <span class="n">form_player_keys</span><span class="p">:</span>
+               <span class="n">obje</span><span class="o">.</span><span class="n">Player_delete</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">form_player_key</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;player_page&quot;</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">player_update_page</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/player/&lt;player_key&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">players_page</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In this method is used for creating pages for single tuples by using key access. In POST form Delete, add, update are same as methods that do not have key access.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/top_goal&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">top_goal_page</span><span class="p">():</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Top_goal</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_top_goal.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/teams_user&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">team_user_page</span><span class="p">():</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_teams.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/managers_user&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">manager_user_page</span><span class="p">():</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_user</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_managers.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/players_user&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">player_user_page</span><span class="p">():</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_players.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These methods are used for creating user players, managers, teams, and top goal pages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/managers_user&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">managers_user_page</span><span class="p">(</span><span class="n">manager_keys</span><span class="p">):</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_key</span><span class="p">(</span><span class="n">manager_keys</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_managers.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/managers_user/&lt;manager_keys&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">managers_user_page</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/players_user&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">players_user_page</span><span class="p">(</span><span class="n">player_key</span><span class="p">):</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_key</span><span class="p">(</span><span class="n">player_key</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_players.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="n">cursor</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/players_user/&lt;player_key&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">players_user_page</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/teams_user&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">teams_user_page</span><span class="p">(</span><span class="n">team_keys</span><span class="p">):</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+      <span class="n">cursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Team_user_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">playerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Player_team_user</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">stadiumCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Stadium_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">fixtureCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Fixture_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="n">managerCursor</span><span class="o">=</span><span class="n">obje</span><span class="o">.</span><span class="n">Manager_team_key</span><span class="p">(</span><span class="n">team_keys</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;user_teams_player.html&quot;</span><span class="p">,</span><span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursor</span><span class="p">,</span><span class="n">playerCursor</span><span class="p">,</span><span class="n">stadiumCursor</span><span class="p">,</span><span class="n">fixtureCursor</span><span class="p">,</span><span class="n">managerCursor</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s2">&quot;/teams_user/&lt;team_keys&gt;&quot;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">teams_user_page</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These methods are used for creating user players, managers, teams, and top goal pages. These function perform key access, and teams_user_page not only show teams’ informations but also shows that team’s manager, stadium, players, and played or unplayed matches.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/live_match&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">live_match_page</span><span class="p">(</span><span class="n">processLive</span><span class="p">):</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+      <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+   <span class="n">obje</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FootballStats</span><span class="p">()</span>
+   <span class="n">cursorFixture</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Fixture_key</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="n">cursorStanding</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Standing_key</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="n">cursorPlayer</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Player_fixture_team</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="n">cursorDetail</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Detail_user</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="n">cursorGoal</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Goal_user</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="n">cursorAssist</span> <span class="o">=</span> <span class="n">obje</span><span class="o">.</span><span class="n">Assist_user</span><span class="p">(</span><span class="n">processLive</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;live_match.html&quot;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="p">[</span><span class="n">cursorFixture</span><span class="p">,</span><span class="n">cursorStanding</span><span class="p">,</span><span class="n">cursorPlayer</span><span class="p">,</span><span class="n">cursorDetail</span><span class="p">,</span><span class="n">cursorGoal</span><span class="p">,</span><span class="n">cursorAssist</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This method creates a live match page in order to control matches by developer. Cursor used for showing details, players, current fixture state, etc. to show current state of match to developer.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member3.html" class="btn btn-neutral float-right" title="Parts Implemented by Beraat Buz" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="member1.html" class="btn btn-neutral float-left" title="Parts Implemented by Ahmet YILMAZ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, itucsdb1930
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
